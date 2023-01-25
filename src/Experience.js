@@ -1,4 +1,4 @@
-import { Center, Environment, OrbitControls } from '@react-three/drei';
+import { Center, Environment } from '@react-three/drei';
 import { Perf } from 'r3f-perf';
 import React from 'react';
 import Camera from './components/Camera';
