@@ -1,7 +1,10 @@
 import { OrbitControls } from '@react-three/drei';
+import { useThree } from '@react-three/fiber';
 
 const Camera = () => {
-    return <OrbitControls />;
+    const { camera, gl } = useThree();
+
+    return <OrbitControls camera={camera} gl={gl} />;
 };
 
 export default Camera;
