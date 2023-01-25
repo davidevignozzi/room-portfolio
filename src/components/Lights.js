@@ -13,10 +13,16 @@ const Sun = () => {
     /**
      * Debug Sun
      */
-    const { position, color } = useControls('Sun', {
+    const { position, color, intensity } = useControls('Sun', {
         position: {
             value: { x: -3, y: 0.5, z: 0 },
             step: 0.01
+        },
+        intensity: {
+            value: 1.5,
+            min: 0,
+            max: 5,
+            step: 0.1
         },
         color: '#ffffff'
     });
@@ -24,7 +30,7 @@ const Sun = () => {
     return (
         <directionalLight
             ref={sun}
-            intensity={1.5}
+            intensity={intensity}
             position={[position.x, position.y, position.z]}
             color={color}
         />
@@ -38,20 +44,23 @@ const Sun = () => {
  */
 const DebugLight = () => {
     const debugLight = useRef();
-    useHelper(debugLight, DirectionalLightHelper, debugLight.scale);
 
-    const { position } = useControls('DEBUGLIGHT', {
+    const { position, enabled } = useControls('DEBUGLIGHT', {
         position: {
             value: { x: 0, y: 2, z: 0 },
             step: 0.01
-        }
+        },
+        enabled: true
     });
+
+    useHelper(enabled && debugLight, DirectionalLightHelper, debugLight.scale);
 
     return (
         <directionalLight
             ref={debugLight}
             intensity={1}
             position={[position.x, position.y, position.z]}
+            visible={enabled}
         />
     );
 };
