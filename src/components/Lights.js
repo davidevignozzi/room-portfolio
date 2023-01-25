@@ -3,10 +3,9 @@ import { DirectionalLightHelper } from 'three';
 import { useHelper } from '@react-three/drei';
 import { useControls } from 'leva';
 
-const Lights = () => {
+const Sun = () => {
     const sun = useRef();
     useHelper(sun, DirectionalLightHelper, sun.scale);
-
     /**
      * Debug Sun
      */
@@ -18,13 +17,21 @@ const Lights = () => {
     });
 
     return (
+        <directionalLight
+            ref={sun}
+            intensity={1.5}
+            position={[position.x, position.y, position.z]}
+        />
+    );
+};
+
+/**
+ * Lights Setup
+ */
+const Lights = () => {
+    return (
         <>
-            {/* Sun */}
-            <directionalLight
-                ref={sun}
-                intensity={1.5}
-                position={[position.x, position.y, position.z]}
-            />
+            <Sun />
         </>
     );
 };
