@@ -9,14 +9,16 @@ import { useControls } from 'leva';
 const Sun = () => {
     const sun = useRef();
     useHelper(sun, DirectionalLightHelper, sun.scale);
+
     /**
      * Debug Sun
      */
-    const { position } = useControls('Sun', {
+    const { position, color } = useControls('Sun', {
         position: {
             value: { x: -3, y: 0.5, z: 0 },
             step: 0.01
-        }
+        },
+        color: '#ffffff'
     });
 
     return (
@@ -24,6 +26,7 @@ const Sun = () => {
             ref={sun}
             intensity={1.5}
             position={[position.x, position.y, position.z]}
+            color={color}
         />
     );
 };
