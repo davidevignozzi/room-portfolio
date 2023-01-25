@@ -4,21 +4,25 @@ import { useHelper } from '@react-three/drei';
 import { useControls } from 'leva';
 
 const Lights = () => {
-    const directionalLight = useRef();
-    useHelper(directionalLight, DirectionalLightHelper, 0.5);
+    const sun = useRef();
+    useHelper(sun, DirectionalLightHelper, sun.scale);
 
-    const { position } = useControls('Lights', {
+    /**
+     * Debug Sun
+     */
+    const { position } = useControls('Sun', {
         position: {
-            value: { x: 2, y: 0.5, z: -2 },
-            step: 0.01,
-            joystick: 'invertY'
+            value: { x: -3, y: 0.5, z: 0 },
+            step: 0.01
         }
     });
+
     return (
         <>
+            {/* Sun */}
             <directionalLight
-                intensity={0.5}
-                ref={directionalLight}
+                ref={sun}
+                intensity={1.5}
                 position={[position.x, position.y, position.z]}
             />
         </>
