@@ -8,8 +8,8 @@ const Camera = () => {
         <OrbitControls
             camera={camera}
             gl={gl}
-            rotateSpeed={0.25}
-            zoomSpeed={0.25}
+            rotateSpeed={0.1}
+            zoomSpeed={0.5}
             minPolarAngle={0}
             maxPolarAngle={Math.PI / 2}
             minAzimuthAngle={Math.PI / 2}
