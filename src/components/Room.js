@@ -2,6 +2,7 @@ import RoomStructure from './RoomStructure/RoomStructure';
 import Consoles from './StaticsElements/Consoles';
 import Sofa from './StaticsElements/Sofa';
 import Tables from './StaticsElements/Tables';
+import Tv from './StaticsElements/Tv';
 
 const Room = () => {
     return (
@@ -10,9 +11,12 @@ const Room = () => {
 
             {/* Statics Elements */}
             {/* -- Gaming Corner */}
-            <Sofa />
-            <Tables />
-            <Consoles />
+            <group>
+                <Sofa />
+                <Tables />
+                <Consoles />
+                <Tv />
+            </group>
         </group>
     );
 };
