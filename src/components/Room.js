@@ -1,4 +1,5 @@
 import RoomStructure from './RoomStructure/RoomStructure';
+import Alex from './StaticsElements/Alex';
 import Consoles from './StaticsElements/Consoles';
 import Sofa from './StaticsElements/Sofa';
 import Tables from './StaticsElements/Tables';
@@ -17,6 +18,9 @@ const Room = () => {
                 <Consoles />
                 <Tv />
             </group>
+
+            {/* Ikea Alex */}
+            <Alex />
         </group>
     );
 };
