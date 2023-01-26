@@ -1,6 +1,7 @@
 import RoomStructure from './RoomStructure/RoomStructure';
 import Alex from './StaticsElements/Alex';
 import Consoles from './StaticsElements/Consoles';
+import Skadils from './StaticsElements/Skadils';
 import Sofa from './StaticsElements/Sofa';
 import Tables from './StaticsElements/Tables';
 import Tv from './StaticsElements/Tv';
@@ -19,8 +20,11 @@ const Room = () => {
                 <Tv />
             </group>
 
-            {/* Ikea Alex */}
-            <Alex />
+            {/* -- Exposition Area */}
+            <group>
+                <Alex />
+                <Skadils />
+            </group>
         </group>
     );
 };
