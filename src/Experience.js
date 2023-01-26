@@ -15,13 +15,17 @@ const Experience = () => {
             <Camera />
 
             {/* Environment */}
-            <Environment preset="city" />
+            <Environment
+                files="https://cdn.jsdelivr.net/gh/Sean-Bradley/React-Three-Fiber-Boilerplate@environment/public/img/venice_sunset_1k.hdr"
+                background
+                blur={0.5}
+            />
 
             {/* Lights */}
             <Lights />
 
             {/* Objects */}
-            <Center>
+            <Center position-y={0.5}>
                 <Room />
             </Center>
         </>
