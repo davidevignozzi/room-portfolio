@@ -15,11 +15,7 @@ const Experience = () => {
             <Camera />
 
             {/* Environment */}
-            <Environment
-                files="https://cdn.jsdelivr.net/gh/Sean-Bradley/React-Three-Fiber-Boilerplate@environment/public/img/venice_sunset_1k.hdr"
-                background
-                blur={0.5}
-            />
+            <Environment preset="sunset" background blur={0.5} />
 
             {/* Lights */}
             <Lights />
