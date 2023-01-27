@@ -1,3 +1,4 @@
+import Plant from './elements/animated/Plant';
 import RoomStructure from './elements/RoomStructure';
 import StaticsElements from './elements/StaticsElements';
 
@@ -6,6 +7,9 @@ const Room = () => {
         <group>
             <RoomStructure />
             <StaticsElements />
+
+            {/* Animated Elements */}
+            <Plant />
         </group>
     );
 };

@@ -10,7 +10,7 @@ const Camera = () => {
         <OrbitControls
             camera={camera}
             gl={gl}
-            enablePan={false}
+            // enablePan={false}
             rotateSpeed={0.2}
             zoomSpeed={0.5}
             minPolarAngle={0}
