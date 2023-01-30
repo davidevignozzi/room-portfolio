@@ -53,7 +53,7 @@ const DebugLight = () => {
             value: { x: 0, y: 2, z: 0 },
             step: 0.01
         },
-        enabled: false
+        enabled: true
     });
 
     useHelper(enabled && debugLight, DirectionalLightHelper, debugLight.scale);
