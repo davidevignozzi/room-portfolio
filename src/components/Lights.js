@@ -15,11 +15,11 @@ const Sun = () => {
      */
     const { position, color, intensity } = useControls('Sun', {
         position: {
-            value: { x: -3, y: 0.5, z: 0 },
+            value: { x: -3, y: 1, z: -0.5 },
             step: 0.01
         },
         intensity: {
-            value: 1.5,
+            value: 1,
             min: 0,
             max: 5,
             step: 0.1
@@ -30,6 +30,9 @@ const Sun = () => {
     return (
         <directionalLight
             ref={sun}
+            castShadow
+            shadow-normalBias={0.75}
+            scale={[0.75, 1, 0.75]}
             intensity={intensity}
             position={[position.x, position.y, position.z]}
             color={color}
@@ -50,7 +53,7 @@ const DebugLight = () => {
             value: { x: 0, y: 2, z: 0 },
             step: 0.01
         },
-        enabled: true
+        enabled: false
     });
 
     useHelper(enabled && debugLight, DirectionalLightHelper, debugLight.scale);
@@ -75,6 +78,7 @@ const Lights = () => {
         <>
             <Sun />
             <DebugLight />
+            {/* <ambientLight castShadow intensity={0.2} /> */}
         </>
     );
 };
