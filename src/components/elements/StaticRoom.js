@@ -4,10 +4,9 @@ const StaticRoom = () => {
     const { nodes } = useGLTF('./assets/BakedRoom.glb');
     const bakedTexture = useTexture('./assets/BakedTexture.jpg');
     bakedTexture.flipY = false;
-    console.log('🚀 ~ StaticRoom ~ nodes', nodes);
     return (
         // <primitive object={bakedRoom.scene} />
-        <mesh geometry={nodes.StaticRoom.geometry}>
+        <mesh geometry={nodes.BakedRoom.geometry} rotation={nodes.BakedRoom.rotation}>
             <meshBasicMaterial map={bakedTexture} />
         </mesh>
     );
