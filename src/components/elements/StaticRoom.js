@@ -5,7 +5,6 @@ const StaticRoom = () => {
     const bakedTexture = useTexture('./assets/BakedTexture.jpg');
     bakedTexture.flipY = false;
     return (
-        // <primitive object={bakedRoom.scene} />
         <mesh geometry={nodes.BakedRoom.geometry} rotation={nodes.BakedRoom.rotation}>
             <meshBasicMaterial map={bakedTexture} />
         </mesh>

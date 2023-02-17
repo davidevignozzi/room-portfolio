@@ -8,7 +8,7 @@ import { useControls } from 'leva';
  */
 const Sun = () => {
     const sun = useRef();
-    useHelper(sun, DirectionalLightHelper, sun.scale);
+    // useHelper(sun, DirectionalLightHelper, sun.scale);
 
     /**
      * Debug Sun
@@ -56,7 +56,7 @@ const DebugLight = () => {
         enabled: true
     });
 
-    useHelper(enabled && debugLight, DirectionalLightHelper, debugLight.scale);
+    // useHelper(enabled && debugLight, DirectionalLightHelper, debugLight.scale);
 
     return (
         <directionalLight
