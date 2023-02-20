@@ -12,7 +12,7 @@ const Camera = () => {
             gl={gl}
             // enablePan={false}
             rotateSpeed={0.2}
-            zoomSpeed={0.5}
+            zoomSpeed={2}
             minPolarAngle={0}
             maxPolarAngle={Math.PI / 2}
             minAzimuthAngle={Math.PI / 2}
