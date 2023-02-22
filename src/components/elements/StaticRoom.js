@@ -3,7 +3,7 @@ import { useGLTF, useTexture } from '@react-three/drei';
 const StaticRoom = () => {
     const { nodes } = useGLTF('./assets/Room.glb');
     console.log('🚀 ~ Model', nodes);
-    const bakedTexture = useTexture('./assets/BakaingSteps.jpg');
+    const bakedTexture = useTexture('./assets/BakingSteps.jpg');
     console.log('🚀 ~ Texture', bakedTexture);
     bakedTexture.flipY = false;
     return (

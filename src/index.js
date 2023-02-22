@@ -13,7 +13,6 @@ root.render(
 
         {/* Canva */}
         <Canvas
-            shadows
             camera={{
                 fov: 45,
                 near: 0.1,
