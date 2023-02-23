@@ -2,10 +2,11 @@ import { useGLTF } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 
 const Plant = () => {
-    const plant = useGLTF('./assets/plant.glb');
+    const plant = useGLTF('./assets/models/plant.glb');
+    console.log('🚀 ~ Plant ~ plant:', plant);
 
-    useFrame(() => {
-        plant.scene.children[0].rotation.y += 0.01;
+    useFrame(({ clock }) => {
+        plant.nodes.Plant.rotation.y += 0.01;
     });
     return <primitive object={plant.scene} />;
 };

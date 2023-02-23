@@ -5,6 +5,9 @@ const Room = () => {
     return (
         <group>
             <StaticRoom />
+
+            {/* Animated */}
+            <Plant />
         </group>
     );
 };
