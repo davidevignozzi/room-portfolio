@@ -5,7 +5,6 @@ const Room = () => {
     return (
         <group>
             <StaticRoom />
-            <Plant />
         </group>
     );
 };
