@@ -5,6 +5,7 @@ import Laptop from './elements/sections/laptop/Laptop';
 import Tablet from './elements/sections/tablet/Tablet';
 import Monitor from './elements/sections/monitor/Monitor';
 import Phone from './elements/sections/phone/Phone';
+import Trophies from './elements/sections/trophies/Trophies';
 
 const Room = () => {
     return (
@@ -19,6 +20,8 @@ const Room = () => {
             <Tablet />
             <Monitor />
             <Phone />
+
+            <Trophies />
         </group>
     );
 };
