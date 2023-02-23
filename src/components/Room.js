@@ -1,5 +1,6 @@
 import StaticRoom from './elements/StaticRoom';
 import Plant from './elements/animated/Plant';
+import Chair from './elements/animated/Chair';
 
 const Room = () => {
     return (
@@ -8,6 +9,7 @@ const Room = () => {
 
             {/* Animated */}
             <Plant />
+            <Chair />
         </group>
     );
 };

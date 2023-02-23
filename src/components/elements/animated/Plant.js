@@ -3,7 +3,6 @@ import { useFrame } from '@react-three/fiber';
 
 const Plant = () => {
     const plant = useGLTF('./assets/models/plant.glb');
-    console.log('🚀 ~ Plant ~ plant:', plant);
 
     useFrame(({ clock }) => {
         plant.nodes.Plant.rotation.y += 0.01;
