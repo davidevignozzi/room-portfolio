@@ -16,6 +16,7 @@ const Room = () => {
             <Plant />
             <Chair />
 
+            {/* Sections */}
             <Laptop />
             <Tablet />
             <Monitor />
