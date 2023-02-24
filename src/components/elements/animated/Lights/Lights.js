@@ -1,5 +1,6 @@
 import { EffectComposer, Bloom } from '@react-three/postprocessing';
-import LoupedeckLights from './Lights/LoupedeckLights';
+import LoupedeckLights from './LoupedeckLights';
+import RodeCasterLights from './RodeCasterLights';
 
 const Lights = () => {
     return (
@@ -9,6 +10,7 @@ const Lights = () => {
             </EffectComposer>
 
             <LoupedeckLights />
+            <RodeCasterLights />
         </>
     );
 };

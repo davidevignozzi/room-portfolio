@@ -6,7 +6,7 @@ import Tablet from './elements/sections/tablet/Tablet';
 import Monitor from './elements/sections/monitor/Monitor';
 import Phone from './elements/sections/phone/Phone';
 import Trophies from './elements/sections/trophies/Trophies';
-import Lights from './elements/animated/Lights';
+import Lights from './elements/animated/Lights/Lights';
 
 const Room = () => {
     return (

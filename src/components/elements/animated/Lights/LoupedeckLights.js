@@ -1,11 +1,19 @@
+import { useRef } from 'react';
+import { useFrame } from '@react-three/fiber';
 import { useGLTF } from '@react-three/drei';
 
 /**
  * Loupedeck
  */
 const LoupedeckLights = () => {
+    const light1 = useRef();
     const { nodes } = useGLTF('./assets/lights/loupedeckLights.glb');
     console.log('🚀 ~ LoupedeckLights ~ nodes:', nodes);
+
+    // Lights Animations
+    useFrame((_, delta) => {
+        light1.current.emissiveIntensity = Math.sin(1);
+    });
 
     return (
         <group>
@@ -15,9 +23,9 @@ const LoupedeckLights = () => {
                 position={nodes.LoupedeckLateralLights.position}
             >
                 <meshStandardMaterial
-                    color="orange"
-                    emissive="white"
-                    emissiveIntensity={0.25}
+                    color="grey"
+                    emissive="darkorange"
+                    emissiveIntensity={1.25}
                     toneMapped={false}
                 />
             </mesh>
@@ -28,9 +36,10 @@ const LoupedeckLights = () => {
                 position={nodes.LoupedeckLights001.position}
             >
                 <meshStandardMaterial
-                    color="orange"
-                    emissive="white"
-                    emissiveIntensity={0.25}
+                    ref={light1}
+                    color="grey"
+                    emissive="orange"
+                    emissiveIntensity={0}
                     toneMapped={false}
                 />
             </mesh>
@@ -39,9 +48,9 @@ const LoupedeckLights = () => {
                 position={nodes.LoupedeckLights002.position}
             >
                 <meshStandardMaterial
-                    color="orange"
-                    emissive="white"
-                    emissiveIntensity={0.25}
+                    color="grey"
+                    emissive="orange"
+                    emissiveIntensity={0}
                     toneMapped={false}
                 />
             </mesh>
@@ -50,9 +59,9 @@ const LoupedeckLights = () => {
                 position={nodes.LoupedeckLights003.position}
             >
                 <meshStandardMaterial
-                    color="orange"
-                    emissive="white"
-                    emissiveIntensity={0.25}
+                    color="grey"
+                    emissive="orange"
+                    emissiveIntensity={0}
                     toneMapped={false}
                 />
             </mesh>
@@ -61,9 +70,9 @@ const LoupedeckLights = () => {
                 position={nodes.LoupedeckLights004.position}
             >
                 <meshStandardMaterial
-                    color="orange"
-                    emissive="white"
-                    emissiveIntensity={0.25}
+                    color="grey"
+                    emissive="orange"
+                    emissiveIntensity={0}
                     toneMapped={false}
                 />
             </mesh>
@@ -74,9 +83,9 @@ const LoupedeckLights = () => {
                 position={nodes.LoupedeckLights005.position}
             >
                 <meshStandardMaterial
-                    color="orange"
-                    emissive="white"
-                    emissiveIntensity={0.25}
+                    color="grey"
+                    emissive="orange"
+                    emissiveIntensity={0}
                     toneMapped={false}
                 />
             </mesh>
@@ -85,9 +94,9 @@ const LoupedeckLights = () => {
                 position={nodes.LoupedeckLights006.position}
             >
                 <meshStandardMaterial
-                    color="orange"
-                    emissive="white"
-                    emissiveIntensity={0.25}
+                    color="grey"
+                    emissive="orange"
+                    emissiveIntensity={0}
                     toneMapped={false}
                 />
             </mesh>
@@ -96,9 +105,9 @@ const LoupedeckLights = () => {
                 position={nodes.LoupedeckLights007.position}
             >
                 <meshStandardMaterial
-                    color="orange"
-                    emissive="white"
-                    emissiveIntensity={0.25}
+                    color="grey"
+                    emissive="orange"
+                    emissiveIntensity={0}
                     toneMapped={false}
                 />
             </mesh>
@@ -107,9 +116,9 @@ const LoupedeckLights = () => {
                 position={nodes.LoupedeckLights008.position}
             >
                 <meshStandardMaterial
-                    color="orange"
-                    emissive="white"
-                    emissiveIntensity={0.25}
+                    color="grey"
+                    emissive="orange"
+                    emissiveIntensity={0}
                     toneMapped={false}
                 />
             </mesh>
@@ -120,9 +129,9 @@ const LoupedeckLights = () => {
                 position={nodes.LoupedeckLights009.position}
             >
                 <meshStandardMaterial
-                    color="orange"
-                    emissive="white"
-                    emissiveIntensity={0.25}
+                    color="grey"
+                    emissive="orange"
+                    emissiveIntensity={0}
                     toneMapped={false}
                 />
             </mesh>
@@ -131,9 +140,9 @@ const LoupedeckLights = () => {
                 position={nodes.LoupedeckLights010.position}
             >
                 <meshStandardMaterial
-                    color="orange"
-                    emissive="white"
-                    emissiveIntensity={0.25}
+                    color="grey"
+                    emissive="orange"
+                    emissiveIntensity={0}
                     toneMapped={false}
                 />
             </mesh>
@@ -142,9 +151,9 @@ const LoupedeckLights = () => {
                 position={nodes.LoupedeckLights011.position}
             >
                 <meshStandardMaterial
-                    color="orange"
-                    emissive="white"
-                    emissiveIntensity={0.25}
+                    color="grey"
+                    emissive="orange"
+                    emissiveIntensity={0}
                     toneMapped={false}
                 />
             </mesh>
@@ -153,9 +162,9 @@ const LoupedeckLights = () => {
                 position={nodes.LoupedeckLights012.position}
             >
                 <meshStandardMaterial
-                    color="orange"
-                    emissive="white"
-                    emissiveIntensity={0.25}
+                    color="grey"
+                    emissive="orange"
+                    emissiveIntensity={0}
                     toneMapped={false}
                 />
             </mesh>
