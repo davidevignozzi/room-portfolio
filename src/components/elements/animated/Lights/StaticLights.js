@@ -1,7 +1,6 @@
 import { useGLTF } from '@react-three/drei';
 const StaticLights = () => {
     const { nodes, materials } = useGLTF('./assets/lights/staticLights.glb');
-    console.log(materials);
     return (
         <group>
             {/* Lamp */}
