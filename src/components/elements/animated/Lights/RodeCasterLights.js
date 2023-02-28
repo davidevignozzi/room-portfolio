@@ -25,8 +25,6 @@ const RodeCasterLights = () => {
         });
     });
 
-    console.log('🚀 materials:', materials);
-    console.log('🎨 nodes:', nodes);
     return (
         <group>
             {/* Static */}
