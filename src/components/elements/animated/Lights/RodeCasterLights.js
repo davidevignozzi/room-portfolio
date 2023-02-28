@@ -31,24 +31,125 @@ const RodeCasterLights = () => {
         <group>
             {/* Static */}
             <group>
+                {/* Power */}
+                <mesh
+                    geometry={nodes.RodeCasterPowerLights.children[0].geometry}
+                    position={nodes.RodeCasterPowerLights.position}
+                    scale={nodes.RodeCasterPowerLights.scale}
+                >
+                    <meshStandardMaterial
+                        color={materials.RodeCasterButtonOff.color}
+                        emissive={materials.RodeCasterButtonRed.emissive}
+                        emissiveIntensity={2}
+                        toneMapped={false}
+                    />
+                </mesh>
+
                 {/* Channels */}
+                <group>
+                    <mesh
+                        geometry={nodes.RodeCasterChannelsLights.children[0].geometry}
+                        position={nodes.RodeCasterChannelsLights.position}
+                        scale={nodes.RodeCasterChannelsLights.scale}
+                    >
+                        <meshStandardMaterial
+                            color={materials.RodeCasterButtonOff.color}
+                            emissive={materials.RodeCasterButtonCeleste.emissive}
+                            emissiveIntensity={1.5}
+                            toneMapped={false}
+                        />
+                    </mesh>
+
+                    <mesh
+                        geometry={nodes.RodeCasterChannelsLights.children[1].geometry}
+                        position={nodes.RodeCasterChannelsLights.position}
+                        scale={nodes.RodeCasterChannelsLights.scale}
+                    >
+                        <meshStandardMaterial
+                            color={materials.RodeCasterButtonOff.color}
+                            emissive={materials.RodeCasterButtonOrange.emissive}
+                            emissiveIntensity={1.5}
+                            toneMapped={false}
+                        />
+                    </mesh>
+
+                    <mesh
+                        geometry={nodes.RodeCasterChannelsLights.children[2].geometry}
+                        position={nodes.RodeCasterChannelsLights.position}
+                        scale={nodes.RodeCasterChannelsLights.scale}
+                    >
+                        <meshStandardMaterial
+                            color={materials.RodeCasterButtonOff.color}
+                            emissive={materials.RodeCasterButtonViolet.emissive}
+                            emissiveIntensity={1.5}
+                            toneMapped={false}
+                        />
+                    </mesh>
+
+                    <mesh
+                        geometry={nodes.RodeCasterChannelsLights.children[3].geometry}
+                        position={nodes.RodeCasterChannelsLights.position}
+                        scale={nodes.RodeCasterChannelsLights.scale}
+                    >
+                        <meshStandardMaterial
+                            color={materials.RodeCasterButtonOff.color}
+                            emissive={materials.RodeCasterButtonYellow.emissive}
+                            emissiveIntensity={1.25}
+                            toneMapped={false}
+                        />
+                    </mesh>
+
+                    <mesh
+                        geometry={nodes.RodeCasterChannelsLights.children[4].geometry}
+                        position={nodes.RodeCasterChannelsLights.position}
+                        scale={nodes.RodeCasterChannelsLights.scale}
+                    >
+                        <meshStandardMaterial
+                            color={materials.RodeCasterButtonOff.color}
+                            emissive={materials.RodeCasterButtonRed.emissive}
+                            emissiveIntensity={0}
+                            toneMapped={false}
+                        />
+                    </mesh>
+                </group>
 
                 {/* Green */}
+                <mesh
+                    geometry={nodes.RodeCasterRGLights.children[1].geometry}
+                    position={nodes.RodeCasterRGLights.position}
+                    scale={nodes.RodeCasterRGLights.scale}
+                >
+                    <meshStandardMaterial
+                        color={materials.RodeCasterButtonOff.color}
+                        emissive={materials.RodeCasterButtonGreen.emissive}
+                        emissiveIntensity={1}
+                        toneMapped={false}
+                    />
+                </mesh>
 
                 {/* Red */}
+                <mesh
+                    geometry={nodes.RodeCasterRGLights.children[0].geometry}
+                    position={nodes.RodeCasterRGLights.position}
+                    scale={nodes.RodeCasterRGLights.scale}
+                >
+                    <meshStandardMaterial
+                        color={materials.RodeCasterButtonOff.color}
+                        emissive={materials.RodeCasterButtonRed.emissive}
+                        emissiveIntensity={2}
+                        toneMapped={false}
+                    />
+                </mesh>
             </group>
 
             {/* Animated */}
             <group>
-                {/* Power */}
-
                 {/* Side */}
                 <group>
                     <mesh
                         ref={light1}
                         geometry={nodes.RodeCasterLights.children[1].geometry}
                         position={nodes.RodeCasterLights.position}
-                        rotation={nodes.RodeCasterLights.rotation}
                         scale={nodes.RodeCasterLights.scale}
                     >
                         <meshStandardMaterial
@@ -62,7 +163,6 @@ const RodeCasterLights = () => {
                         ref={light2}
                         geometry={nodes.RodeCasterLights.children[2].geometry}
                         position={nodes.RodeCasterLights.position}
-                        rotation={nodes.RodeCasterLights.rotation}
                         scale={nodes.RodeCasterLights.scale}
                     >
                         <meshStandardMaterial
@@ -76,7 +176,6 @@ const RodeCasterLights = () => {
                         ref={light3}
                         geometry={nodes.RodeCasterLights.children[3].geometry}
                         position={nodes.RodeCasterLights.position}
-                        rotation={nodes.RodeCasterLights.rotation}
                         scale={nodes.RodeCasterLights.scale}
                     >
                         <meshStandardMaterial
@@ -90,7 +189,6 @@ const RodeCasterLights = () => {
                         ref={light4}
                         geometry={nodes.RodeCasterLights.children[4].geometry}
                         position={nodes.RodeCasterLights.position}
-                        rotation={nodes.RodeCasterLights.rotation}
                         scale={nodes.RodeCasterLights.scale}
                     >
                         <meshStandardMaterial
@@ -104,7 +202,6 @@ const RodeCasterLights = () => {
                         ref={light5}
                         geometry={nodes.RodeCasterLights.children[5].geometry}
                         position={nodes.RodeCasterLights.position}
-                        rotation={nodes.RodeCasterLights.rotation}
                         scale={nodes.RodeCasterLights.scale}
                     >
                         <meshStandardMaterial
@@ -118,7 +215,6 @@ const RodeCasterLights = () => {
                         ref={light6}
                         geometry={nodes.RodeCasterLights.children[6].geometry}
                         position={nodes.RodeCasterLights.position}
-                        rotation={nodes.RodeCasterLights.rotation}
                         scale={nodes.RodeCasterLights.scale}
                     >
                         <meshStandardMaterial
@@ -132,7 +228,6 @@ const RodeCasterLights = () => {
                         ref={light7}
                         geometry={nodes.RodeCasterLights.children[0].geometry}
                         position={nodes.RodeCasterLights.position}
-                        rotation={nodes.RodeCasterLights.rotation}
                         scale={nodes.RodeCasterLights.scale}
                     >
                         <meshStandardMaterial
