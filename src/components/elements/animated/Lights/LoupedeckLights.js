@@ -43,7 +43,7 @@ const LoupedeckLights = () => {
      */
     useFrame(({ clock }) => {
         lights.forEach((light) => {
-            light.current.material.emissiveIntensity = Math.sin(clock.getElapsedTime()) + 1;
+            light.current.material.emissiveIntensity = (Math.sin(clock.getElapsedTime()) + 1) * 0.5;
         });
     });
 

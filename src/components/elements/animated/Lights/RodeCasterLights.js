@@ -18,10 +18,10 @@ const RodeCasterLights = () => {
 
     useFrame(({ clock }) => {
         lightsGroup1.forEach((light) => {
-            light.current.material.emissiveIntensity = Math.sin(clock.getElapsedTime()) + 1;
+            light.current.material.emissiveIntensity = (Math.sin(clock.getElapsedTime()) + 1) * 0.5;
         });
         lightsGroup2.forEach((light) => {
-            light.current.material.emissiveIntensity = Math.cos(clock.getElapsedTime()) + 1;
+            light.current.material.emissiveIntensity = (Math.cos(clock.getElapsedTime()) + 1) * 0.5;
         });
     });
 
