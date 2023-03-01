@@ -7,6 +7,7 @@ import Monitor from './elements/sections/monitor/Monitor';
 import Phone from './elements/sections/phone/Phone';
 import Trophies from './elements/sections/trophies/Trophies';
 import Lights from './elements/animated/Lights/Lights';
+import Smoke from './elements/animated/Smoke';
 
 const Room = () => {
     return (
@@ -17,6 +18,7 @@ const Room = () => {
             <Plant />
             <Chair />
             <Lights />
+            <Smoke />
 
             {/* Sections */}
             <Laptop />
