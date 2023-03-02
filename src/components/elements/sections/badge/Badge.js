@@ -2,8 +2,7 @@ import { useGLTF } from '@react-three/drei';
 import React from 'react';
 
 const Badge = () => {
-    const { nodes, materials } = useGLTF('./assets/models/badge.glb');
-    console.log('🚀 ~ Badge ~ nodes:', nodes);
+    const { nodes } = useGLTF('./assets/models/badge.glb');
     return (
         <group>
             <mesh

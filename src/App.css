@@ -16,3 +16,13 @@ body,
     /* Dark background for debuging */
     background: #333333;
 }
+
+.wrapper {
+    width: 750px;
+    height: 530px;
+    border-radius: 10px;
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
