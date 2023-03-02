@@ -5,7 +5,7 @@ import { Cloud } from '@react-three/drei';
 const Smoke = () => {
     return (
         <mesh scale={0.0035} position={[-0.577, 0.86, 1.74]}>
-            <Cloud opacity={0.15} speed={0.75} width={10} depth={1.25} />
+            <Cloud opacity={0.15} speed={1} width={10} depth={1.25} />
         </mesh>
     );
 };
