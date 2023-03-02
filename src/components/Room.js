@@ -8,6 +8,7 @@ import Phone from './elements/sections/phone/Phone';
 import Trophies from './elements/sections/trophies/Trophies';
 import Lights from './elements/animated/Lights/Lights';
 import Smoke from './elements/animated/Smoke';
+import Badge from './elements/sections/badge/Badge';
 
 const Room = () => {
     return (
@@ -27,6 +28,7 @@ const Room = () => {
             <Phone />
 
             <Trophies />
+            <Badge />
         </group>
     );
 };
