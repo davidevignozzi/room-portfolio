@@ -5,15 +5,27 @@ export default create(
     subscribeWithSelector((set) => {
         return {
             // cameraPosition: [5, 4, -6],
-            cameraPosition: {
-                x: 5.75,
-                y: 4,
-                z: -6
-            },
+
             /**
              * Phases
              */
-            phase: 'loading'
+            phase: 'loading',
+
+            // When loading end
+            start: () => {
+                set((state) => {
+                    if (state.phase === 'loading') {
+                        return {
+                            phase: 'explore'
+                        };
+                    } else {
+                        return {
+                            // have to return something
+                            // empty object
+                        };
+                    }
+                });
+            }
         };
     })
 );
