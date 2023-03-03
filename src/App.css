@@ -21,8 +21,11 @@ body,
     width: 750px;
     height: 530px;
     border-radius: 10px;
-    background-color: red;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.welcome {
+    margin: 1rem;
+    padding: 2.5rem;
 }

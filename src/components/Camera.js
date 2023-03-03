@@ -14,11 +14,11 @@ const Camera = () => {
             x: 0,
             y: 1,
             z: 0.05,
-            zoom: 5.35
+            zoom: 6.5
         },
         target: {
-            x: 0.45,
-            y: 0.55,
+            x: 0.454,
+            y: 0.54,
             z: 1
         }
     };
@@ -28,7 +28,7 @@ const Camera = () => {
             x: 5.5,
             y: 5,
             z: -5,
-            zoom: 1.85
+            zoom: 2
         },
         target: {
             x: 0,
@@ -74,7 +74,7 @@ const Camera = () => {
     }, [_state.phase]);
 
     setTimeout(() => {
-        start();
+        // start();
     }, 5000);
 
     return (
