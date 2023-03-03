@@ -21,5 +21,5 @@ export function handleResize(setScreenSize) {
     }
 
     setScreenSize(screenSize);
-    console.log(screenSize);
+    // console.log('📱 => ', screenSize);
 }
