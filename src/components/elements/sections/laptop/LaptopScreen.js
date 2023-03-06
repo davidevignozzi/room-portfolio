@@ -15,7 +15,7 @@ const LaptopScreen = () => {
                 `${labels.itaWelcome} <span class='accented'>Studio.</span>`
             ],
             typeSpeed: 50,
-            backSpeed: 50,
+            backSpeed: 20,
             backDelay: 1000,
             smartBackspace: true,
             loop: false
