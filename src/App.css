@@ -1,7 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+.montserrat {
+    font-family: 'Montserrat', sans-serif;
 }
 
 html,
@@ -15,6 +21,11 @@ body,
     overflow: hidden;
     /* Dark background for debuging */
     background: #333333;
+}
+
+/* Colors */
+.accented {
+    color: #f44a02;
 }
 
 .wrapper {

@@ -1,37 +1,37 @@
 import React from 'react';
+import { useRef, useEffect } from 'react';
+import Typed from 'typed.js';
 import { labels } from '../../../../labels';
-import { useTypewriter, Cursor } from 'react-simple-typewriter';
 import useInteractions from '../../../../utils/stores/useInteractions';
 
 const LaptopScreen = () => {
+    const text = useRef();
     const start = useInteractions((state) => state.start);
 
-    const [prefix, flags] = useTypewriter({
-        words: [labels.itaWelcome]
-    });
+    useEffect(() => {
+        const typed = new Typed(text.current, {
+            strings: [
+                `${labels.itaWelcome} <span class='accented'>Portfolio.</span>`,
+                `${labels.itaWelcome} <span class='accented'>Studio.</span>`
+            ],
+            typeSpeed: 50,
+            backSpeed: 50,
+            backDelay: 1000,
+            smartBackspace: true,
+            loop: false
+        });
 
-    const [currentWord] = useTypewriter({
-        words: ['Portfolio.', 'Studio.'],
-        onLoopDone: () => {
-            setTimeout(() => {
-                start();
-            }, 2000);
-        }
-    });
-
-    const { isDone } = flags;
+        // Destropying
+        return () => {
+            typed.destroy();
+        };
+    }, []);
 
     return (
         <div className="wrapper">
-            <div className="welcome">
+            <div className="welcome montserrat">
                 <h1>
-                    {prefix}
-
-                    {isDone && <span>{currentWord}</span>}
-
-                    <span style={{ color: 'red' }}>
-                        <Cursor />
-                    </span>
+                    <span ref={text}></span>
                 </h1>
             </div>
         </div>
