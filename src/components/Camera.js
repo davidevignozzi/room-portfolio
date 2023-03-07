@@ -2,7 +2,6 @@ import { useEffect, useRef } from 'react';
 import useInteractions from '../utils/stores/useInteractions';
 import { CameraControls } from '@react-three/drei';
 import { useThree } from '@react-three/fiber';
-import gsap from 'gsap';
 
 const Camera = () => {
     const { camera } = useThree();
@@ -44,42 +43,45 @@ const Camera = () => {
     const start = useInteractions((state) => state.start);
 
     useEffect(() => {
-        /**
-         *  Loading
-         */
-        // Camera
-        if (_state.phase === 'loading') {
-            CameraControlsRef.current?.setPosition(
-                loading.camera.x,
-                loading.camera.y,
-                loading.camera.z
-            );
-            CameraControlsRef.current?.zoom(loading.camera.zoom);
-            CameraControlsRef.current?.setTarget(
-                loading.target.x,
-                loading.target.y,
-                loading.target.z
-            );
-        }
+        switch (_state.phase) {
+            /**
+             * Explore
+             */
+            case 'explore':
+                CameraControlsRef.current?.zoomTo(explore.camera.zoom * 0.5, true);
+                setTimeout(() => {
+                    CameraControlsRef.current?.moveTo(
+                        explore.camera.x,
+                        explore.camera.y,
+                        explore.camera.z,
+                        true
+                    );
+                    CameraControlsRef.current?.zoomTo(explore.camera.zoom, true);
+                    CameraControlsRef.current?.setTarget(
+                        explore.target.x,
+                        explore.target.y,
+                        explore.target.z,
+                        true
+                    );
+                }, 1000);
+                break;
 
-        // Explore
-        if (_state.phase === 'explore') {
-            CameraControlsRef.current?.zoomTo(explore.camera.zoom * 0.5, true);
-            setTimeout(() => {
-                CameraControlsRef.current?.moveTo(
-                    explore.camera.x,
-                    explore.camera.y,
-                    explore.camera.z,
-                    true
+            default:
+                /**
+                 * Loading
+                 */
+                CameraControlsRef.current?.setPosition(
+                    loading.camera.x,
+                    loading.camera.y,
+                    loading.camera.z
                 );
-                CameraControlsRef.current?.zoomTo(explore.camera.zoom, true);
+                CameraControlsRef.current?.zoom(loading.camera.zoom);
                 CameraControlsRef.current?.setTarget(
-                    explore.target.x,
-                    explore.target.y,
-                    explore.target.z,
-                    true
+                    loading.target.x,
+                    loading.target.y,
+                    loading.target.z
                 );
-            }, 1000);
+                break;
         }
     }, [_state.phase]);
 
