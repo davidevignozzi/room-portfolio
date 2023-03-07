@@ -6,8 +6,14 @@
     box-sizing: border-box;
 }
 
+/* Font */
 .montserrat {
     font-family: 'Montserrat', sans-serif;
+}
+
+/* Colors */
+.accented {
+    color: #f44a02;
 }
 
 html,
@@ -23,20 +29,12 @@ body,
     background: #333333;
 }
 
-/* Colors */
-.accented {
-    color: #f44a02;
-}
-
+/* Sections */
 .wrapper {
-    width: 750px;
-    height: 530px;
+    width: 700px;
+    height: 500px;
     border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-.welcome {
-    margin: 1rem;
-    padding: 2.5rem;
 }

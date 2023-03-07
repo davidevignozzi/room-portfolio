@@ -7,7 +7,6 @@ import gsap from 'gsap';
 const Camera = () => {
     const { camera } = useThree();
     const CameraControlsRef = useRef();
-    console.log('🚀 ~ Camera ~ CameraControlsRef:', CameraControlsRef);
 
     const _state = useInteractions((state) => state);
 
@@ -16,11 +15,11 @@ const Camera = () => {
             x: 0,
             y: 1,
             z: 0.05,
-            zoom: 6.5
+            zoom: 8
         },
         target: {
             x: 0.454,
-            y: 0.54,
+            y: 0.55,
             z: 1
         }
     };

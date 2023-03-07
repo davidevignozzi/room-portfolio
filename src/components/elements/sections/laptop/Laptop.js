@@ -73,6 +73,8 @@ const Laptop = () => {
                 rotation={nodes.LaptopScreen.rotation}
                 scale={nodes.LaptopScreen.scale}
             >
+                <meshBasicMaterial color={'#ece6db'} />
+
                 {/* Handle Resize */}
                 {/* mac-27  */}
                 {screenSize === 'mac-27' && (
