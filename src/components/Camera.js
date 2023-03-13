@@ -10,16 +10,28 @@ const Camera = () => {
     const _state = useInteractions((state) => state);
 
     const loading = {
+        // camera: {
+        //     x: 0,
+        //     y: 1,
+        //     z: 0.05,
+        //     zoom: 8
+        // },
+        // target: {
+        //     x: 0.454,
+        //     y: 0.55,
+        //     z: 1
+        // }
+
         camera: {
-            x: 0,
-            y: 1,
-            z: 0.05,
-            zoom: 8
+            x: 5.5,
+            y: 5,
+            z: -5,
+            zoom: 1.8
         },
         target: {
-            x: 0.454,
-            y: 0.55,
-            z: 1
+            x: 0,
+            y: 0.1,
+            z: 0
         }
     };
 
@@ -28,7 +40,7 @@ const Camera = () => {
             x: 5.5,
             y: 5,
             z: -5,
-            zoom: 2
+            zoom: 1.8
         },
         target: {
             x: 0,
@@ -86,7 +98,7 @@ const Camera = () => {
     }, [_state.phase]);
 
     setTimeout(() => {
-        start();
+        // start();
     }, 10000);
 
     return (

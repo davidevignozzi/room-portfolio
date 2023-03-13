@@ -11,12 +11,36 @@ export default create(
              */
             phase: 'loading',
 
+            /**
+             * Explore
+             */
             // When loading end
             start: () => {
                 set((state) => {
                     if (state.phase === 'loading') {
                         return {
                             phase: 'explore'
+                        };
+                    } else {
+                        return {
+                            // have to return something
+                            // empty object
+                        };
+                    }
+                });
+            },
+
+            /**
+             * Projects
+             */
+            projects: () => {
+                set((state) => {
+                    if (
+                        state.phase === 'explore'
+                        // ||
+                    ) {
+                        return {
+                            phase: 'projects'
                         };
                     } else {
                         return {
