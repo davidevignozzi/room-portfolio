@@ -73,7 +73,7 @@ const Laptop = () => {
                 rotation={nodes.LaptopScreen.rotation}
                 scale={nodes.LaptopScreen.scale}
             >
-                <meshBasicMaterial color={'#ece6db'} />
+                <meshBasicMaterial color="#ece6db" />
 
                 {/* Handle Resize */}
                 {/* mac-27  */}
@@ -90,7 +90,7 @@ const Laptop = () => {
                         <Html
                             occlude
                             transform
-                            wrapperClass="laptopScreen"
+                            // wrapperClass="laptopScreen"
                             distanceFactor={0.5}
                             zIndexRange={2}
                         >
@@ -113,7 +113,7 @@ const Laptop = () => {
                         <Html
                             occlude
                             transform
-                            wrapperClass="laptopScreen"
+                            // wrapperClass="laptopScreen"
                             distanceFactor={0.5}
                             zIndexRange={2}
                         >
@@ -136,7 +136,7 @@ const Laptop = () => {
                         <Html
                             occlude
                             transform
-                            wrapperClass="laptopScreen"
+                            // wrapperClass="laptopScreen"
                             distanceFactor={0.5}
                             zIndexRange={2}
                         >
@@ -159,7 +159,7 @@ const Laptop = () => {
                         <Html
                             occlude
                             transform
-                            wrapperClass="laptopScreen"
+                            // wrapperClass="laptopScreen"
                             distanceFactor={0.5}
                             zIndexRange={2}
                         >
@@ -182,7 +182,7 @@ const Laptop = () => {
                         <Html
                             occlude
                             transform
-                            wrapperClass="laptopScreen"
+                            // wrapperClass="laptopScreen"
                             distanceFactor={0.5}
                             zIndexRange={2}
                         >

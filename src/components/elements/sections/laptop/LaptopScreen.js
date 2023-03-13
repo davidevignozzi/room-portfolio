@@ -72,7 +72,7 @@ const LaptopScreen = () => {
     }, []);
 
     return (
-        <div className="wrapper">
+        <div className="wrapper-laptop">
             <NoteApp>
                 <div className="topbar">
                     <div className="circle red" />

@@ -30,7 +30,7 @@ body,
 }
 
 /* Sections */
-.wrapper {
+.wrapper-laptop {
     width: 700px;
     height: 500px;
     border-radius: 10px;
@@ -38,3 +38,39 @@ body,
     justify-content: center;
     align-items: center;
 }
+
+.wrapper-monitor {
+    width: 350px;
+    height: 225px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* .topbar {
+    height: 7.5%;
+    border-bottom: 1px solid #333333;
+    display: flex;
+    align-items: center;
+    border-radius: 0.5rem 0.5rem 0 0;
+    background-color: #333333;
+}
+.topbar .circle {
+    width: 0.75rem;
+    height: 0.75rem;
+    margin: 0.25rem;
+    border-radius: 99%;
+}
+.topbar .circle:first-of-type {
+    margin-left: 0.5rem;
+}
+.red {
+    background-color: red;
+}
+.yellow {
+    background-color: orange;
+}
+.green {
+    background-color: green;
+} */
