@@ -14,6 +14,7 @@ const MonitorScreen = () => {
         border-radius: 0.5rem;
         background-color: #fefefe;
         color: #333333;
+        transition: ease-in 0.1;
 
         .topbar {
             height: 1rem;
@@ -133,7 +134,7 @@ const MonitorScreen = () => {
 
     return (
         <div className="wrapper-monitor">
-            {isVisible && (
+            {/* {isVisible && (
                 <ProjectApp>
                     <div className="topbar">
                         <div className="circle red"></div>
@@ -153,7 +154,26 @@ const MonitorScreen = () => {
                         })}
                     </Projects>
                 </ProjectApp>
-            )}
+            )} */}
+            <ProjectApp>
+                <div className="topbar">
+                    <div className="circle red"></div>
+                    <div className="circle yellow"></div>
+                    <div className="circle green"></div>
+                </div>
+                <h1 className="montserrat">Projects</h1>
+
+                <Projects>
+                    {projectsArr.map((prj) => {
+                        return (
+                            <Project key={prj.id} target="_blank" href={prj.ref}>
+                                <img src={prj.img} alt={prj.name} />
+                                <div className="title montserrat">{prj.name}</div>
+                            </Project>
+                        );
+                    })}
+                </Projects>
+            </ProjectApp>
         </div>
     );
 };

@@ -35,19 +35,22 @@ export default create(
              */
             projects: () => {
                 set((state) => {
-                    if (
-                        state.phase === 'explore'
-                        // ||
-                    ) {
-                        return {
-                            phase: 'projects'
-                        };
-                    } else {
-                        return {
-                            // have to return something
-                            // empty object
-                        };
-                    }
+                    // if (
+                    //     state.phase === 'explore'
+                    //     // ||
+                    // ) {
+                    //     return {
+                    //         phase: 'projects'
+                    //     };
+                    // } else {
+                    //     return {
+                    //         // have to return something
+                    //         // empty object
+                    //     };
+                    // }
+                    return {
+                        phase: 'projects'
+                    };
                 });
             }
         };

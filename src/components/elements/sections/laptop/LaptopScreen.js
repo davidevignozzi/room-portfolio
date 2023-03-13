@@ -69,7 +69,7 @@ const LaptopScreen = () => {
         return () => {
             typed.destroy();
         };
-    }, []);
+    });
 
     return (
         <div className="wrapper-laptop">

@@ -74,122 +74,16 @@ const Laptop = () => {
                 scale={nodes.LaptopScreen.scale}
             >
                 <meshBasicMaterial color="#ece6db" />
-
-                {/* Handle Resize */}
-                {/* mac-27  */}
-                {screenSize === 'mac-27' && (
-                    <mesh
-                        scale={0.35}
-                        position={[
-                            nodes.Scene.position.x - 0.0045,
-                            nodes.Scene.position.y,
-                            nodes.Scene.position.z
-                        ]}
-                        rotation={[0.34, Math.PI + 0.6015, 0.2]}
-                    >
-                        <Html
-                            occlude
-                            transform
-                            // wrapperClass="laptopScreen"
-                            distanceFactor={0.5}
-                            zIndexRange={2}
-                        >
-                            <LaptopScreen />
-                        </Html>
-                    </mesh>
-                )}
-
-                {/* mac-24 ✔ */}
-                {screenSize === 'mac-24' && (
-                    <mesh
-                        scale={0.35}
-                        position={[
-                            nodes.Scene.position.x - 0.0045,
-                            nodes.Scene.position.y,
-                            nodes.Scene.position.z
-                        ]}
-                        rotation={[0.34, Math.PI + 0.6015, 0.2]}
-                    >
-                        <Html
-                            occlude
-                            transform
-                            // wrapperClass="laptopScreen"
-                            distanceFactor={0.5}
-                            zIndexRange={2}
-                        >
-                            <LaptopScreen />
-                        </Html>
-                    </mesh>
-                )}
-
-                {/* macbook-pro ✔ */}
-                {screenSize === 'macbook-pro' && (
-                    <mesh
-                        scale={0.35}
-                        position={[
-                            nodes.Scene.position.x,
-                            nodes.Scene.position.y,
-                            nodes.Scene.position.z - 0.001
-                        ]}
-                        rotation={[0.34, Math.PI + 0.6015, 0.2]}
-                    >
-                        <Html
-                            occlude
-                            transform
-                            // wrapperClass="laptopScreen"
-                            distanceFactor={0.5}
-                            zIndexRange={2}
-                        >
-                            <LaptopScreen />
-                        </Html>
-                    </mesh>
-                )}
-
-                {/* ipad-horizontal ✔  */}
-                {screenSize === 'ipad-horizontal' && (
-                    <mesh
-                        scale={0.35}
-                        position={[
-                            nodes.Scene.position.x,
-                            nodes.Scene.position.y,
-                            nodes.Scene.position.z
-                        ]}
-                        rotation={[0.34, Math.PI + 0.6015, 0.2]}
-                    >
-                        <Html
-                            occlude
-                            transform
-                            // wrapperClass="laptopScreen"
-                            distanceFactor={0.5}
-                            zIndexRange={2}
-                        >
-                            <LaptopScreen />
-                        </Html>
-                    </mesh>
-                )}
-
-                {/* ipad-vertical ✔ */}
-                {screenSize === 'ipad-vertical' && (
-                    <mesh
-                        scale={0.35}
-                        position={[
-                            nodes.Scene.position.x,
-                            nodes.Scene.position.y,
-                            nodes.Scene.position.z
-                        ]}
-                        rotation={[0.34, Math.PI + 0.6015, 0.2]}
-                    >
-                        <Html
-                            occlude
-                            transform
-                            // wrapperClass="laptopScreen"
-                            distanceFactor={0.5}
-                            zIndexRange={2}
-                        >
-                            <LaptopScreen />
-                        </Html>
-                    </mesh>
-                )}
+                <Html
+                    occlude
+                    transform
+                    rotation={[0.34, Math.PI + 0.6015, 0.2]}
+                    // wrapperClass="laptopScreen"
+                    distanceFactor={0.15}
+                    zIndexRange={2}
+                >
+                    <LaptopScreen />
+                </Html>
             </mesh>
         </group>
     );

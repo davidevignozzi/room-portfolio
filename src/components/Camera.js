@@ -51,14 +51,14 @@ const Camera = () => {
     const projects = {
         camera: {
             x: -0.1,
-            y: 0.75,
+            y: 0.525,
             z: 0,
             zoom: 2
         },
         target: {
-            x: -0.0625,
-            y: 0.475,
-            z: 2.5
+            x: -0.0725,
+            y: 0.6,
+            z: 1.4
         }
     };
 
@@ -97,7 +97,7 @@ const Camera = () => {
              */
             case 'projects':
                 CameraControlsRef.current?.zoomTo(projects.camera.zoom, true);
-                CameraControlsRef.current?.moveTo(
+                CameraControlsRef.current?.setPosition(
                     projects.camera.x,
                     projects.camera.y,
                     projects.camera.z,
@@ -130,9 +130,15 @@ const Camera = () => {
         }
     }, [_state.phase]);
 
+    // setTimeout(() => {
+    //     // start();
+    //     setProjects();
+    // }, 10000);
+
     setTimeout(() => {
         // start();
-    }, 10000);
+        // setProjects();
+    }, 2000);
 
     return (
         // <OrbitControls
