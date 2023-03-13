@@ -118,7 +118,6 @@ const Camera = () => {
             ref={CameraControlsRef}
             camera={camera}
             enabled
-            draggingDampingFactor={true}
             minPolarAngle={0}
             maxPolarAngle={Math.PI / 2}
             minAzimuthAngle={Math.PI / 2}
