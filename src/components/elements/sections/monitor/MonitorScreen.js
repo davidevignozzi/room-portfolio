@@ -132,14 +132,14 @@ const MonitorScreen = () => {
                     <div className="circle yellow"></div>
                     <div className="circle green"></div>
                 </div>
-                <h1>Projects</h1>
+                <h1 className="montserrat">Projects</h1>
 
                 <Projects>
                     {projectsArr.map((prj) => {
                         return (
                             <Project key={prj.id} target="_blank" href={prj.ref}>
                                 <img src={prj.img} alt={prj.name} />
-                                <div className="title">{prj.name}</div>
+                                <div className="title montserrat">{prj.name}</div>
                             </Project>
                         );
                     })}
