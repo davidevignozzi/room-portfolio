@@ -9,8 +9,8 @@ const MonitorScreen = () => {
         width: 100%;
         height: 100%;
         border-radius: 0.5rem;
-        background-color: #333333;
-        color: #fefefe;
+        background-color: #fefefe;
+        color: #333333;
 
         .topbar {
             height: 1rem;
@@ -42,7 +42,7 @@ const MonitorScreen = () => {
         }
         h1 {
             text-align: center;
-            margin: 0.2rem 0;
+            margin: 0.2rem 0 0 0;
             font-size: 1rem;
         }
     `;
@@ -53,7 +53,7 @@ const MonitorScreen = () => {
         padding: 0.1rem;
         border-radius: 0.5rem;
         display: flex;
-        justify-content: start;
+        justify-content: space-between;
         flex-wrap: wrap;
         overflow-y: auto;
 
@@ -71,15 +71,14 @@ const MonitorScreen = () => {
     `;
 
     const Project = styled.a`
-        width: 6.5rem;
+        width: 9.5rem;
         height: 4.5rem;
         background-color: #fefefe;
-        margin: 0.15rem;
+        margin: 1rem 0.5rem;
         border-radius: 0.5rem;
         text-decoration: none;
         display: flex;
         flex-direction: column;
-        position: relative;
 
         &:hover .title {
             background-color: #ed8153;
@@ -89,14 +88,6 @@ const MonitorScreen = () => {
         img {
             width: 100%;
             height: 100%;
-            border-radius: 0.5rem 0.5rem 0 0;
-        }
-
-        .overlay {
-            width: 100%;
-            height: 78%;
-            background-color: rgba(255, 255, 255, 0);
-            position: absolute;
             border-radius: 0.5rem 0.5rem 0 0;
         }
 

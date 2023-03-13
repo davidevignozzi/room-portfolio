@@ -25,8 +25,7 @@ body,
     width: 100%;
     height: 100%;
     overflow: hidden;
-    /* Dark background for debuging */
-    background: #333333;
+    background-color: ivory;
 }
 
 /* Sections */

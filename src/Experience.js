@@ -14,7 +14,7 @@ const Experience = () => {
             <Camera />
 
             {/* Environment */}
-            <Environment resolution={32} preset="city" background blur={0.5} />
+            <Environment resolution={32} preset="city" blur={0.5} />
 
             {/* Objects */}
             <Center position-y={0.5}>
