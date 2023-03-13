@@ -1,14 +1,17 @@
 import { Html, useGLTF } from '@react-three/drei';
+import { useRef } from 'react';
 import MonitorScreen from './MonitorScreen';
 
 const Monitor = () => {
+    const monitor = useRef();
     const { nodes } = useGLTF('./assets/models/monitor.glb');
-    console.log('🚀 ~ Monitor ~ nodes:', nodes);
+
     return (
         <group>
             {nodes.Monitor.children.map((el) => {
                 return (
                     <mesh
+                        ref={monitor}
                         key={el.uuid}
                         geometry={el.geometry}
                         position={nodes.Monitor.position}
@@ -30,8 +33,7 @@ const Monitor = () => {
                     rotation-y={Math.PI}
                     transform
                     occlude
-                    // wrapperClass="monitorScreen"
-                    distanceFactor={0.5}
+                    distanceFactor={0.425}
                     zIndexRange={2}
                 >
                     <MonitorScreen />

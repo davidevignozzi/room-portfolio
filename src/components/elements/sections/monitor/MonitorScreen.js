@@ -1,5 +1,8 @@
 import React from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
+import useInteractions from '../../../../utils/stores/useInteractions';
 
 const MonitorScreen = () => {
     /**
@@ -103,9 +106,22 @@ const MonitorScreen = () => {
         }
     `;
 
+    // In project phase show project app
+    const [isVisible, setIsVisible] = useState(false);
+    const _state = useInteractions((state) => state);
+
+    useEffect(() => {
+        if (_state.phase === 'projects') {
+            setIsVisible(true);
+        } else {
+            setIsVisible(false);
+        }
+    }, [_state.phase]);
+
     /**
      * Logic
      */
+    // *** Project array
     const projectsArr = [
         {
             id: 1,
@@ -117,25 +133,27 @@ const MonitorScreen = () => {
 
     return (
         <div className="wrapper-monitor">
-            <ProjectApp>
-                <div className="topbar">
-                    <div className="circle red"></div>
-                    <div className="circle yellow"></div>
-                    <div className="circle green"></div>
-                </div>
-                <h1 className="montserrat">Projects</h1>
+            {isVisible && (
+                <ProjectApp>
+                    <div className="topbar">
+                        <div className="circle red"></div>
+                        <div className="circle yellow"></div>
+                        <div className="circle green"></div>
+                    </div>
+                    <h1 className="montserrat">Projects</h1>
 
-                <Projects>
-                    {projectsArr.map((prj) => {
-                        return (
-                            <Project key={prj.id} target="_blank" href={prj.ref}>
-                                <img src={prj.img} alt={prj.name} />
-                                <div className="title montserrat">{prj.name}</div>
-                            </Project>
-                        );
-                    })}
-                </Projects>
-            </ProjectApp>
+                    <Projects>
+                        {projectsArr.map((prj) => {
+                            return (
+                                <Project key={prj.id} target="_blank" href={prj.ref}>
+                                    <img src={prj.img} alt={prj.name} />
+                                    <div className="title montserrat">{prj.name}</div>
+                                </Project>
+                            );
+                        })}
+                    </Projects>
+                </ProjectApp>
+            )}
         </div>
     );
 };
