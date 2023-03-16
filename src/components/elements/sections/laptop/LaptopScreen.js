@@ -58,11 +58,16 @@ const LaptopScreen = () => {
                 `${labels.itaWelcome} <span class='accented'>Portfolio.</span>`,
                 `${labels.itaWelcome} <span class='accented'>Studio.</span>`
             ],
-            typeSpeed: 50,
-            backSpeed: 20,
+            typeSpeed: 35,
+            backSpeed: 25,
             backDelay: 1000,
             smartBackspace: true,
-            loop: false
+            loop: false,
+            onComplete() {
+                setTimeout(() => {
+                    start();
+                }, 500);
+            }
         });
 
         // Destropying

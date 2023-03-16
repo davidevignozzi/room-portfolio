@@ -1,170 +1,224 @@
-import { useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import useInteractions from '../utils/stores/useInteractions';
-import { CameraControls, OrbitControls, ScrollControls, Center } from '@react-three/drei';
-import { useThree } from '@react-three/fiber';
+import { OrbitControls, useScroll } from '@react-three/drei';
+import { useFrame, useThree } from '@react-three/fiber';
+import gsap from 'gsap';
 
 const Camera = () => {
-    const { camera } = useThree();
+    const { camera, gl } = useThree();
     const CameraControlsRef = useRef();
-
-    const _state = useInteractions((state) => state);
-
-    const loading = {
-        // camera: {
-        //     x: 0,
-        //     y: 1,
-        //     z: 0.05,
-        //     zoom: 8
-        // },
-        // target: {
-        //     x: 0.454,
-        //     y: 0.55,
-        //     z: 1
-        // }
-        camera: {
-            x: 5.5,
-            y: 5,
-            z: -5,
-            zoom: 1.8
-        },
-        target: {
-            x: 0,
-            y: 0.1,
-            z: 0
-        }
-    };
-
-    const explore = {
-        camera: {
-            x: 5.5,
-            y: 5,
-            z: -5,
-            zoom: 1.8
-        },
-        target: {
-            x: 0,
-            y: 0.1,
-            z: 0
-        }
-    };
-
-    const projects = {
-        camera: {
-            x: -0.1,
-            y: 0.525,
-            z: 0,
-            zoom: 2
-        },
-        target: {
-            x: -0.0725,
-            y: 0.6,
-            z: 1.4
-        }
-    };
 
     /**
      * Phases
-     **/
-    const start = useInteractions((state) => state.start);
-    const setProjects = useInteractions((state) => state.projects);
+     */
+    const state = useInteractions((state) => state);
+    // const start = useInteractions((state) => state.start);
+    const back = useInteractions((state) => state.back);
+    const projects = useInteractions((state) => state.projects);
 
+    /**
+     * Loading Camera Settings
+     */
+    const cameraPositionLoading = { x: -0.006, y: 1, z: 0.05 };
+    const cameraZoomLoading = 11;
+    const targetPositionLoading = { x: 0.454, y: 0.55, z: 1 };
+
+    /**
+     * Explore Camera Settings
+     */
+    const cameraPositionExplore = { x: 4, y: 3.5, z: -5 };
+    const cameraZoomExplore = 1.25;
+    const targetPositionExplore = { x: 0, y: 0, z: 0 };
+
+    /**
+     * Project Camera Settings
+     */
+    const cameraPositionProjects = { x: -0.1, y: 0.75, z: 0 };
+    const cameraZoomProjects = 3;
+    const targetPositionProjects = { x: -0.0725, y: 0.6, z: 1.4 };
+
+    /**
+     * Active Camera Settings
+     */
+    const cameraPosition = cameraPositionLoading;
+    const cameraZoom = cameraZoomLoading;
+    const targetPosition = targetPositionLoading;
+
+    /**
+     * Get Scroll Position
+     */
+    const scroll = useScroll();
+    let [scrollPosition, setScrollPosition] = useState(scroll.scroll.current * scroll.pages);
+
+    useFrame(() => {
+        setScrollPosition((scroll.scroll.current * scroll.pages).toFixed(1));
+    });
+
+    // /**
+    //  * Change phase when scrollPosition change
+    //  */
     useEffect(() => {
-        switch (_state.phase) {
-            /**
-             * Explore
-             */
-            case 'explore':
-                CameraControlsRef.current?.zoomTo(explore.camera.zoom * 0.5, true);
-                setTimeout(() => {
-                    CameraControlsRef.current?.moveTo(
-                        explore.camera.x,
-                        explore.camera.y,
-                        explore.camera.z,
-                        true
-                    );
-                    CameraControlsRef.current?.zoomTo(explore.camera.zoom, true);
-                    CameraControlsRef.current?.setTarget(
-                        explore.target.x,
-                        explore.target.y,
-                        explore.target.z,
-                        true
-                    );
-                }, 1000);
+        switch (true) {
+            case scrollPosition == 0.0:
+                if (state.phase === 'projects') {
+                    back();
+                }
                 break;
 
-            /**
-             * Projects
-             */
-            case 'projects':
-                CameraControlsRef.current?.zoomTo(projects.camera.zoom, true);
-                CameraControlsRef.current?.setPosition(
-                    projects.camera.x,
-                    projects.camera.y,
-                    projects.camera.z,
-                    true
-                );
-                CameraControlsRef.current?.setTarget(
-                    projects.target.x,
-                    projects.target.y,
-                    projects.target.z,
-                    true
-                );
-                break;
-
-            default:
-                /**
-                 * Loading
-                 */
-                CameraControlsRef.current?.setPosition(
-                    loading.camera.x,
-                    loading.camera.y,
-                    loading.camera.z
-                );
-                CameraControlsRef.current?.zoom(loading.camera.zoom);
-                CameraControlsRef.current?.setTarget(
-                    loading.target.x,
-                    loading.target.y,
-                    loading.target.z
-                );
+            case scrollPosition == 1:
+                projects();
                 break;
         }
-    }, [_state.phase]);
+    }, [scrollPosition]);
 
-    // setTimeout(() => {
-    //     // start();
-    //     setProjects();
-    // }, 10000);
+    /**
+     * Animations
+     */
+    useEffect(() => {
+        switch (state.phase) {
+            /**
+             * From Loading to Explore mode
+             */
+            case 'explore':
+                gsap.to(camera.position, {
+                    x: cameraPositionExplore.x,
+                    y: cameraPositionExplore.y,
+                    z: cameraPositionExplore.z,
+                    delay: 1,
+                    duration: 2,
+                    ease: 'power4.in'
+                });
 
-    setTimeout(() => {
-        // start();
-        // setProjects();
-    }, 2000);
+                gsap.to(camera, {
+                    zoom: cameraZoomExplore,
+                    onUpdate: () => {
+                        camera.updateProjectionMatrix();
+                    },
+                    duration: 2
+                });
+
+                gsap.to(CameraControlsRef.current?.target, {
+                    x: targetPositionExplore.x,
+                    y: targetPositionExplore.y,
+                    z: targetPositionExplore.z,
+                    delay: 1,
+                    duration: 2,
+                    ease: 'power4.in',
+                    onUpdate: () => {
+                        CameraControlsRef.current?.update();
+                    }
+                });
+
+                break;
+
+            /**
+             * From Projects to explore mode
+             */
+            case 'back':
+                gsap.to(camera.position, {
+                    x: cameraPositionExplore.x,
+                    y: cameraPositionExplore.y,
+                    z: cameraPositionExplore.z,
+                    duration: 1.5,
+                    ease: 'sine'
+                });
+
+                gsap.to(camera, {
+                    zoom: cameraZoomExplore,
+                    onUpdate: () => {
+                        camera.updateProjectionMatrix();
+                    },
+                    duration: 1.5,
+                    ease: 'sine'
+                });
+
+                gsap.to(CameraControlsRef.current?.target, {
+                    x: targetPositionExplore.x,
+                    y: targetPositionExplore.y,
+                    z: targetPositionExplore.z,
+                    duration: 1.5,
+                    ease: 'sine',
+                    onUpdate: () => {
+                        CameraControlsRef.current?.update();
+                    }
+                });
+
+                break;
+
+            /**
+             * Phase => Projects
+             */
+            case 'projects':
+                gsap.to(camera.position, {
+                    x: cameraPositionProjects.x,
+                    y: cameraPositionProjects.y,
+                    z: cameraPositionProjects.z,
+                    duration: 1.5,
+                    ease: 'sine'
+                });
+
+                gsap.to(CameraControlsRef.current?.target, {
+                    x: targetPositionProjects.x,
+                    y: targetPositionProjects.y,
+                    z: targetPositionProjects.z,
+                    onUpdate: () => {
+                        CameraControlsRef.current?.update();
+                    },
+                    duration: 1.5,
+                    ease: 'sine'
+                });
+
+                gsap.to(camera, {
+                    zoom: cameraZoomProjects,
+                    onUpdate: () => {
+                        camera.updateProjectionMatrix();
+                    },
+                    duration: 1.5,
+                    ease: 'sine'
+                });
+                break;
+            default:
+                camera.position.set(
+                    cameraPositionLoading.x,
+                    cameraPositionLoading.y,
+                    cameraPositionLoading.z
+                );
+
+            // camera.position.set(
+            //     cameraPositionExplore.x,
+            //     cameraPositionExplore.y,
+            //     cameraPositionExplore.z
+            // );
+        }
+    }, [state.phase]);
 
     return (
-        // <OrbitControls
-        //     camera={camera}
-        //     gl={gl}
-        //     target={[target.x, target.y, target.z]}
-        //     // enablePan={false}
-        //     rotateSpeed={0.2}
-        //     zoomSpeed={2}
-        //     // minPolarAngle={0}
-        //     // maxPolarAngle={Math.PI / 2}
-        //     // minAzimuthAngle={Math.PI / 2}
-        //     // maxAzimuthAngle={Math.PI}
-        // />
-        <CameraControls
+        <OrbitControls
             ref={CameraControlsRef}
             camera={camera}
-            enabled
-            minPolarAngle={0}
-            maxPolarAngle={Math.PI / 2}
-            minAzimuthAngle={Math.PI / 2}
-            maxAzimuthAngle={Math.PI}
-            polarRotateSpeed={0.25}
-            azimuthRotateSpeed={0.25}
-            smoothTime={1.5}
+            gl={gl}
+            target={[targetPosition.x, targetPosition.y, targetPosition.z]}
+            enablePan={false}
+            enableZoom={false}
+            rotateSpeed={0.2}
+            zoomSpeed={2}
+            // minPolarAngle={0}
+            // maxPolarAngle={Math.PI / 2}
+            // minAzimuthAngle={Math.PI / 2}
+            // maxAzimuthAngle={Math.PI}
         />
+        // <CameraControls
+        //     ref={CameraControlsRef}
+        //     camera={camera}
+        //     enabled
+        //     minPolarAngle={0}
+        //     maxPolarAngle={Math.PI / 2}
+        //     minAzimuthAngle={Math.PI / 2}
+        //     maxAzimuthAngle={Math.PI}
+        //     polarRotateSpeed={0.25}
+        //     azimuthRotateSpeed={0.25}
+        //     smoothTime={1.5}
+        // />
     );
 };
 

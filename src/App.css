@@ -28,6 +28,10 @@ body,
     background-color: ivory;
 }
 
+div::-webkit-scrollbar {
+    display: none;
+}
+
 /* Sections */
 .wrapper-laptop {
     width: 700px;
@@ -50,3 +54,19 @@ body,
     justify-content: center;
     align-items: center;
 }
+
+.section {
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* #sec-1 {
+    background-color: #f44a02;
+}
+#sec-2 {
+    background-color: blue;
+}
+#sec-3 {
+    background-color: violet;
+} */

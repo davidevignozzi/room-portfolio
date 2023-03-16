@@ -78,7 +78,6 @@ const Laptop = () => {
                     occlude
                     transform
                     rotation={[0.34, Math.PI + 0.6015, 0.2]}
-                    // wrapperClass="laptopScreen"
                     distanceFactor={0.15}
                     zIndexRange={2}
                 >

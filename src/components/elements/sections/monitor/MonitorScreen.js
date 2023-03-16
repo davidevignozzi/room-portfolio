@@ -110,6 +110,14 @@ const MonitorScreen = () => {
     // In project phase show project app
     const [isVisible, setIsVisible] = useState(false);
     const _state = useInteractions((state) => state);
+    const [projectsArray, setProjectsArray] = useState([
+        {
+            id: 1,
+            name: 'Marble Race',
+            ref: 'https://r3f-marble-race.vercel.app/',
+            img: './assets/images/MarbleRace.png'
+        }
+    ]);
 
     useEffect(() => {
         if (_state.phase === 'projects') {
@@ -119,42 +127,8 @@ const MonitorScreen = () => {
         }
     }, [_state.phase]);
 
-    /**
-     * Logic
-     */
-    // *** Project array
-    const projectsArr = [
-        {
-            id: 1,
-            name: 'Marble Race',
-            ref: 'https://r3f-marble-race.vercel.app/',
-            img: './assets/images/MarbleRace.png'
-        }
-    ];
-
     return (
         <div className="wrapper-monitor">
-            {/* {isVisible && (
-                <ProjectApp>
-                    <div className="topbar">
-                        <div className="circle red"></div>
-                        <div className="circle yellow"></div>
-                        <div className="circle green"></div>
-                    </div>
-                    <h1 className="montserrat">Projects</h1>
-
-                    <Projects>
-                        {projectsArr.map((prj) => {
-                            return (
-                                <Project key={prj.id} target="_blank" href={prj.ref}>
-                                    <img src={prj.img} alt={prj.name} />
-                                    <div className="title montserrat">{prj.name}</div>
-                                </Project>
-                            );
-                        })}
-                    </Projects>
-                </ProjectApp>
-            )} */}
             <ProjectApp>
                 <div className="topbar">
                     <div className="circle red"></div>
@@ -164,7 +138,7 @@ const MonitorScreen = () => {
                 <h1 className="montserrat">Projects</h1>
 
                 <Projects>
-                    {projectsArr.map((prj) => {
+                    {projectsArray.map((prj) => {
                         return (
                             <Project key={prj.id} target="_blank" href={prj.ref}>
                                 <img src={prj.img} alt={prj.name} />
@@ -179,3 +153,27 @@ const MonitorScreen = () => {
 };
 
 export default MonitorScreen;
+
+/*
+    {isVisible && (
+        <ProjectApp>
+            <div className="topbar">
+                <div className="circle red"></div>
+                <div className="circle yellow"></div>
+                <div className="circle green"></div>
+            </div>
+            <h1 className="montserrat">Projects</h1>
+
+            <Projects>
+                {projectsArr.map((prj) => {
+                    return (
+                        <Project key={prj.id} target="_blank" href={prj.ref}>
+                            <img src={prj.img} alt={prj.name} />
+                            <div className="title montserrat">{prj.name}</div>
+                        </Project>
+                    );
+                })}
+            </Projects>
+        </ProjectApp>
+    )} 
+*/

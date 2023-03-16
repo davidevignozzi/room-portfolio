@@ -16,17 +16,20 @@ export default create(
              */
             // When loading end
             start: () => {
-                set((state) => {
-                    if (state.phase === 'loading') {
-                        return {
-                            phase: 'explore'
-                        };
-                    } else {
-                        return {
-                            // have to return something
-                            // empty object
-                        };
-                    }
+                set(() => {
+                    return {
+                        phase: 'explore'
+                    };
+                });
+            },
+
+            // From projects to explore
+            // On scroll up
+            back: () => {
+                set(() => {
+                    return {
+                        phase: 'back'
+                    };
                 });
             },
 
@@ -34,20 +37,7 @@ export default create(
              * Projects
              */
             projects: () => {
-                set((state) => {
-                    // if (
-                    //     state.phase === 'explore'
-                    //     // ||
-                    // ) {
-                    //     return {
-                    //         phase: 'projects'
-                    //     };
-                    // } else {
-                    //     return {
-                    //         // have to return something
-                    //         // empty object
-                    //     };
-                    // }
+                set(() => {
                     return {
                         phase: 'projects'
                     };

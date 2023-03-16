@@ -29,7 +29,8 @@ const Monitor = () => {
             >
                 <meshBasicMaterial color="#ece6db" />
                 <Html
-                    position-z={-0.001}
+                    fixed
+                    position-z={-0.002}
                     rotation-y={Math.PI}
                     transform
                     occlude

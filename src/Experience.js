@@ -1,4 +1,4 @@
-import { Center, Environment } from '@react-three/drei';
+import { Center, Environment, Scroll, ScrollControls } from '@react-three/drei';
 import { Perf } from 'r3f-perf';
 import React from 'react';
 import Camera from './components/Camera';
@@ -10,16 +10,18 @@ const Experience = () => {
             {/* Debug */}
             {/* <Perf position="top-left" /> */}
 
-            {/* Camera */}
-            <Camera />
-
             {/* Environment */}
             <Environment resolution={32} preset="city" blur={0.5} />
 
-            {/* Objects */}
-            <Center position-y={0.5}>
-                <Room />
-            </Center>
+            <ScrollControls pages={3}>
+                {/* Camera */}
+                <Camera />
+
+                {/* Objects */}
+                <Center position-y={0.5}>
+                    <Room />
+                </Center>
+            </ScrollControls>
         </>
     );
 };
