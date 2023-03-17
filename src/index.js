@@ -4,6 +4,7 @@ import Experience from './Experience';
 import './App.css';
 import { Canvas } from '@react-three/fiber';
 import { Leva } from 'leva';
+import Interface from './components/Interface';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -22,5 +23,6 @@ root.render(
         >
             <Experience />
         </Canvas>
+        <Interface />
     </React.StrictMode>
 );

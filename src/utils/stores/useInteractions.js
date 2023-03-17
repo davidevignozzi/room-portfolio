@@ -10,6 +10,7 @@ export default create(
              * Phases
              */
             phase: 'loading',
+            opacityControls: 0,
 
             /**
              * Explore
@@ -18,7 +19,8 @@ export default create(
             start: () => {
                 set(() => {
                     return {
-                        phase: 'explore'
+                        phase: 'explore',
+                        opacityControls: 1
                     };
                 });
             },
@@ -28,7 +30,7 @@ export default create(
             back: () => {
                 set(() => {
                     return {
-                        phase: 'back'
+                        phase: 'Explore'
                     };
                 });
             },

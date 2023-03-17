@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import useInteractions from '../utils/stores/useInteractions';
-import { OrbitControls, useScroll } from '@react-three/drei';
+import { CameraControls, OrbitControls, useScroll } from '@react-three/drei';
 import { useFrame, useThree } from '@react-three/fiber';
 import gsap from 'gsap';
 
@@ -27,14 +27,14 @@ const Camera = () => {
      * Explore Camera Settings
      */
     const cameraPositionExplore = { x: 4, y: 3.5, z: -5 };
-    const cameraZoomExplore = 1.25;
+    const cameraZoomExplore = 1.15;
     const targetPositionExplore = { x: 0, y: 0, z: 0 };
 
     /**
      * Project Camera Settings
      */
     const cameraPositionProjects = { x: -0.1, y: 0.75, z: 0 };
-    const cameraZoomProjects = 3;
+    const cameraZoomProjects = 2.75;
     const targetPositionProjects = { x: -0.0725, y: 0.6, z: 1.4 };
 
     /**
@@ -43,33 +43,6 @@ const Camera = () => {
     const cameraPosition = cameraPositionLoading;
     const cameraZoom = cameraZoomLoading;
     const targetPosition = targetPositionLoading;
-
-    /**
-     * Get Scroll Position
-     */
-    const scroll = useScroll();
-    let [scrollPosition, setScrollPosition] = useState(scroll.scroll.current * scroll.pages);
-
-    useFrame(() => {
-        setScrollPosition((scroll.scroll.current * scroll.pages).toFixed(1));
-    });
-
-    // /**
-    //  * Change phase when scrollPosition change
-    //  */
-    useEffect(() => {
-        switch (true) {
-            case scrollPosition == 0.0:
-                if (state.phase === 'projects') {
-                    back();
-                }
-                break;
-
-            case scrollPosition == 1:
-                projects();
-                break;
-        }
-    }, [scrollPosition]);
 
     /**
      * Animations
@@ -114,7 +87,7 @@ const Camera = () => {
             /**
              * From Projects to explore mode
              */
-            case 'back':
+            case 'Explore':
                 gsap.to(camera.position, {
                     x: cameraPositionExplore.x,
                     y: cameraPositionExplore.y,
@@ -183,14 +156,28 @@ const Camera = () => {
                     cameraPositionLoading.y,
                     cameraPositionLoading.z
                 );
-
-            // camera.position.set(
-            //     cameraPositionExplore.x,
-            //     cameraPositionExplore.y,
-            //     cameraPositionExplore.z
-            // );
         }
     }, [state.phase]);
+
+    /**
+     * Zoom out back home
+     */
+    useFrame(() => {
+        switch (state.phase) {
+            /**
+             * Zoom out from projects back to Explore
+             */
+            case 'projects':
+                if (
+                    camera.position.x.toFixed(2) < -0.11 &&
+                    camera.position.y.toFixed(2) < 0.86 &&
+                    camera.position.z.toFixed(1) < -0.4
+                ) {
+                    return back();
+                }
+                break;
+        }
+    });
 
     return (
         <OrbitControls
@@ -199,7 +186,6 @@ const Camera = () => {
             gl={gl}
             target={[targetPosition.x, targetPosition.y, targetPosition.z]}
             enablePan={false}
-            enableZoom={false}
             rotateSpeed={0.2}
             zoomSpeed={2}
             // minPolarAngle={0}
