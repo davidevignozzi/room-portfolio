@@ -10,7 +10,6 @@ export default create(
              * Phases
              */
             phase: 'loading',
-            opacityControls: 0,
 
             /**
              * Explore
@@ -19,8 +18,7 @@ export default create(
             start: () => {
                 set(() => {
                     return {
-                        phase: 'explore',
-                        opacityControls: 1
+                        phase: 'explore'
                     };
                 });
             },
@@ -42,6 +40,17 @@ export default create(
                 set(() => {
                     return {
                         phase: 'projects'
+                    };
+                });
+            },
+
+            /**
+             * Skills
+             */
+            skills: () => {
+                set(() => {
+                    return {
+                        phase: 'skills'
                     };
                 });
             }

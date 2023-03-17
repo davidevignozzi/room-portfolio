@@ -1,8 +1,4 @@
-import gsap from 'gsap';
-import React from 'react';
-import { useEffect } from 'react';
-import { useRef } from 'react';
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import useInteractions from '../utils/stores/useInteractions';
 
@@ -78,12 +74,18 @@ const Interface = () => {
 
     const prevPhase = () => {
         if (state.phase === 'projects') {
-            return state.back();
+            state.back();
+        } else if (state.phase === 'skills') {
+            state.projects();
         }
     };
 
     const nextPhase = () => {
-        state.projects();
+        if (state.phase === 'explore' || state.phase === 'Explore') {
+            state.projects();
+        } else if (state.phase === 'projects') {
+            state.skills();
+        }
     };
 
     const home = () => {
@@ -100,7 +102,9 @@ const Interface = () => {
                     <button className="prev" onClick={prevPhase}>
                         P
                     </button>
-                    <div className="label">{phase}</div>
+                    <div className="label montserrat">
+                        <b>{phase}</b>
+                    </div>
                     <button className="next" onClick={nextPhase}>
                         N
                     </button>

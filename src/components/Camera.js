@@ -38,6 +38,13 @@ const Camera = () => {
     const targetPositionProjects = { x: -0.0725, y: 0.6, z: 1.4 };
 
     /**
+     * Skills Camera Settings
+     */
+    const cameraPositionSkills = { x: -0.05, y: 0.75, z: 0.25 };
+    const cameraZoomSkills = 2.85;
+    const targetPositionSkills = { x: -0.0725, y: 0.35, z: 1.15 };
+
+    /**
      * Active Camera Settings
      */
     const cameraPosition = cameraPositionLoading;
@@ -150,6 +157,39 @@ const Camera = () => {
                     ease: 'sine'
                 });
                 break;
+
+            /**
+             * Phase => Skills
+             */
+            case 'skills':
+                gsap.to(camera.position, {
+                    x: cameraPositionSkills.x,
+                    y: cameraPositionSkills.y,
+                    z: cameraPositionSkills.z,
+                    duration: 1.5,
+                    ease: 'sine'
+                });
+
+                gsap.to(CameraControlsRef.current?.target, {
+                    x: targetPositionSkills.x,
+                    y: targetPositionSkills.y,
+                    z: targetPositionSkills.z,
+                    onUpdate: () => {
+                        CameraControlsRef.current?.update();
+                    },
+                    duration: 1.5,
+                    ease: 'sine'
+                });
+
+                gsap.to(camera, {
+                    zoom: cameraZoomSkills,
+                    onUpdate: () => {
+                        camera.updateProjectionMatrix();
+                    },
+                    duration: 1.5,
+                    ease: 'sine'
+                });
+                break;
             default:
                 camera.position.set(
                     cameraPositionLoading.x,
@@ -165,13 +205,29 @@ const Camera = () => {
     useFrame(() => {
         switch (state.phase) {
             /**
-             * Zoom out from projects back to Explore
+             * Zoom out from projects
              */
             case 'projects':
                 if (
                     camera.position.x.toFixed(2) < -0.11 &&
                     camera.position.y.toFixed(2) < 0.86 &&
-                    camera.position.z.toFixed(1) < -0.4
+                    camera.position.z.toFixed(1) < -0.4 &&
+                    camera.zoom === cameraZoomProjects
+                ) {
+                    console.log('now');
+                    return back();
+                }
+                break;
+
+            /**
+             * Zoom out from skills
+             */
+            case 'skills':
+                if (
+                    camera.position.x.toFixed(2) >= -0.06 &&
+                    camera.position.y.toFixed(2) >= 0.75 &&
+                    camera.position.z.toFixed(2) < -0.01 &&
+                    camera.zoom === cameraZoomSkills
                 ) {
                     return back();
                 }
@@ -185,11 +241,12 @@ const Camera = () => {
             camera={camera}
             gl={gl}
             target={[targetPosition.x, targetPosition.y, targetPosition.z]}
-            enablePan={false}
+            // enablePan={false}
             rotateSpeed={0.2}
             zoomSpeed={2}
             // minPolarAngle={0}
             // maxPolarAngle={Math.PI / 2}
+            // maxPolarAngle={undefined}
             // minAzimuthAngle={Math.PI / 2}
             // maxAzimuthAngle={Math.PI}
         />
