@@ -5,7 +5,6 @@ import TabletScreen from './TabletScreen';
 
 const Tablet = () => {
     const { nodes } = useGLTF('./assets/models/tablet.glb');
-    console.log('🚀 ~ Tab ~ nodes:', nodes);
 
     /**
      * Get ScreenSize
