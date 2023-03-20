@@ -30,11 +30,11 @@ const Monitor = () => {
                 <meshBasicMaterial color="#ece6db" />
                 <Html
                     fixed
-                    position-z={-0.002}
+                    position={[-0.0025, 0.03, -0.002]}
                     rotation-y={Math.PI}
                     transform
                     occlude
-                    distanceFactor={0.425}
+                    distanceFactor={0.05}
                     zIndexRange={2}
                 >
                     <MonitorScreen />

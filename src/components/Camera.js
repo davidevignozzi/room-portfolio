@@ -34,7 +34,7 @@ const Camera = () => {
      * Project Camera Settings
      */
     const cameraPositionProjects = { x: -0.1, y: 0.75, z: 0 };
-    const cameraZoomProjects = 2.75;
+    const cameraZoomProjects = 3;
     const targetPositionProjects = { x: -0.0725, y: 0.6, z: 1.4 };
 
     /**
@@ -214,7 +214,6 @@ const Camera = () => {
                     camera.position.z.toFixed(1) < -0.4 &&
                     camera.zoom === cameraZoomProjects
                 ) {
-                    console.log('now');
                     return back();
                 }
                 break;
@@ -246,7 +245,7 @@ const Camera = () => {
             zoomSpeed={2}
             // minPolarAngle={0}
             // maxPolarAngle={Math.PI / 2}
-            // maxPolarAngle={undefined}
+            // // maxPolarAngle={undefined}
             // minAzimuthAngle={Math.PI / 2}
             // maxAzimuthAngle={Math.PI}
         />
