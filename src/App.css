@@ -33,6 +33,15 @@ div::-webkit-scrollbar {
 }
 
 /* Sections */
+.section {
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+}
+
+/*
+ * Laptop
+ */
 .wrapper-laptop {
     width: 700px;
     height: 500px;
@@ -42,6 +51,9 @@ div::-webkit-scrollbar {
     align-items: center;
 }
 
+/*
+ * Monitor - Projects
+ */
 .monitorScreen {
     opacity: 0;
 }
@@ -53,12 +65,6 @@ div::-webkit-scrollbar {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.section {
-    z-index: 1;
-    width: 100vw;
-    height: 100vh;
 }
 
 .folder-closed {
