@@ -60,3 +60,16 @@ div::-webkit-scrollbar {
     width: 100vw;
     height: 100vh;
 }
+
+.folder-closed {
+    margin-left: 100rem;
+    margin-top: 50rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.folder-icon {
+    width: 9rem;
+    height: 9rem;
+}
