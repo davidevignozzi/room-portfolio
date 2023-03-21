@@ -3,6 +3,8 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import styled from 'styled-components';
 import useInteractions from '../../../../utils/stores/useInteractions';
+import { FcOpenedFolder } from 'react-icons/fc';
+import { FcFolder } from 'react-icons/fc';
 
 const MonitorScreen = () => {
     /**
@@ -163,15 +165,22 @@ const MonitorScreen = () => {
                     padding: 1rem 0 0.5rem 0;
 
                     .folder {
-                        width: 7rem;
-                        height: 7rem;
-                        background-color: yellow;
+                        width: 8rem;
+                        height: 8rem;
+                    }
+
+                    .is-selected {
+                        background-color: #d3d3d3;
                     }
 
                     h2 {
                         font-size: 2rem;
                         margin-top: 0.5rem;
                     }
+                }
+
+                .is-selected {
+                    background-color: #dfdfdf;
                 }
             }
 
@@ -185,6 +194,40 @@ const MonitorScreen = () => {
 
                 h1 {
                     font-size: 3.5rem;
+                }
+
+                .tags {
+                    margin: 1rem 0;
+
+                    .tag {
+                        font-size: 1.8rem;
+                        padding: 1rem;
+                        margin: 0.75rem;
+                        border-radius: 1rem;
+                        color: #fefefe;
+                        font-weight: 800;
+                    }
+
+                    .html {
+                        background-color: #df6731;
+                    }
+
+                    .css {
+                        background-color: #2965f1;
+                    }
+
+                    .react {
+                        background-color: #7cc5d9;
+                    }
+
+                    .three,
+                    .react-three-fiber {
+                        background-color: #7269eb;
+                    }
+
+                    .javascript {
+                        background-color: #f0db4f;
+                    }
                 }
 
                 img {
@@ -214,12 +257,12 @@ const MonitorScreen = () => {
 
                 button {
                     margin: 1rem 0;
-                    padding: 1rem;
+                    padding: 1rem 1.5rem;
                     border-radius: 1rem;
                     background-color: #f44a02;
 
                     a {
-                        font-size: 2.75rem;
+                        font-size: 2.5rem;
                         text-decoration: none;
                         color: #fefefe;
                     }
@@ -229,7 +272,7 @@ const MonitorScreen = () => {
     `;
 
     // In project phase show project app
-    const [isVisible, setIsVisible] = useState(false);
+    const [selectedProject, setSelectedProject] = useState();
     const _state = useInteractions((state) => state);
     const [projectsArray, setProjectsArray] = useState([
         {
@@ -237,142 +280,58 @@ const MonitorScreen = () => {
             name: 'Marble Race',
             ref: 'https://r3f-marble-race.vercel.app/',
             img: './assets/images/MarbleRace.png',
-            description: 'i <3 this project'
-        },
-
-        {
-            id: 1,
-            name: 'Marble Race',
-            ref: 'https://r3f-marble-race.vercel.app/',
-            img: './assets/images/MarbleRace.png',
-            description: 'i <3 this project'
-        },
-        {
-            id: 1,
-            name: 'Marble Race',
-            ref: 'https://r3f-marble-race.vercel.app/',
-            img: './assets/images/MarbleRace.png',
-            description: 'i <3 this project'
-        },
-        {
-            id: 1,
-            name: 'Marble Race',
-            ref: 'https://r3f-marble-race.vercel.app/',
-            img: './assets/images/MarbleRace.png',
-            description: 'i <3 this project'
-        },
-
-        {
-            id: 1,
-            name: 'Marble Race',
-            ref: 'https://r3f-marble-race.vercel.app/',
-            img: './assets/images/MarbleRace.png',
-            description: 'i <3 this project'
-        },
-        {
-            id: 1,
-            name: 'Marble Race',
-            ref: 'https://r3f-marble-race.vercel.app/',
-            img: './assets/images/MarbleRace.png',
-            description: 'i <3 this project'
-        },
-        {
-            id: 1,
-            name: 'Marble Race',
-            ref: 'https://r3f-marble-race.vercel.app/',
-            img: './assets/images/MarbleRace.png',
-            description: 'i <3 this project'
-        },
-        {
-            id: 1,
-            name: 'Marble Race',
-            ref: 'https://r3f-marble-race.vercel.app/',
-            img: './assets/images/MarbleRace.png',
-            description: 'i <3 this project'
+            description:
+                'Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti recusandae ipsam sint blanditiis odit. Libero eius officia perspiciatis iste ipsam quaerat, ex veniam consequatur alias saepe, unde eligendi error iusto? Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti recusandae ipsam sint blanditiis odit. Libero eius officia perspiciatis iste ipsam quaerat, ex veniam consequatur alias saepe, unde eligendi error iusto?',
+            tec: ['html', 'css', 'react', 'three', 'react-three-fiber']
         }
     ]);
 
-    useEffect(() => {
-        if (_state.phase === 'projects') {
-            setIsVisible(true);
-        } else {
-            setIsVisible(false);
-        }
-    }, [_state.phase]);
+    const handleClick = (prj) => {
+        setSelectedProject(prj === selectedProject ? null : prj);
+    };
 
     return (
         <div className="wrapper-monitor">
-            {/* <ProjectApp>
-                <div className="topbar">
-                    <div className="circle red"></div>
-                    <div className="circle yellow"></div>
-                    <div className="circle green"></div>
-                </div>
-                <h1 className="montserrat">Projects</h1>
-
-                <Projects>
-                    {projectsArray.map((prj) => {
-                        return (
-                            <Project key={prj.id} target="_blank" href={prj.ref}>
-                                <img src={prj.img} alt={prj.name} />
-                                <div className="title montserrat">{prj.name}</div>
-                            </Project>
-                        );
-                    })}
-                </Projects>
-            </ProjectApp> */}
             <Desktop className="montserrat">
                 <h1 className="title">Projects</h1>
                 <div className="folders">
+                    {/* List */}
                     <div className="list">
                         {projectsArray.map((prj) => {
                             return (
-                                <div className="folder-wrapper" key={prj.id}>
-                                    <div className="folder"></div>
+                                <div
+                                    key={prj.id}
+                                    className={`folder-wrapper ${
+                                        selectedProject === prj ? 'is-selected' : ''
+                                    }`}
+                                    onClick={() => handleClick(prj)}
+                                >
+                                    <FcFolder className="folder" />
                                     <h2>{prj.name}</h2>
                                 </div>
                             );
                         })}
                     </div>
-                    <div className="description">
-                        <h1>Marble Race</h1>
-                        <img src="./assets/images/MarbleRace.png" alt="" />
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur
-                            sapiente voluptatibus minus, dicta impedit tenetur sint enim nobis
-                            repellendus cupiditate neque debitis dolores nam distinctio esse, non
-                            fuga. Non, facilis. Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Consectetur sapiente voluptatibus minus, dicta impedit tenetur
-                            sint enim nobis repellendus cupiditate neque debitis dolores nam
-                            distinctio esse, non fuga. Non, facilis. Lorem ipsum dolor sit amet
-                            consectetur adipisicing elit. Consectetur sapiente voluptatibus minus,
-                            dicta impedit tenetur sint enim nobis repellendus cupiditate neque
-                            debitis dolores nam distinctio esse, non fuga. Non, facilis. Lorem ipsum
-                            dolor sit amet consectetur adipisicing elit. Consectetur sapiente
-                            voluptatibus minus, dicta impedit tenetur sint enim nobis repellendus
-                            cupiditate neque debitis dolores nam distinctio esse, non fuga. Non,
-                            facilis. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Consectetur sapiente voluptatibus minus, dicta impedit tenetur sint enim
-                            nobis repellendus cupiditate neque debitis dolores nam distinctio esse,
-                            non fuga. Non, facilis. Lorem ipsum dolor sit amet consectetur
-                            adipisicing elit. Consectetur sapiente voluptatibus minus, dicta impedit
-                            tenetur sint enim nobis repellendus cupiditate neque debitis dolores nam
-                            distinctio esse, non fuga. Non, facilis. Lorem ipsum dolor sit amet
-                            consectetur adipisicing elit. Consectetur sapiente voluptatibus minus,
-                            dicta impedit tenetur sint enim nobis repellendus cupiditate neque
-                            debitis dolores nam distinctio esse, non fuga. Non, facilis. Lorem ipsum
-                            dolor sit amet consectetur adipisicing elit. Consectetur sapiente
-                            voluptatibus minus, dicta impedit tenetur sint enim nobis repellendus
-                            cupiditate neque debitis dolores nam distinctio esse, non fuga. Non,
-                            facilis.
-                        </p>
 
-                        <button>
-                            <a href="" target="_blank">
-                                Visit Website
-                            </a>
-                        </button>
-                    </div>
+                    {/* Description */}
+                    {selectedProject !== undefined && (
+                        <div className="description">
+                            <h1>{selectedProject.name}</h1>
+                            <img src={selectedProject.img} alt={selectedProject.name} />
+                            <div className="tags">
+                                {selectedProject.tec.map((tag) => {
+                                    return <span className={`tag ${tag}`}>#{tag}</span>;
+                                })}
+                            </div>
+                            <p>{selectedProject.description}</p>
+
+                            <button>
+                                <a href="" target="_blank">
+                                    Visit Website
+                                </a>
+                            </button>
+                        </div>
+                    )}
                 </div>
             </Desktop>
         </div>
