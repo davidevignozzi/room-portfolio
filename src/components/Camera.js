@@ -41,7 +41,7 @@ const Camera = () => {
      * Skills Camera Settings
      */
     const cameraPositionSkills = { x: -0.05, y: 0.75, z: 0.25 };
-    const cameraZoomSkills = 2.85;
+    const cameraZoomSkills = 2.5;
     const targetPositionSkills = { x: -0.0725, y: 0.35, z: 1.15 };
 
     /**
@@ -189,6 +189,7 @@ const Camera = () => {
                     duration: 1.5,
                     ease: 'sine'
                 });
+
                 break;
             default:
                 camera.position.set(
@@ -214,7 +215,7 @@ const Camera = () => {
                     camera.position.z.toFixed(1) < -0.4 &&
                     camera.zoom === cameraZoomProjects
                 ) {
-                    return back();
+                    back();
                 }
                 break;
 
@@ -223,12 +224,12 @@ const Camera = () => {
              */
             case 'skills':
                 if (
-                    camera.position.x.toFixed(2) >= -0.06 &&
-                    camera.position.y.toFixed(2) >= 0.75 &&
-                    camera.position.z.toFixed(2) < -0.01 &&
+                    camera.position.x.toFixed(2) <= -0.04 &&
+                    camera.position.y.toFixed(2) >= 0.8 &&
+                    camera.position.z.toFixed(2) <= -0.21 &&
                     camera.zoom === cameraZoomSkills
                 ) {
-                    return back();
+                    back();
                 }
                 break;
         }
@@ -249,6 +250,7 @@ const Camera = () => {
             // minAzimuthAngle={Math.PI / 2}
             // maxAzimuthAngle={Math.PI}
         />
+
         // <CameraControls
         //     ref={CameraControlsRef}
         //     camera={camera}

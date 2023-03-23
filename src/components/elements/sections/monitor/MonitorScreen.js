@@ -209,7 +209,6 @@ const MonitorScreen = () => {
      */
     const [projectsArray, setProjectsArray] = useState([
         {
-            id: 1,
             name: 'Marble Race',
             ref: 'https://r3f-marble-race.vercel.app/',
             img: './assets/images/MarbleRace.png',
@@ -248,10 +247,10 @@ const MonitorScreen = () => {
                     <div className="folders">
                         {/* List */}
                         <div className="list">
-                            {projectsArray.map((prj) => {
+                            {projectsArray.map((prj, index) => {
                                 return (
                                     <div
-                                        key={prj.id}
+                                        key={index}
                                         className={`folder-wrapper ${
                                             selectedProject === prj ? 'is-selected' : ''
                                         }`}
@@ -270,8 +269,12 @@ const MonitorScreen = () => {
                                 <h1>{selectedProject.name}</h1>
                                 <img src={selectedProject.img} alt={selectedProject.name} />
                                 <div className="tags">
-                                    {selectedProject.tec.map((tag) => {
-                                        return <span className={`tag ${tag}`}>#{tag}</span>;
+                                    {selectedProject.tec.map((tag, index) => {
+                                        return (
+                                            <span key={index} className={`tag ${tag}`}>
+                                                #{tag}
+                                            </span>
+                                        );
                                     })}
                                 </div>
                                 <p>{selectedProject.description}</p>

@@ -44,13 +44,13 @@ const Tablet = () => {
                     transform
                     position={
                         screenSize === 'mac-24'
-                            ? [0.0005, 0.003, -0.003]
+                            ? [0.0005, 0.004, -0.003]
                             : screenSize === 'ipad-vertical'
-                            ? [0, 0.003, -0.003]
-                            : [-0.004, 0.003, -0.003]
+                            ? [0, 0.004, -0.003]
+                            : [-0.004, 0.004, -0.003]
                     }
                     rotation={[0.8, Math.PI, 0]}
-                    distanceFactor={0.25}
+                    distanceFactor={0.045}
                     zIndexRange={2}
                 >
                     <TabletScreen />
