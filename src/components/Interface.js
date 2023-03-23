@@ -77,6 +77,8 @@ const Interface = () => {
             state.back();
         } else if (state.phase === 'skills') {
             state.projects();
+        } else if (state.phase === 'education') {
+            state.skills();
         }
     };
 
@@ -85,6 +87,8 @@ const Interface = () => {
             state.projects();
         } else if (state.phase === 'projects') {
             state.skills();
+        } else if (state.phase === 'skills') {
+            state.education();
         }
     };
 

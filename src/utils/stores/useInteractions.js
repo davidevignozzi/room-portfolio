@@ -53,6 +53,17 @@ export default create(
                         phase: 'skills'
                     };
                 });
+            },
+
+            /**
+             * Education
+             */
+            education: () => {
+                set(() => {
+                    return {
+                        phase: 'education'
+                    };
+                });
             }
         };
     })

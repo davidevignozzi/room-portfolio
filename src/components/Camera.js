@@ -45,6 +45,13 @@ const Camera = () => {
     const targetPositionSkills = { x: -0.0725, y: 0.35, z: 1.15 };
 
     /**
+     * Education Camera Settings
+     */
+    const cameraPositionEducation = { x: -0.05, y: 1.2, z: 0.25 };
+    const cameraZoomEducation = 1.75;
+    const targetPositionEducation = { x: -0.065, y: 1.125, z: 1.5 };
+
+    /**
      * Active Camera Settings
      */
     const cameraPosition = cameraPositionLoading;
@@ -60,6 +67,7 @@ const Camera = () => {
              * From Loading to Explore mode
              */
             case 'explore':
+                // Camera position
                 gsap.to(camera.position, {
                     x: cameraPositionExplore.x,
                     y: cameraPositionExplore.y,
@@ -69,6 +77,7 @@ const Camera = () => {
                     ease: 'power4.in'
                 });
 
+                // Camera zoom
                 gsap.to(camera, {
                     zoom: cameraZoomExplore,
                     onUpdate: () => {
@@ -77,6 +86,7 @@ const Camera = () => {
                     duration: 2
                 });
 
+                // Camera target
                 gsap.to(CameraControlsRef.current?.target, {
                     x: targetPositionExplore.x,
                     y: targetPositionExplore.y,
@@ -95,6 +105,7 @@ const Camera = () => {
              * From Projects to explore mode
              */
             case 'Explore':
+                // Camera position
                 gsap.to(camera.position, {
                     x: cameraPositionExplore.x,
                     y: cameraPositionExplore.y,
@@ -103,6 +114,7 @@ const Camera = () => {
                     ease: 'sine'
                 });
 
+                // Camera zoom
                 gsap.to(camera, {
                     zoom: cameraZoomExplore,
                     onUpdate: () => {
@@ -112,6 +124,7 @@ const Camera = () => {
                     ease: 'sine'
                 });
 
+                // Camera target
                 gsap.to(CameraControlsRef.current?.target, {
                     x: targetPositionExplore.x,
                     y: targetPositionExplore.y,
@@ -129,6 +142,7 @@ const Camera = () => {
              * Phase => Projects
              */
             case 'projects':
+                // Camera position
                 gsap.to(camera.position, {
                     x: cameraPositionProjects.x,
                     y: cameraPositionProjects.y,
@@ -137,6 +151,17 @@ const Camera = () => {
                     ease: 'sine'
                 });
 
+                // Camera zoom
+                gsap.to(camera, {
+                    zoom: cameraZoomProjects,
+                    onUpdate: () => {
+                        camera.updateProjectionMatrix();
+                    },
+                    duration: 1.5,
+                    ease: 'sine'
+                });
+
+                // Camera target
                 gsap.to(CameraControlsRef.current?.target, {
                     x: targetPositionProjects.x,
                     y: targetPositionProjects.y,
@@ -147,21 +172,13 @@ const Camera = () => {
                     duration: 1.5,
                     ease: 'sine'
                 });
-
-                gsap.to(camera, {
-                    zoom: cameraZoomProjects,
-                    onUpdate: () => {
-                        camera.updateProjectionMatrix();
-                    },
-                    duration: 1.5,
-                    ease: 'sine'
-                });
                 break;
 
             /**
              * Phase => Skills
              */
             case 'skills':
+                // Camera position
                 gsap.to(camera.position, {
                     x: cameraPositionSkills.x,
                     y: cameraPositionSkills.y,
@@ -170,6 +187,17 @@ const Camera = () => {
                     ease: 'sine'
                 });
 
+                // Camera zoom
+                gsap.to(camera, {
+                    zoom: cameraZoomSkills,
+                    onUpdate: () => {
+                        camera.updateProjectionMatrix();
+                    },
+                    duration: 1.5,
+                    ease: 'sine'
+                });
+
+                // Camera target
                 gsap.to(CameraControlsRef.current?.target, {
                     x: targetPositionSkills.x,
                     y: targetPositionSkills.y,
@@ -181,8 +209,24 @@ const Camera = () => {
                     ease: 'sine'
                 });
 
+                break;
+
+            /**
+             * Phase => Education
+             */
+            case 'education':
+                // Camera position
+                gsap.to(camera.position, {
+                    x: cameraPositionEducation.x,
+                    y: cameraPositionEducation.y,
+                    z: cameraPositionEducation.z,
+                    duration: 1.5,
+                    ease: 'sine'
+                });
+
+                // Camera zoom
                 gsap.to(camera, {
-                    zoom: cameraZoomSkills,
+                    zoom: cameraZoomEducation,
                     onUpdate: () => {
                         camera.updateProjectionMatrix();
                     },
@@ -190,7 +234,20 @@ const Camera = () => {
                     ease: 'sine'
                 });
 
+                // Camera target
+                gsap.to(CameraControlsRef.current?.target, {
+                    x: targetPositionEducation.x,
+                    y: targetPositionEducation.y,
+                    z: targetPositionEducation.z,
+                    onUpdate: () => {
+                        CameraControlsRef.current?.update();
+                    },
+                    duration: 1.5,
+                    ease: 'sine'
+                });
+
                 break;
+
             default:
                 camera.position.set(
                     cameraPositionLoading.x,
@@ -231,6 +288,21 @@ const Camera = () => {
                 ) {
                     back();
                 }
+                break;
+
+            /**
+             * Zoom out from education
+             */
+            case 'education':
+                if (
+                    camera.position.x.toFixed(2) >= -0.05 &&
+                    camera.position.y.toFixed(2) >= 1.22 &&
+                    camera.position.z.toFixed(2) < -0.2 &&
+                    camera.zoom === cameraZoomEducation
+                ) {
+                    back();
+                }
+
                 break;
         }
     });
