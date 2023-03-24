@@ -40,9 +40,9 @@ const Camera = () => {
     /**
      * Skills Camera Settings
      */
-    const cameraPositionSkills = { x: -0.05, y: 0.75, z: 0.25 };
+    const cameraPositionSkills = { x: -0.05, y: 0.85, z: 0.275 };
     const cameraZoomSkills = 2.5;
-    const targetPositionSkills = { x: -0.0725, y: 0.35, z: 1.15 };
+    const targetPositionSkills = { x: -0.07275, y: 0.35, z: 1.15 };
 
     /**
      * Education Camera Settings
@@ -50,6 +50,20 @@ const Camera = () => {
     const cameraPositionEducation = { x: -0.05, y: 1.2, z: 0.25 };
     const cameraZoomEducation = 1.75;
     const targetPositionEducation = { x: -0.065, y: 1.125, z: 1.5 };
+
+    /**
+     * Experiences Camera Settings
+     */
+    const cameraPositionExperiences = { x: -1.05, y: 1.15, z: 0.25 };
+    const cameraZoomExperiences = 1.5;
+    const targetPositionExperiences = { x: -1.05, y: 1.1, z: 1.55 };
+
+    /**
+     * Contacts Camera Settings
+     */
+    const cameraPositionContacts = { x: -0.05, y: 1.2, z: 0.25 };
+    const cameraZoomContacts = 1.75;
+    const targetPositionContacts = { x: -0.065, y: 1.125, z: 1.5 };
 
     /**
      * Active Camera Settings
@@ -239,6 +253,43 @@ const Camera = () => {
                     x: targetPositionEducation.x,
                     y: targetPositionEducation.y,
                     z: targetPositionEducation.z,
+                    onUpdate: () => {
+                        CameraControlsRef.current?.update();
+                    },
+                    duration: 1.5,
+                    ease: 'sine'
+                });
+
+                break;
+
+            /**
+             * Phase => Experiences
+             */
+            case 'experiences':
+                // Camera position
+                gsap.to(camera.position, {
+                    x: cameraPositionExperiences.x,
+                    y: cameraPositionExperiences.y,
+                    z: cameraPositionExperiences.z,
+                    duration: 1.5,
+                    ease: 'sine'
+                });
+
+                // Camera zoom
+                gsap.to(camera, {
+                    zoom: cameraZoomExperiences,
+                    onUpdate: () => {
+                        camera.updateProjectionMatrix();
+                    },
+                    duration: 1.5,
+                    ease: 'sine'
+                });
+
+                // Camera target
+                gsap.to(CameraControlsRef.current?.target, {
+                    x: targetPositionExperiences.x,
+                    y: targetPositionExperiences.y,
+                    z: targetPositionExperiences.z,
                     onUpdate: () => {
                         CameraControlsRef.current?.update();
                     },

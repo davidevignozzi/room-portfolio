@@ -64,6 +64,17 @@ export default create(
                         phase: 'education'
                     };
                 });
+            },
+
+            /**
+             * Experiences
+             */
+            experiences: () => {
+                set(() => {
+                    return {
+                        phase: 'experiences'
+                    };
+                });
             }
         };
     })
