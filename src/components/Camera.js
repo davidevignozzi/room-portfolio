@@ -61,9 +61,9 @@ const Camera = () => {
     /**
      * Contacts Camera Settings
      */
-    const cameraPositionContacts = { x: -0.05, y: 1.2, z: 0.25 };
-    const cameraZoomContacts = 1.75;
-    const targetPositionContacts = { x: -0.065, y: 1.125, z: 1.5 };
+    const cameraPositionContacts = { x: -0.25, y: 1, z: 0.7 };
+    const cameraZoomContacts = 3;
+    const targetPositionContacts = { x: -0.425, y: 0.275, z: 1.175 };
 
     /**
      * Active Camera Settings
@@ -290,6 +290,43 @@ const Camera = () => {
                     x: targetPositionExperiences.x,
                     y: targetPositionExperiences.y,
                     z: targetPositionExperiences.z,
+                    onUpdate: () => {
+                        CameraControlsRef.current?.update();
+                    },
+                    duration: 1.5,
+                    ease: 'sine'
+                });
+
+                break;
+
+            /**
+             * Phase => Contacts
+             */
+            case 'contacts':
+                // Camera position
+                gsap.to(camera.position, {
+                    x: cameraPositionContacts.x,
+                    y: cameraPositionContacts.y,
+                    z: cameraPositionContacts.z,
+                    duration: 1.5,
+                    ease: 'sine'
+                });
+
+                // Camera zoom
+                gsap.to(camera, {
+                    zoom: cameraZoomContacts,
+                    onUpdate: () => {
+                        camera.updateProjectionMatrix();
+                    },
+                    duration: 1.5,
+                    ease: 'sine'
+                });
+
+                // Camera target
+                gsap.to(CameraControlsRef.current?.target, {
+                    x: targetPositionContacts.x,
+                    y: targetPositionContacts.y,
+                    z: targetPositionContacts.z,
                     onUpdate: () => {
                         CameraControlsRef.current?.update();
                     },

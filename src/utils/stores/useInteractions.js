@@ -75,6 +75,17 @@ export default create(
                         phase: 'experiences'
                     };
                 });
+            },
+
+            /**
+             * Contacts
+             */
+            contacts: () => {
+                set(() => {
+                    return {
+                        phase: 'contacts'
+                    };
+                });
             }
         };
     })
