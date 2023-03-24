@@ -40,7 +40,7 @@ const Camera = () => {
     /**
      * Skills Camera Settings
      */
-    const cameraPositionSkills = { x: -0.05, y: 0.85, z: 0.275 };
+    const cameraPositionSkills = { x: -0.075, y: 0.85, z: 0.275 };
     const cameraZoomSkills = 2.5;
     const targetPositionSkills = { x: -0.07275, y: 0.35, z: 1.15 };
 
