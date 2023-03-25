@@ -31,6 +31,14 @@ const Camera = () => {
     const targetPositionExplore = { x: 0, y: 0, z: 0 };
 
     /**
+     * TODO
+     * minZoom
+     * maxZoom
+     *
+     * Try to fix the desk foot.
+     */
+
+    /**
      * Project Camera Settings
      */
     const cameraPositionProjects = { x: -0.1, y: 0.75, z: 0 };
