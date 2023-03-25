@@ -280,7 +280,7 @@ const MonitorScreen = () => {
                                 <p>{selectedProject.description}</p>
 
                                 <button>
-                                    <a href="" target="_blank">
+                                    <a href={selectedProject.ref} target="_blank">
                                         Visit Website
                                     </a>
                                 </button>
