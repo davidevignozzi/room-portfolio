@@ -63,8 +63,8 @@ const Camera = () => {
      * Experiences Camera Settings
      */
     const cameraPositionExperiences = { x: -1.05, y: 1.15, z: 0.25 };
-    const cameraZoomExperiences = 1.5;
-    const targetPositionExperiences = { x: -1.05, y: 1.1, z: 1.55 };
+    const cameraZoomExperiences = 1.85;
+    const targetPositionExperiences = { x: -1.05, y: 1.05, z: 1.55 };
 
     /**
      * Contacts Camera Settings
