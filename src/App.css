@@ -32,6 +32,10 @@ div::-webkit-scrollbar {
     display: none;
 }
 
+.zoomIn {
+    cursor: zoom-in;
+}
+
 /* Sections */
 .section {
     z-index: 1;

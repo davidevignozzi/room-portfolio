@@ -97,6 +97,8 @@ const Interface = () => {
             state.education();
         } else if (state.phase === 'education') {
             state.experiences();
+        } else if (state.phase === 'everis') {
+            state.experiences();
         } else if (state.phase === 'experiences') {
             state.contacts();
         }

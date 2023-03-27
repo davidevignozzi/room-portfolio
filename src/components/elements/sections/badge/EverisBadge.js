@@ -59,7 +59,10 @@ const EverisBadge = () => {
     const state = useInteractions((state) => state);
 
     return (
-        <BadgeContent onClick={() => state.everis()}>
+        <BadgeContent
+            className={`${state.phase === 'experiences' && 'zoomIn'}`}
+            onClick={() => state.phase === 'experiences' && state.everis()}
+        >
             <div className="badge-wrapper">
                 <div className="info">
                     <div className="info-content montserrat">
