@@ -81,6 +81,8 @@ const Interface = () => {
             state.skills();
         } else if (state.phase === 'experiences') {
             state.education();
+        } else if (state.phase === 'everis') {
+            state.experiences();
         } else if (state.phase === 'contacts') {
             state.experiences();
         }

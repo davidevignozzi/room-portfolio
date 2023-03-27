@@ -67,6 +67,13 @@ const Camera = () => {
     const targetPositionExperiences = { x: -1.05, y: 1.05, z: 1.55 };
 
     /**
+     * Everis Camera Settings
+     */
+    const cameraPositionEveris = { x: -0.875, y: 0.975, z: 0.25 };
+    const cameraZoomEveris = 4;
+    const targetPositionEveris = { x: -0.875, y: 0.975, z: 1.55 };
+
+    /**
      * Contacts Camera Settings
      */
     const cameraPositionContacts = { x: -0.25, y: 1, z: 0.7 };
@@ -298,6 +305,43 @@ const Camera = () => {
                     x: targetPositionExperiences.x,
                     y: targetPositionExperiences.y,
                     z: targetPositionExperiences.z,
+                    onUpdate: () => {
+                        CameraControlsRef.current?.update();
+                    },
+                    duration: 1.5,
+                    ease: 'sine'
+                });
+
+                break;
+
+            /**
+             * Phase => Experiences
+             */
+            case 'everis':
+                // Camera position
+                gsap.to(camera.position, {
+                    x: cameraPositionEveris.x,
+                    y: cameraPositionEveris.y,
+                    z: cameraPositionEveris.z,
+                    duration: 1.5,
+                    ease: 'sine'
+                });
+
+                // Camera zoom
+                gsap.to(camera, {
+                    zoom: cameraZoomEveris,
+                    onUpdate: () => {
+                        camera.updateProjectionMatrix();
+                    },
+                    duration: 1.5,
+                    ease: 'sine'
+                });
+
+                // Camera target
+                gsap.to(CameraControlsRef.current?.target, {
+                    x: targetPositionEveris.x,
+                    y: targetPositionEveris.y,
+                    z: targetPositionEveris.z,
                     onUpdate: () => {
                         CameraControlsRef.current?.update();
                     },

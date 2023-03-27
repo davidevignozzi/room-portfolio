@@ -18,8 +18,6 @@ const Badge = () => {
         return () => window.removeEventListener('resize', () => handleResize(setScreenSize));
     }, []);
 
-    console.log(screenSize);
-
     return (
         <group>
             <mesh
@@ -29,12 +27,7 @@ const Badge = () => {
                 material={nodes.Badge.material}
             >
                 <Html
-                    position={[
-                        nodes.Badge.position.x + 1.734,
-                        nodes.Badge.position.y - 1.44,
-                        nodes.Badge.position.z - 2.339
-                    ]}
-                    scale={nodes.Badge.scale}
+                    position={[0, 0, -0.00125]}
                     rotation-y={Math.PI}
                     transform
                     distanceFactor={0.02}

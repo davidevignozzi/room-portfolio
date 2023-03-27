@@ -78,6 +78,17 @@ export default create(
             },
 
             /**
+             * Experiences
+             */
+            everis: () => {
+                set(() => {
+                    return {
+                        phase: 'everis'
+                    };
+                });
+            },
+
+            /**
              * Contacts
              */
             contacts: () => {
