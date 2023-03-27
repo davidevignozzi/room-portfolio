@@ -12,9 +12,6 @@ const Camera = () => {
      * Phases
      */
     const state = useInteractions((state) => state);
-    // const start = useInteractions((state) => state.start);
-    const back = useInteractions((state) => state.back);
-    const projects = useInteractions((state) => state.projects);
 
     /**
      * Loading Camera Settings
@@ -29,6 +26,14 @@ const Camera = () => {
     const cameraPositionExplore = { x: 4, y: 3.5, z: -5 };
     const cameraZoomExplore = 1.15;
     const targetPositionExplore = { x: 0, y: 0, z: 0 };
+
+    /**
+     * Explore Camera Limitations
+     */
+    const minPolarAngle = 0;
+    const maxPolarAngle = Math.PI / 2 - 0.15;
+    const minAzimuthAngle = Math.PI / 2;
+    const maxAzimuthAngle = Math.PI;
 
     /**
      * TODO
@@ -128,6 +133,14 @@ const Camera = () => {
                     }
                 });
 
+                // Camera limitations
+                setTimeout(() => {
+                    CameraControlsRef.current.minPolarAngle = minPolarAngle;
+                    CameraControlsRef.current.maxPolarAngle = maxPolarAngle;
+                    CameraControlsRef.current.minAzimuthAngle = minAzimuthAngle;
+                    CameraControlsRef.current.maxAzimuthAngle = maxAzimuthAngle;
+                }, 3000);
+
                 break;
 
             /**
@@ -165,6 +178,14 @@ const Camera = () => {
                     }
                 });
 
+                // Camera limitations
+                setTimeout(() => {
+                    CameraControlsRef.current.minPolarAngle = minPolarAngle;
+                    CameraControlsRef.current.maxPolarAngle = maxPolarAngle;
+                    CameraControlsRef.current.minAzimuthAngle = minAzimuthAngle;
+                    CameraControlsRef.current.maxAzimuthAngle = maxAzimuthAngle;
+                }, 1500);
+
                 break;
 
             /**
@@ -201,6 +222,7 @@ const Camera = () => {
                     duration: 1.5,
                     ease: 'sine'
                 });
+
                 break;
 
             /**
@@ -412,7 +434,7 @@ const Camera = () => {
                     camera.position.z.toFixed(1) < -0.4 &&
                     camera.zoom === cameraZoomProjects
                 ) {
-                    back();
+                    state.back();
                 }
                 break;
 
@@ -426,7 +448,7 @@ const Camera = () => {
                     camera.position.z.toFixed(2) <= -0.21 &&
                     camera.zoom === cameraZoomSkills
                 ) {
-                    back();
+                    state.back();
                 }
                 break;
 
@@ -440,7 +462,7 @@ const Camera = () => {
                     camera.position.z.toFixed(2) < -0.2 &&
                     camera.zoom === cameraZoomEducation
                 ) {
-                    back();
+                    state.back();
                 }
 
                 break;
@@ -456,11 +478,6 @@ const Camera = () => {
             // enablePan={false}
             rotateSpeed={0.2}
             zoomSpeed={2}
-            // minPolarAngle={0}
-            // maxPolarAngle={Math.PI / 2}
-            // // maxPolarAngle={undefined}
-            // minAzimuthAngle={Math.PI / 2}
-            // maxAzimuthAngle={Math.PI}
         />
 
         // <CameraControls

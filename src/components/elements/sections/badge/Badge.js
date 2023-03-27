@@ -22,7 +22,11 @@ const Badge = () => {
         <group>
             <mesh
                 geometry={nodes.Badge.geometry}
-                position={nodes.Badge.position}
+                position={[
+                    nodes.Badge.position.x,
+                    nodes.Badge.position.y,
+                    nodes.Badge.position.z - 0.0075
+                ]}
                 scale={nodes.Badge.scale}
                 material={nodes.Badge.material}
             >
@@ -42,7 +46,11 @@ const Badge = () => {
                     <mesh
                         key={el.uuid}
                         geometry={el.geometry}
-                        position={nodes.Pin.position}
+                        position={[
+                            nodes.Pin.position.x,
+                            nodes.Pin.position.y,
+                            nodes.Pin.position.z - 0.0075
+                        ]}
                         scale={nodes.Pin.scale}
                         material={el.material}
                     />
