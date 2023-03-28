@@ -133,14 +133,6 @@ const Camera = () => {
                     }
                 });
 
-                // Camera limitations
-                setTimeout(() => {
-                    CameraControlsRef.current.minPolarAngle = minPolarAngle;
-                    CameraControlsRef.current.maxPolarAngle = maxPolarAngle;
-                    CameraControlsRef.current.minAzimuthAngle = minAzimuthAngle;
-                    CameraControlsRef.current.maxAzimuthAngle = maxAzimuthAngle;
-                }, 3000);
-
                 break;
 
             /**
@@ -177,14 +169,6 @@ const Camera = () => {
                         CameraControlsRef.current?.update();
                     }
                 });
-
-                // Camera limitations
-                setTimeout(() => {
-                    CameraControlsRef.current.minPolarAngle = minPolarAngle;
-                    CameraControlsRef.current.maxPolarAngle = maxPolarAngle;
-                    CameraControlsRef.current.minAzimuthAngle = minAzimuthAngle;
-                    CameraControlsRef.current.maxAzimuthAngle = maxAzimuthAngle;
-                }, 1500);
 
                 break;
 
