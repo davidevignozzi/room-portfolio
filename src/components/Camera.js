@@ -74,9 +74,9 @@ const Camera = () => {
     /**
      * Everis Camera Settings
      */
-    const cameraPositionEveris = { x: -0.875, y: 0.975, z: 0.25 };
-    const cameraZoomEveris = 4;
-    const targetPositionEveris = { x: -0.875, y: 0.975, z: 1.55 };
+    const cameraPositionEveris = { x: -0.855, y: 0.95, z: 0.25 };
+    const cameraZoomEveris = 7;
+    const targetPositionEveris = { x: -0.855, y: 0.95, z: 1.55 };
 
     /**
      * Contacts Camera Settings
