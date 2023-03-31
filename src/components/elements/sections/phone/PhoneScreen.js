@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FaLinkedin } from 'react-icons/fa';
 import { FiMail, FiPhoneCall, FiGithub, FiDownload } from 'react-icons/fi';
@@ -42,7 +42,7 @@ const PhoneScreen = () => {
             }
             .info {
                 width: calc(100% - 100px);
-                padding-left: 1rem;
+                padding-left: 0.7rem;
 
                 .title {
                     font-size: larger;
@@ -62,9 +62,30 @@ const PhoneScreen = () => {
         }
     `;
 
+    const [messageVisible, setMessageVisible] = useState(false);
+
+    /**
+     * Show message for 4 seconds
+     */
+    const showMessage = () => {
+        // Copy phone Number
+        copyText();
+        setMessageVisible(true);
+        setTimeout(() => {
+            setMessageVisible(false);
+        }, 4000);
+    };
+
+    /**
+     * Copy Number
+     */
+    const copyText = () => {
+        navigator.clipboard.writeText('+39 340459604');
+    };
+
     return (
         <Screen className="montserrat">
-            <div className="notify">
+            <a download href={'./assets/downloads/CV-Davide-Vignozzi.pdf'} className="notify">
                 <div className="icon">
                     <i style={{ backgroundColor: '#ffffff', color: '#333333' }}>
                         <FiDownload />
@@ -76,9 +97,9 @@ const PhoneScreen = () => {
                         Download my <span>Curriculum</span>
                     </div>
                 </div>
-            </div>
+            </a>
 
-            <a href="mailto:davide.vignozzi@gmail.com" className="notify">
+            <a href="mailto:davide.vignozzi@gmail.com" target="_blank" className="notify">
                 <div className="icon">
                     <i style={{ backgroundColor: '#56b3ee' }}>
                         <FiMail />
@@ -92,7 +113,7 @@ const PhoneScreen = () => {
                 </div>
             </a>
 
-            <a href="mailto:davide.vignozzi@gmail.com" className="notify">
+            <div onClick={showMessage} className="notify">
                 <div className="icon">
                     <i style={{ backgroundColor: '#2dcb73' }}>
                         <FiPhoneCall />
@@ -104,7 +125,21 @@ const PhoneScreen = () => {
                         Call me at <span>+39 3404596054</span>
                     </div>
                 </div>
-            </a>
+            </div>
+
+            {messageVisible && (
+                <div className="notify message">
+                    <div className="icon">
+                        <i style={{ backgroundColor: '#2dcb73' }}>
+                            <FiPhoneCall />
+                        </i>
+                    </div>
+                    <div className="info">
+                        <div className="title">Phone</div>
+                        <div className="description">Number copied into the clipboard</div>
+                    </div>
+                </div>
+            )}
 
             <a
                 href="https://www.linkedin.com/in/davidevignozzi/"
