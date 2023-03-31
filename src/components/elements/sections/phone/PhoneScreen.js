@@ -21,6 +21,8 @@ const PhoneScreen = () => {
             display: flex;
             align-items: center;
             color: #fefefe;
+            text-decoration: none;
+            cursor: pointer;
 
             .icon {
                 width: 100px;
@@ -76,7 +78,7 @@ const PhoneScreen = () => {
                 </div>
             </div>
 
-            <div className="notify">
+            <a href="mailto:davide.vignozzi@gmail.com" className="notify">
                 <div className="icon">
                     <i style={{ backgroundColor: '#56b3ee' }}>
                         <FiMail />
@@ -88,9 +90,9 @@ const PhoneScreen = () => {
                         Send Me an email at <span>davide.vignozzi@gmail.com</span>
                     </div>
                 </div>
-            </div>
+            </a>
 
-            <div className="notify">
+            <a href="mailto:davide.vignozzi@gmail.com" className="notify">
                 <div className="icon">
                     <i style={{ backgroundColor: '#2dcb73' }}>
                         <FiPhoneCall />
@@ -102,9 +104,13 @@ const PhoneScreen = () => {
                         Call me at <span>+39 3404596054</span>
                     </div>
                 </div>
-            </div>
+            </a>
 
-            <div className="notify">
+            <a
+                href="https://www.linkedin.com/in/davidevignozzi/"
+                target="_blank"
+                className="notify"
+            >
                 <div className="icon">
                     <i style={{ backgroundColor: '#0077b5' }}>
                         <FaLinkedin />
@@ -116,9 +122,9 @@ const PhoneScreen = () => {
                         Message me on <span>LinkedIn</span>
                     </div>
                 </div>
-            </div>
+            </a>
 
-            <div className="notify">
+            <a href="https://github.com/davidevignozzi" target="_blank" className="notify">
                 <div className="icon">
                     <i style={{ backgroundColor: '#ffffff', color: '#333333' }}>
                         <FiGithub />
@@ -130,7 +136,7 @@ const PhoneScreen = () => {
                         Message me on <span>GitHub</span>
                     </div>
                 </div>
-            </div>
+            </a>
         </Screen>
     );
 };
