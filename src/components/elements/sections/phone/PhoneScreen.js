@@ -14,7 +14,7 @@ const PhoneScreen = () => {
         flex-direction: column;
         justify-content: end;
         overflow: hidden;
-        opacity: 0;
+        /* opacity: 0; */
 
         .notify {
             width: 100%;
@@ -26,6 +26,7 @@ const PhoneScreen = () => {
             align-items: center;
             color: #fefefe;
             text-decoration: none;
+            text-align: start;
             cursor: pointer;
 
             .icon {
@@ -93,14 +94,20 @@ const PhoneScreen = () => {
      */
     useEffect(() => {
         if (phase == 'contacts') {
-            gsap.to('.gsap-contacts', {
-                opacity: 1,
-                delay: 1.5
-            });
+            gsap.fromTo(
+                '.gsap-contacts',
+                { opacity: 0 },
+                {
+                    opacity: 1,
+                    delay: 1.5
+                }
+            );
         } else if (phase == 'explore') {
             gsap.fromTo('.gsap-contacts', { opacity: 1 }, { opacity: 0 });
         } else if (phase == 'experiences') {
             gsap.fromTo('.gsap-contacts', { opacity: 1 }, { opacity: 0 });
+        } else {
+            gsap.set('.gsap-contacts', { opacity: 0 });
         }
     }, [phase]);
 
@@ -144,7 +151,7 @@ const PhoneScreen = () => {
                 </div>
             </a>
 
-            <div onClick={showMessage} id="notify-3" className="notify">
+            <button onClick={showMessage} id="notify-3" className="notify">
                 <div className="icon">
                     <i style={{ backgroundColor: '#2dcb73' }}>
                         <FiPhoneCall />
@@ -156,7 +163,7 @@ const PhoneScreen = () => {
                         Call me at <span>+39 3404596054</span>
                     </div>
                 </div>
-            </div>
+            </button>
 
             {messageVisible && (
                 <div className="notify message">

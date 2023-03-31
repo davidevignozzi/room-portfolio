@@ -30,7 +30,7 @@ const EverisBadge = () => {
                 }
 
                 h2 {
-                    font-size: 5rem;
+                    font-size: 4.725rem;
                     color: #555555;
                 }
 
