@@ -1,11 +1,8 @@
 import { Html, useGLTF } from '@react-three/drei';
 import PhoneScreen from './PhoneScreen';
-import useInteractions from '../../../../utils/stores/useInteractions';
 
 const Phone = () => {
     const { nodes } = useGLTF('./assets/models/iphone.glb');
-
-    const phase = useInteractions((state) => state.phase);
 
     return (
         <group>
@@ -40,19 +37,17 @@ const Phone = () => {
             >
                 <meshBasicMaterial color="#333333" />
 
-                {phase === 'contacts' && (
-                    <Html
-                        fixed
-                        position={[0, 0, 0]}
-                        rotation={[Math.PI / 2, Math.PI, -0.33]}
-                        transform
-                        occlude
-                        distanceFactor={0.05}
-                        zIndexRange={2}
-                    >
-                        <PhoneScreen />
-                    </Html>
-                )}
+                <Html
+                    fixed
+                    position={[0, 0, 0]}
+                    rotation={[Math.PI / 2, Math.PI, -0.33]}
+                    transform
+                    occlude
+                    distanceFactor={0.05}
+                    zIndexRange={2}
+                >
+                    <PhoneScreen />
+                </Html>
             </mesh>
         </group>
     );

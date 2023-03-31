@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { FaLinkedin } from 'react-icons/fa';
 import { FiMail, FiPhoneCall, FiGithub, FiDownload } from 'react-icons/fi';
+import useInteractions from '../../../../utils/stores/useInteractions';
+import { gsap } from 'gsap';
 
 const PhoneScreen = () => {
     const Screen = styled.div`
@@ -11,6 +13,8 @@ const PhoneScreen = () => {
         display: flex;
         flex-direction: column;
         justify-content: end;
+        overflow: hidden;
+        opacity: 0;
 
         .notify {
             width: 100%;
@@ -63,6 +67,7 @@ const PhoneScreen = () => {
     `;
 
     const [messageVisible, setMessageVisible] = useState(false);
+    const phase = useInteractions((state) => state.phase);
 
     /**
      * Show message for 4 seconds
@@ -83,9 +88,30 @@ const PhoneScreen = () => {
         navigator.clipboard.writeText('+39 340459604');
     };
 
+    /**
+     *  onPhase Contacts show the screen
+     */
+    useEffect(() => {
+        if (phase == 'contacts') {
+            gsap.to('.gsap-contacts', {
+                opacity: 1,
+                delay: 1.5
+            });
+        } else if (phase == 'explore') {
+            gsap.fromTo('.gsap-contacts', { opacity: 1 }, { opacity: 0 });
+        } else if (phase == 'experiences') {
+            gsap.fromTo('.gsap-contacts', { opacity: 1 }, { opacity: 0 });
+        }
+    }, [phase]);
+
     return (
-        <Screen className="montserrat">
-            <a download href={'./assets/downloads/CV-Davide-Vignozzi.pdf'} className="notify">
+        <Screen className="gsap-contacts montserrat">
+            <a
+                download
+                href={'./assets/downloads/CV-Davide-Vignozzi.pdf'}
+                id="notify-1"
+                className="notify"
+            >
                 <div className="icon">
                     <i style={{ backgroundColor: '#ffffff', color: '#333333' }}>
                         <FiDownload />
@@ -99,7 +125,12 @@ const PhoneScreen = () => {
                 </div>
             </a>
 
-            <a href="mailto:davide.vignozzi@gmail.com" target="_blank" className="notify">
+            <a
+                href="mailto:davide.vignozzi@gmail.com"
+                target="_blank"
+                id="notify-2"
+                className="notify"
+            >
                 <div className="icon">
                     <i style={{ backgroundColor: '#56b3ee' }}>
                         <FiMail />
@@ -113,7 +144,7 @@ const PhoneScreen = () => {
                 </div>
             </a>
 
-            <div onClick={showMessage} className="notify">
+            <div onClick={showMessage} id="notify-3" className="notify">
                 <div className="icon">
                     <i style={{ backgroundColor: '#2dcb73' }}>
                         <FiPhoneCall />
@@ -144,6 +175,7 @@ const PhoneScreen = () => {
             <a
                 href="https://www.linkedin.com/in/davidevignozzi/"
                 target="_blank"
+                id="notify-4"
                 className="notify"
             >
                 <div className="icon">
@@ -159,7 +191,12 @@ const PhoneScreen = () => {
                 </div>
             </a>
 
-            <a href="https://github.com/davidevignozzi" target="_blank" className="notify">
+            <a
+                href="https://github.com/davidevignozzi"
+                target="_blank"
+                id="notify-5"
+                className="notify"
+            >
                 <div className="icon">
                     <i style={{ backgroundColor: '#ffffff', color: '#333333' }}>
                         <FiGithub />

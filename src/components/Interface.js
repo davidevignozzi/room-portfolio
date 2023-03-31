@@ -101,6 +101,8 @@ const Interface = () => {
             state.experiences();
         } else if (state.phase === 'experiences') {
             state.contacts();
+        } else if (state.phase === 'contacts') {
+            state.start();
         }
     };
 
