@@ -94,21 +94,26 @@ const PhoneScreen = () => {
      *  onPhase Contacts show the screen
      */
     useEffect(() => {
-        if (phase == 'contacts') {
-            gsap.fromTo(
-                '.gsap-contacts',
-                { opacity: 0 },
-                {
-                    opacity: 1,
-                    delay: 1.5
-                }
-            );
-        } else if (phase == 'explore') {
-            gsap.fromTo('.gsap-contacts', { opacity: 1 }, { opacity: 0 });
-        } else if (phase == 'experiences') {
-            gsap.fromTo('.gsap-contacts', { opacity: 1 }, { opacity: 0 });
-        } else {
-            gsap.set('.gsap-contacts', { opacity: 0 });
+        switch (phase) {
+            case 'contacts':
+                gsap.fromTo(
+                    '.gsap-contacts',
+                    { opacity: 0 },
+                    {
+                        opacity: 1,
+                        delay: 1.5
+                    }
+                );
+                break;
+            case 'explore':
+            case 'Explore':
+                gsap.fromTo('.gsap-contacts', { opacity: 1 }, { opacity: 0 });
+                break;
+            case 'experiences':
+                gsap.fromTo('.gsap-contacts', { opacity: 1 }, { opacity: 0 });
+                break;
+            default:
+                gsap.set('.gsap-contacts', { opacity: 0 });
         }
     }, [phase]);
 
