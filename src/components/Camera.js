@@ -82,8 +82,8 @@ const Camera = () => {
      * Contacts Camera Settings
      */
     const cameraPositionContacts = { x: -0.36, y: 1, z: 0.85 };
-    const cameraZoomContacts = 3;
-    const targetPositionContacts = { x: -0.425, y: 0.275, z: 1.175 };
+    const cameraZoomContacts = 4;
+    const targetPositionContacts = { x: -0.425, y: 0.275, z: 1.15 };
 
     /**
      * Active Camera Settings

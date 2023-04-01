@@ -50,14 +50,15 @@ const PhoneScreen = () => {
                 padding-left: 0.7rem;
 
                 .title {
-                    font-size: larger;
+                    font-size: large;
                     font-weight: 600;
                     color: #ffffff;
-                    margin-bottom: 0.5rem;
+                    margin-bottom: 0.33rem;
                 }
 
                 .description {
                     font-weight: 300;
+                    font-size: 1.15rem;
 
                     span {
                         font-weight: 600;
