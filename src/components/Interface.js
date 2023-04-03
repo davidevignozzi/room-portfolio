@@ -72,40 +72,65 @@ const Interface = () => {
         setPhase(`${state.phase.charAt(0).toUpperCase()}${state.phase.slice(1)}`);
     }, [state.phase]);
 
+    /**
+     * onClick on the prev button
+     */
     const prevPhase = () => {
-        if (state.phase === 'projects') {
-            state.back();
-        } else if (state.phase === 'skills') {
-            state.projects();
-        } else if (state.phase === 'education') {
-            state.skills();
-        } else if (state.phase === 'experiences') {
-            state.education();
-        } else if (state.phase === 'everis') {
-            state.experiences();
-        } else if (state.phase === 'contacts') {
-            state.experiences();
+        switch (state.phase) {
+            case 'projects':
+                state.back();
+                break;
+            case 'skills':
+                state.projects();
+                break;
+            case 'education':
+                state.skills();
+                break;
+            case 'experiences':
+                state.education();
+                break;
+            case 'everis':
+            case 'contacts':
+                state.experiences();
+                break;
+            default:
+                break;
         }
     };
 
+    /**
+     * onClick on the next button
+     */
     const nextPhase = () => {
-        if (state.phase === 'explore' || state.phase === 'Explore') {
-            state.projects();
-        } else if (state.phase === 'projects') {
-            state.skills();
-        } else if (state.phase === 'skills') {
-            state.education();
-        } else if (state.phase === 'education') {
-            state.experiences();
-        } else if (state.phase === 'everis') {
-            state.experiences();
-        } else if (state.phase === 'experiences') {
-            state.contacts();
-        } else if (state.phase === 'contacts') {
-            state.start();
+        switch (state.phase) {
+            case 'explore':
+            case 'Explore':
+                state.projects();
+                break;
+            case 'projects':
+                state.skills();
+                break;
+            case 'skills':
+                state.education();
+                break;
+            case 'education':
+            case 'everis':
+                state.experiences();
+                break;
+            case 'experiences':
+                state.contacts();
+                break;
+            case 'contacts':
+                state.start();
+                break;
+            default:
+                break;
         }
     };
 
+    /**
+     * onClick on the home button
+     */
     const home = () => {
         state.back();
     };
