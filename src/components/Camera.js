@@ -86,6 +86,95 @@ const Camera = () => {
     const targetPosition = targetPositionLoading;
 
     /**
+     * Function to Animate Camera
+     * When the phase change call this function
+     */
+    const moveTheCamera = (
+        cameraX,
+        cameraY,
+        cameraZ,
+        delayMove,
+        durationMove,
+        animationMoveType
+    ) => {
+        gsap.to(camera.position, {
+            x: cameraX,
+            y: cameraY,
+            z: cameraZ,
+            delay: delayMove,
+            duration: durationMove,
+            ease: animationMoveType
+        });
+    };
+
+    const zoomTheCamera = (zoomCamera, delayZoom, zoomDuration, zoomAnimationType) => {
+        gsap.to(camera, {
+            zoom: zoomCamera,
+            onUpdate: () => {
+                camera.updateProjectionMatrix();
+            },
+            delay: delayZoom,
+            duration: zoomDuration,
+            ease: zoomAnimationType
+        });
+    };
+
+    const targetOfTheCamera = (
+        taegetX,
+        taegetY,
+        taegetZ,
+        delayTarget,
+        durationTarget,
+        animationTargetType,
+        onComplete
+    ) => {
+        gsap.to(CameraControlsRef.current?.target, {
+            x: taegetX,
+            y: taegetY,
+            z: taegetZ,
+            delay: delayTarget,
+            duration: durationTarget,
+            ease: animationTargetType,
+            onUpdate: () => {
+                CameraControlsRef.current?.update();
+            },
+            onComplete: onComplete
+        });
+    };
+
+    const animateTheCamera = (
+        cameraX,
+        cameraY,
+        cameraZ,
+        delayMove,
+        durationMove,
+        animationMoveType,
+        zoomCamera,
+        delayZoom,
+        zoomDuration,
+        zoomAnimationType,
+        taegetX,
+        taegetY,
+        taegetZ,
+        delayTarget,
+        durationTarget,
+        animationTargetType,
+        onComplete
+    ) => {
+        moveTheCamera(cameraX, cameraY, cameraZ, delayMove, durationMove, animationMoveType);
+        zoomTheCamera(zoomCamera, delayZoom, zoomDuration, zoomAnimationType);
+        targetOfTheCamera(
+            taegetX,
+            taegetY,
+            taegetZ,
+            delayTarget,
+            durationTarget,
+            animationTargetType,
+            onComplete
+        );
+    };
+
+    /**
      * Animations
      */
     useEffect(() => {
@@ -95,38 +184,25 @@ const Camera = () => {
              */
             case 'explore':
                 setIsMoving(true);
-
-                // Camera position
-                gsap.to(camera.position, {
-                    x: cameraPositionExplore.x,
-                    y: cameraPositionExplore.y,
-                    z: cameraPositionExplore.z,
-                    delay: 1,
-                    duration: 2,
-                    ease: 'power4.in'
-                });
-
-                // Camera zoom
-                gsap.to(camera, {
-                    zoom: cameraZoomExplore,
-                    onUpdate: () => {
-                        camera.updateProjectionMatrix();
-                    },
-                    duration: 2
-                });
-
-                // Camera target
-                gsap.to(CameraControlsRef.current?.target, {
-                    x: targetPositionExplore.x,
-                    y: targetPositionExplore.y,
-                    z: targetPositionExplore.z,
-                    delay: 1,
-                    duration: 2,
-                    ease: 'power4.in',
-                    onUpdate: () => {
-                        CameraControlsRef.current?.update();
-                    }
-                });
+                animateTheCamera(
+                    cameraPositionExplore.x, // cameraX
+                    cameraPositionExplore.y, // cameraY
+                    cameraPositionExplore.z, // cameraZ
+                    1, // delayMove
+                    2, // durationMove
+                    'power4.in', // typeMove
+                    cameraZoomExplore, //cameraZoom
+                    0, // delayZoom
+                    2, // durationZoom
+                    'sine', // typeZoom
+                    targetPositionExplore.x, // targetX
+                    targetPositionExplore.y, // targetY
+                    targetPositionExplore.z, // targetZ
+                    1, // delayTarget
+                    2, // durationTarget
+                    'power4.in', // typeTarget
+                    null // onComplete
+                );
 
                 break;
 
@@ -136,36 +212,25 @@ const Camera = () => {
             case 'Explore':
                 setIsMoving(true);
 
-                // Camera position
-                gsap.to(camera.position, {
-                    x: cameraPositionExplore.x,
-                    y: cameraPositionExplore.y,
-                    z: cameraPositionExplore.z,
-                    duration: 1.5,
-                    ease: 'sine'
-                });
-
-                // Camera zoom
-                gsap.to(camera, {
-                    zoom: cameraZoomExplore,
-                    onUpdate: () => {
-                        camera.updateProjectionMatrix();
-                    },
-                    duration: 1.5,
-                    ease: 'sine'
-                });
-
-                // Camera target
-                gsap.to(CameraControlsRef.current?.target, {
-                    x: targetPositionExplore.x,
-                    y: targetPositionExplore.y,
-                    z: targetPositionExplore.z,
-                    duration: 1.5,
-                    ease: 'sine',
-                    onUpdate: () => {
-                        CameraControlsRef.current?.update();
-                    }
-                });
+                animateTheCamera(
+                    cameraPositionExplore.x, // cameraX
+                    cameraPositionExplore.y, // cameraY
+                    cameraPositionExplore.z, // cameraZ
+                    0, // delayMove
+                    1.5, // durationMove
+                    'sine', // typeMove
+                    cameraZoomExplore, //cameraZoom
+                    0, // delayZoom
+                    1.5, // durationZoom
+                    'sine', // typeZoom
+                    targetPositionExplore.x, // targetX
+                    targetPositionExplore.y, // targetY
+                    targetPositionExplore.z, // targetZ
+                    0, // delayTarget
+                    1.5, // durationTarget
+                    'sine', // typeTarget
+                    null // onComplete
+                );
 
                 break;
 
@@ -175,39 +240,27 @@ const Camera = () => {
             case 'projects':
                 setIsMoving(true);
 
-                // Camera position
-                gsap.to(camera.position, {
-                    x: cameraPositionProjects.x,
-                    y: cameraPositionProjects.y,
-                    z: cameraPositionProjects.z,
-                    duration: 1.5,
-                    ease: 'sine'
-                });
-
-                // Camera zoom
-                gsap.to(camera, {
-                    zoom: cameraZoomProjects,
-                    onUpdate: () => {
-                        camera.updateProjectionMatrix();
-                    },
-                    duration: 1.5,
-                    ease: 'sine'
-                });
-
-                // Camera target
-                gsap.to(CameraControlsRef.current?.target, {
-                    x: targetPositionProjects.x,
-                    y: targetPositionProjects.y,
-                    z: targetPositionProjects.z,
-                    onUpdate: () => {
-                        CameraControlsRef.current?.update();
-                    },
-                    duration: 1.5,
-                    ease: 'sine',
-                    onComplete: () => {
+                animateTheCamera(
+                    cameraPositionProjects.x, // cameraX
+                    cameraPositionProjects.y, // cameraY
+                    cameraPositionProjects.z, // cameraZ
+                    0, // delayMove
+                    1.5, // durationMove
+                    'sine', // typeMove
+                    cameraZoomProjects, //cameraZoom
+                    0, // delayZoom
+                    1.5, // durationZoom
+                    'sine', // typeZoom
+                    targetPositionProjects.x, // targetX
+                    targetPositionProjects.y, // targetY
+                    targetPositionProjects.z, // targetZ
+                    0, // delayTarget
+                    1.5, // durationTarget
+                    'sine', // typeTarget
+                    () => {
                         setIsMoving(false);
-                    }
-                });
+                    } // onComplete
+                );
 
                 break;
 
@@ -217,39 +270,27 @@ const Camera = () => {
             case 'skills':
                 setIsMoving(true);
 
-                // Camera position
-                gsap.to(camera.position, {
-                    x: cameraPositionSkills.x,
-                    y: cameraPositionSkills.y,
-                    z: cameraPositionSkills.z,
-                    duration: 1.5,
-                    ease: 'sine'
-                });
-
-                // Camera zoom
-                gsap.to(camera, {
-                    zoom: cameraZoomSkills,
-                    onUpdate: () => {
-                        camera.updateProjectionMatrix();
-                    },
-                    duration: 1.5,
-                    ease: 'sine'
-                });
-
-                // Camera target
-                gsap.to(CameraControlsRef.current?.target, {
-                    x: targetPositionSkills.x,
-                    y: targetPositionSkills.y,
-                    z: targetPositionSkills.z,
-                    onUpdate: () => {
-                        CameraControlsRef.current?.update();
-                    },
-                    onComplete: () => {
+                animateTheCamera(
+                    cameraPositionSkills.x, // cameraX
+                    cameraPositionSkills.y, // cameraY
+                    cameraPositionSkills.z, // cameraZ
+                    0, // delayMove
+                    1.5, // durationMove
+                    'sine', // typeMove
+                    cameraZoomSkills, //cameraZoom
+                    0, // delayZoom
+                    1.5, // durationZoom
+                    'sine', // typeZoom
+                    targetPositionSkills.x, // targetX
+                    targetPositionSkills.y, // targetY
+                    targetPositionSkills.z, // targetZ
+                    0, // delayTarget
+                    1.5, // durationTarget
+                    'sine', // typeTarget
+                    () => {
                         setIsMoving(false);
-                    },
-                    duration: 1.5,
-                    ease: 'sine'
-                });
+                    } // onComplete
+                );
 
                 break;
 
@@ -259,39 +300,27 @@ const Camera = () => {
             case 'education':
                 setIsMoving(true);
 
-                // Camera position
-                gsap.to(camera.position, {
-                    x: cameraPositionEducation.x,
-                    y: cameraPositionEducation.y,
-                    z: cameraPositionEducation.z,
-                    duration: 1.5,
-                    ease: 'sine'
-                });
-
-                // Camera zoom
-                gsap.to(camera, {
-                    zoom: cameraZoomEducation,
-                    onUpdate: () => {
-                        camera.updateProjectionMatrix();
-                    },
-                    duration: 1.5,
-                    ease: 'sine'
-                });
-
-                // Camera target
-                gsap.to(CameraControlsRef.current?.target, {
-                    x: targetPositionEducation.x,
-                    y: targetPositionEducation.y,
-                    z: targetPositionEducation.z,
-                    onUpdate: () => {
-                        CameraControlsRef.current?.update();
-                    },
-                    onComplete: () => {
+                animateTheCamera(
+                    cameraPositionEducation.x, // cameraX
+                    cameraPositionEducation.y, // cameraY
+                    cameraPositionEducation.z, // cameraZ
+                    0, // delayMove
+                    1.5, // durationMove
+                    'sine', // typeMove
+                    cameraZoomEducation, //cameraZoom
+                    0, // delayZoom
+                    1.5, // durationZoom
+                    'sine', // typeZoom
+                    targetPositionEducation.x, // targetX
+                    targetPositionEducation.y, // targetY
+                    targetPositionEducation.z, // targetZ
+                    0, // delayTarget
+                    1.5, // durationTarget
+                    'sine', // typeTarget
+                    () => {
                         setIsMoving(false);
-                    },
-                    duration: 1.5,
-                    ease: 'sine'
-                });
+                    } // onComplete
+                );
 
                 break;
 
@@ -301,81 +330,57 @@ const Camera = () => {
             case 'experiences':
                 setIsMoving(true);
 
-                // Camera position
-                gsap.to(camera.position, {
-                    x: cameraPositionExperiences.x,
-                    y: cameraPositionExperiences.y,
-                    z: cameraPositionExperiences.z,
-                    duration: 1.5,
-                    ease: 'sine'
-                });
-
-                // Camera zoom
-                gsap.to(camera, {
-                    zoom: cameraZoomExperiences,
-                    onUpdate: () => {
-                        camera.updateProjectionMatrix();
-                    },
-                    duration: 1.5,
-                    ease: 'sine'
-                });
-
-                // Camera target
-                gsap.to(CameraControlsRef.current?.target, {
-                    x: targetPositionExperiences.x,
-                    y: targetPositionExperiences.y,
-                    z: targetPositionExperiences.z,
-                    onUpdate: () => {
-                        CameraControlsRef.current?.update();
-                    },
-                    onComplete: () => {
+                animateTheCamera(
+                    cameraPositionExperiences.x, // cameraX
+                    cameraPositionExperiences.y, // cameraY
+                    cameraPositionExperiences.z, // cameraZ
+                    0, // delayMove
+                    1.5, // durationMove
+                    'sine', // typeMove
+                    cameraZoomExperiences, //cameraZoom
+                    0, // delayZoom
+                    1.5, // durationZoom
+                    'sine', // typeZoom
+                    targetPositionExperiences.x, // targetX
+                    targetPositionExperiences.y, // targetY
+                    targetPositionExperiences.z, // targetZ
+                    0, // delayTarget
+                    1.5, // durationTarget
+                    'sine', // typeTarget
+                    () => {
                         setIsMoving(false);
-                    },
-                    duration: 1.5,
-                    ease: 'sine'
-                });
+                    } // onComplete
+                );
 
                 break;
 
             /**
-             * Phase => Experiences
+             * Phase => Experiences => Everis
              */
             case 'everis':
                 setIsMoving(true);
 
-                // Camera position
-                gsap.to(camera.position, {
-                    x: cameraPositionEveris.x,
-                    y: cameraPositionEveris.y,
-                    z: cameraPositionEveris.z,
-                    duration: 1.5,
-                    ease: 'sine'
-                });
-
-                // Camera zoom
-                gsap.to(camera, {
-                    zoom: cameraZoomEveris,
-                    onUpdate: () => {
-                        camera.updateProjectionMatrix();
-                    },
-                    duration: 1.5,
-                    ease: 'sine'
-                });
-
-                // Camera target
-                gsap.to(CameraControlsRef.current?.target, {
-                    x: targetPositionEveris.x,
-                    y: targetPositionEveris.y,
-                    z: targetPositionEveris.z,
-                    onUpdate: () => {
-                        CameraControlsRef.current?.update();
-                    },
-                    onComplete: () => {
+                animateTheCamera(
+                    cameraPositionEveris.x, // cameraX
+                    cameraPositionEveris.y, // cameraY
+                    cameraPositionEveris.z, // cameraZ
+                    0, // delayMove
+                    1.5, // durationMove
+                    'sine', // typeMove
+                    cameraZoomEveris, //cameraZoom
+                    0, // delayZoom
+                    1.5, // durationZoom
+                    'sine', // typeZoom
+                    targetPositionEveris.x, // targetX
+                    targetPositionEveris.y, // targetY
+                    targetPositionEveris.z, // targetZ
+                    0, // delayTarget
+                    1.5, // durationTarget
+                    'sine', // typeTarget
+                    () => {
                         setIsMoving(false);
-                    },
-                    duration: 1.5,
-                    ease: 'sine'
-                });
+                    } // onComplete
+                );
 
                 break;
 
@@ -385,39 +390,27 @@ const Camera = () => {
             case 'contacts':
                 setIsMoving(true);
 
-                // Camera position
-                gsap.to(camera.position, {
-                    x: cameraPositionContacts.x,
-                    y: cameraPositionContacts.y,
-                    z: cameraPositionContacts.z,
-                    duration: 1.5,
-                    ease: 'sine'
-                });
-
-                // Camera zoom
-                gsap.to(camera, {
-                    zoom: cameraZoomContacts,
-                    onUpdate: () => {
-                        camera.updateProjectionMatrix();
-                    },
-                    duration: 1.5,
-                    ease: 'sine'
-                });
-
-                // Camera target
-                gsap.to(CameraControlsRef.current?.target, {
-                    x: targetPositionContacts.x,
-                    y: targetPositionContacts.y,
-                    z: targetPositionContacts.z,
-                    onUpdate: () => {
-                        CameraControlsRef.current?.update();
-                    },
-                    onComplete: () => {
+                animateTheCamera(
+                    cameraPositionContacts.x, // cameraX
+                    cameraPositionContacts.y, // cameraY
+                    cameraPositionContacts.z, // cameraZ
+                    0, // delayMove
+                    1.5, // durationMove
+                    'sine', // typeMove
+                    cameraZoomContacts, //cameraZoom
+                    0, // delayZoom
+                    1.5, // durationZoom
+                    'sine', // typeZoom
+                    targetPositionContacts.x, // targetX
+                    targetPositionContacts.y, // targetY
+                    targetPositionContacts.z, // targetZ
+                    0, // delayTarget
+                    1.5, // durationTarget
+                    'sine', // typeTarget
+                    () => {
                         setIsMoving(false);
-                    },
-                    duration: 1.5,
-                    ease: 'sine'
-                });
+                    } // onComplete
+                );
 
                 break;
 
@@ -432,9 +425,11 @@ const Camera = () => {
 
     useEffect(() => {
         if (isMoving) {
-            CameraControlsRef.current.enabled = true;
+            CameraControlsRef.current.enablePan = true;
+            CameraControlsRef.current.enableRotate = true;
         } else {
-            CameraControlsRef.current.enabled = false;
+            CameraControlsRef.current.enablePan = false;
+            CameraControlsRef.current.enableRotate = false;
         }
     }, [isMoving]);
 
@@ -494,7 +489,6 @@ const Camera = () => {
             camera={camera}
             gl={gl}
             target={[targetPosition.x, targetPosition.y, targetPosition.z]}
-            // enablePan={false}
             rotateSpeed={0.2}
             zoomSpeed={2}
         />
