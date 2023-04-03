@@ -8,6 +8,7 @@ const Camera = () => {
     const { camera, gl } = useThree();
     const CameraControlsRef = useRef();
     const [isMoving, setIsMoving] = useState(true);
+    const [limitations, setLimitations] = useState(false);
 
     /**
      * Phases
@@ -201,7 +202,9 @@ const Camera = () => {
                     1, // delayTarget
                     2, // durationTarget
                     'power4.in', // typeTarget
-                    null // onComplete
+                    () => {
+                        setLimitations(true);
+                    } // onComplete
                 );
 
                 break;
@@ -229,7 +232,9 @@ const Camera = () => {
                     0, // delayTarget
                     1.5, // durationTarget
                     'sine', // typeTarget
-                    null // onComplete
+                    () => {
+                        setLimitations(true);
+                    } // onComplete
                 );
 
                 break;
@@ -238,6 +243,7 @@ const Camera = () => {
              * Phase => Projects
              */
             case 'projects':
+                setLimitations(false);
                 setIsMoving(true);
 
                 animateTheCamera(
@@ -268,6 +274,7 @@ const Camera = () => {
              * Phase => Skills
              */
             case 'skills':
+                setLimitations(false);
                 setIsMoving(true);
 
                 animateTheCamera(
@@ -298,6 +305,7 @@ const Camera = () => {
              * Phase => Education
              */
             case 'education':
+                setLimitations(false);
                 setIsMoving(true);
 
                 animateTheCamera(
@@ -328,6 +336,7 @@ const Camera = () => {
              * Phase => Experiences
              */
             case 'experiences':
+                setLimitations(false);
                 setIsMoving(true);
 
                 animateTheCamera(
@@ -358,6 +367,7 @@ const Camera = () => {
              * Phase => Experiences => Everis
              */
             case 'everis':
+                setLimitations(false);
                 setIsMoving(true);
 
                 animateTheCamera(
@@ -388,6 +398,7 @@ const Camera = () => {
              * Phase => Contacts
              */
             case 'contacts':
+                setLimitations(false);
                 setIsMoving(true);
 
                 animateTheCamera(
@@ -423,6 +434,9 @@ const Camera = () => {
         }
     }, [state.phase]);
 
+    /**
+     * Set Camera is Moving
+     */
     useEffect(() => {
         if (isMoving) {
             CameraControlsRef.current.enablePan = true;
@@ -432,6 +446,23 @@ const Camera = () => {
             CameraControlsRef.current.enableRotate = false;
         }
     }, [isMoving]);
+
+    /**
+     * Set Limitations
+     */
+    useEffect(() => {
+        if (limitations === true) {
+            CameraControlsRef.current.minPolarAngle = minPolarAngle;
+            CameraControlsRef.current.maxPolarAngle = maxPolarAngle;
+            CameraControlsRef.current.minAzimuthAngle = minAzimuthAngle;
+            CameraControlsRef.current.maxAzimuthAngle = maxAzimuthAngle;
+        } else {
+            CameraControlsRef.current.minPolarAngle = 0;
+            CameraControlsRef.current.maxPolarAngle = Math.PI;
+            CameraControlsRef.current.minAzimuthAngle = Infinity;
+            CameraControlsRef.current.maxAzimuthAngle = Infinity;
+        }
+    }, [limitations]);
 
     /**
      * Zoom out back home
