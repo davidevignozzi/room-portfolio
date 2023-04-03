@@ -7,6 +7,7 @@ import gsap from 'gsap';
 const Camera = () => {
     const { camera, gl } = useThree();
     const CameraControlsRef = useRef();
+    const [isMoving, setIsMoving] = useState(true);
 
     /**
      * Phases
@@ -34,14 +35,6 @@ const Camera = () => {
     const maxPolarAngle = Math.PI / 2 - 0.15;
     const minAzimuthAngle = Math.PI / 2;
     const maxAzimuthAngle = Math.PI;
-
-    /**
-     * TODO
-     * minZoom
-     * maxZoom
-     *
-     * Try to fix the desk foot.
-     */
 
     /**
      * Project Camera Settings
@@ -101,6 +94,8 @@ const Camera = () => {
              * From Loading to Explore mode
              */
             case 'explore':
+                setIsMoving(true);
+
                 // Camera position
                 gsap.to(camera.position, {
                     x: cameraPositionExplore.x,
@@ -139,6 +134,8 @@ const Camera = () => {
              * From Projects to explore mode
              */
             case 'Explore':
+                setIsMoving(true);
+
                 // Camera position
                 gsap.to(camera.position, {
                     x: cameraPositionExplore.x,
@@ -176,6 +173,8 @@ const Camera = () => {
              * Phase => Projects
              */
             case 'projects':
+                setIsMoving(true);
+
                 // Camera position
                 gsap.to(camera.position, {
                     x: cameraPositionProjects.x,
@@ -204,7 +203,10 @@ const Camera = () => {
                         CameraControlsRef.current?.update();
                     },
                     duration: 1.5,
-                    ease: 'sine'
+                    ease: 'sine',
+                    onComplete: () => {
+                        setIsMoving(false);
+                    }
                 });
 
                 break;
@@ -213,6 +215,8 @@ const Camera = () => {
              * Phase => Skills
              */
             case 'skills':
+                setIsMoving(true);
+
                 // Camera position
                 gsap.to(camera.position, {
                     x: cameraPositionSkills.x,
@@ -240,6 +244,9 @@ const Camera = () => {
                     onUpdate: () => {
                         CameraControlsRef.current?.update();
                     },
+                    onComplete: () => {
+                        setIsMoving(false);
+                    },
                     duration: 1.5,
                     ease: 'sine'
                 });
@@ -250,6 +257,8 @@ const Camera = () => {
              * Phase => Education
              */
             case 'education':
+                setIsMoving(true);
+
                 // Camera position
                 gsap.to(camera.position, {
                     x: cameraPositionEducation.x,
@@ -277,6 +286,9 @@ const Camera = () => {
                     onUpdate: () => {
                         CameraControlsRef.current?.update();
                     },
+                    onComplete: () => {
+                        setIsMoving(false);
+                    },
                     duration: 1.5,
                     ease: 'sine'
                 });
@@ -287,6 +299,8 @@ const Camera = () => {
              * Phase => Experiences
              */
             case 'experiences':
+                setIsMoving(true);
+
                 // Camera position
                 gsap.to(camera.position, {
                     x: cameraPositionExperiences.x,
@@ -314,6 +328,9 @@ const Camera = () => {
                     onUpdate: () => {
                         CameraControlsRef.current?.update();
                     },
+                    onComplete: () => {
+                        setIsMoving(false);
+                    },
                     duration: 1.5,
                     ease: 'sine'
                 });
@@ -324,6 +341,8 @@ const Camera = () => {
              * Phase => Experiences
              */
             case 'everis':
+                setIsMoving(true);
+
                 // Camera position
                 gsap.to(camera.position, {
                     x: cameraPositionEveris.x,
@@ -351,6 +370,9 @@ const Camera = () => {
                     onUpdate: () => {
                         CameraControlsRef.current?.update();
                     },
+                    onComplete: () => {
+                        setIsMoving(false);
+                    },
                     duration: 1.5,
                     ease: 'sine'
                 });
@@ -361,6 +383,8 @@ const Camera = () => {
              * Phase => Contacts
              */
             case 'contacts':
+                setIsMoving(true);
+
                 // Camera position
                 gsap.to(camera.position, {
                     x: cameraPositionContacts.x,
@@ -388,6 +412,9 @@ const Camera = () => {
                     onUpdate: () => {
                         CameraControlsRef.current?.update();
                     },
+                    onComplete: () => {
+                        setIsMoving(false);
+                    },
                     duration: 1.5,
                     ease: 'sine'
                 });
@@ -402,6 +429,14 @@ const Camera = () => {
                 );
         }
     }, [state.phase]);
+
+    useEffect(() => {
+        if (isMoving) {
+            CameraControlsRef.current.enabled = true;
+        } else {
+            CameraControlsRef.current.enabled = false;
+        }
+    }, [isMoving]);
 
     /**
      * Zoom out back home
