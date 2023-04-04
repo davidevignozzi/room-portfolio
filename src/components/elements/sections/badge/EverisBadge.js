@@ -34,8 +34,18 @@ const EverisBadge = () => {
                     color: #555555;
                 }
 
+                h3 {
+                    font-size: 4rem;
+                    color: #333333;
+                }
+                p {
+                    padding-left: 2rem;
+                    font-size: 3.5rem;
+                    color: #555555;
+                }
+
                 .logo {
-                    margin-top: 20rem;
+                    margin-top: 7.5rem;
                     width: 100%;
                     img {
                         width: 75%;
@@ -68,6 +78,10 @@ const EverisBadge = () => {
                     <div className="info-content montserrat">
                         <h1>Davide Vignozzi</h1>
                         <h2>Front end Developer Jr</h2>
+                        <h3 style={{ marginTop: '1rem' }}>Stage</h3>
+                        <p>October 2021 - April 2022</p>
+                        <h3>Employment</h3>
+                        <p>April 2022 - October 2022</p>
 
                         <div className="logo">
                             <img src="./assets/images/experiences/everis.png" alt="Everis" />

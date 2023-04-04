@@ -34,7 +34,7 @@ const Monitor = () => {
                     rotation-y={Math.PI}
                     transform
                     occlude
-                    distanceFactor={0.05}
+                    distanceFactor={0.07}
                     zIndexRange={2}
                 >
                     <MonitorScreen />

@@ -36,6 +36,7 @@ const Camera = () => {
     const maxPolarAngle = Math.PI / 2 - 0.15;
     const minAzimuthAngle = Math.PI / 2;
     const maxAzimuthAngle = Math.PI;
+    const maxDistance = 7.3;
 
     /**
      * Project Camera Settings
@@ -456,6 +457,7 @@ const Camera = () => {
             CameraControlsRef.current.maxPolarAngle = maxPolarAngle;
             CameraControlsRef.current.minAzimuthAngle = minAzimuthAngle;
             CameraControlsRef.current.maxAzimuthAngle = maxAzimuthAngle;
+            CameraControlsRef.current.maxDistance = maxDistance;
         } else {
             CameraControlsRef.current.minPolarAngle = 0;
             CameraControlsRef.current.maxPolarAngle = Math.PI;
