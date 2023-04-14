@@ -12,6 +12,17 @@ export default create(
             phase: 'loading',
 
             /**
+             * Loaded => Start Animation
+             */
+            loaded: () => {
+                set(() => {
+                    return {
+                        phase: 'loaded'
+                    };
+                });
+            },
+
+            /**
              * Explore
              */
             // When loading end
