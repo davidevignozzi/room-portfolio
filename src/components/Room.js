@@ -1,4 +1,4 @@
-import StaticRoom from './elements/StaticRoom';
+import StaticRoom from './StaticRoom';
 import Plant from './elements/animated/Plant';
 import Chair from './elements/animated/Chair';
 import Laptop from './elements/sections/laptop/Laptop';
