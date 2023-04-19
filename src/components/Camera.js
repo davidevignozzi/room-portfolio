@@ -90,6 +90,7 @@ const Camera = () => {
     /**
      * Function to Animate Camera
      * When the phase change call this function
+     * ---
      */
     const moveTheCamera = (
         cameraX,
@@ -175,6 +176,16 @@ const Camera = () => {
             onComplete
         );
     };
+
+    // End Function ---------------------
+
+    /**
+     * Function to Animate Camera
+     * Zoom out to return to explore
+     * ---
+     */
+
+    // End Function ---------------------
 
     /**
      * Animations

@@ -2,11 +2,11 @@ import React from 'react';
 import { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import Typed from 'typed.js';
-import { labels } from '../../../../labels';
 import useInteractions from '../../../../utils/stores/useInteractions';
 
 const LaptopScreen = () => {
     const text = useRef();
+    const state = useInteractions((state) => state);
     const start = useInteractions((state) => state.start);
 
     const NoteApp = styled.div`
@@ -53,28 +53,30 @@ const LaptopScreen = () => {
     `;
 
     useEffect(() => {
-        const typed = new Typed(text.current, {
-            strings: [
-                `${labels.itaWelcome} <span class='accented'>Portfolio.</span>`,
-                `${labels.itaWelcome} <span class='accented'>Studio.</span>`
-            ],
-            typeSpeed: 35,
-            backSpeed: 25,
-            backDelay: 1000,
-            smartBackspace: true,
-            loop: false,
-            onComplete() {
-                setTimeout(() => {
-                    start();
-                }, 500);
-            }
-        });
+        if (state.phase === 'loaded') {
+            const typed = new Typed(text.current, {
+                strings: [
+                    `Hi I'm Davide, i'm a creative front end developer. Welcome in my <span class='accented'>Portfolio.</span>`,
+                    `Hi I'm Davide, i'm a creative front end developer. Welcome in my <span class='accented'>Studio.</span>`
+                ],
+                typeSpeed: 30,
+                backSpeed: 25,
+                backDelay: 1000,
+                smartBackspace: true,
+                loop: false,
+                onComplete() {
+                    setTimeout(() => {
+                        start();
+                    }, 500);
+                }
+            });
 
-        // Destropying
-        return () => {
-            typed.destroy();
-        };
-    });
+            // Destropying
+            return () => {
+                typed.destroy();
+            };
+        }
+    }, [state.phase]);
 
     return (
         <div className="wrapper-laptop">
