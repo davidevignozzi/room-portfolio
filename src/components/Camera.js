@@ -212,14 +212,30 @@ const Camera = () => {
 
     /**
      * Function to Animate Camera
-     * Zoom out to return to explore
+     * Zoom out to return to Explore Mode
      * ---
      */
 
-    useFrame(() => {
+    const zoomOutAnimation = () => {
         onwheel = (e) => {
-            console.log(e);
+            if (e.wheelDeltaY > 0) {
+                // zoomIn
+                return;
+            } else {
+                if (
+                    state.phase !== 'loading' &&
+                    state.phase !== 'loaded' &&
+                    state.phase !== 'explore' &&
+                    state.phase !== 'Explore'
+                ) {
+                    state.back();
+                }
+            }
         };
+    };
+
+    useFrame(() => {
+        zoomOutAnimation();
     });
 
     // End Function ---------------------
@@ -482,64 +498,6 @@ const Camera = () => {
                 );
         }
     }, [state.phase]);
-
-    /**
-     * Zoom out back home
-     */
-    useFrame(() => {
-        switch (state.phase) {
-            /**
-             * Zoom out from projects
-             */
-            case 'projects':
-                // if (
-                //     camera.position.x.toFixed(2) < -0.11 &&
-                //     camera.position.y.toFixed(2) < 0.86 &&
-                //     camera.position.z.toFixed(1) < -0.4 &&
-                //     camera.zoom === cameraZoomProjects
-                // ) {
-                //     state.back();
-                // }
-                break;
-
-            /**
-             * Zoom out from skills
-             */
-            case 'skills':
-                // if (
-                //     camera.position.x.toFixed(2) <= -0.04 &&
-                //     camera.position.y.toFixed(2) >= 0.8 &&
-                //     camera.position.z.toFixed(2) <= -0.21 &&
-                //     camera.zoom === cameraZoomSkills
-                // ) {
-                //     state.back();
-                // }
-                break;
-
-            /**
-             * Zoom out from education
-             */
-            case 'education':
-                // if (
-                //     camera.position.x.toFixed(2) >= -0.05 &&
-                //     camera.position.y.toFixed(2) >= 1.22 &&
-                //     camera.position.z.toFixed(2) < -0.2 &&
-                //     camera.zoom === cameraZoomEducation
-                // ) {
-                //     state.back();
-                // }
-
-                break;
-
-            case 'experiences':
-                break;
-
-            case 'everis':
-                break;
-            case 'contacts':
-                break;
-        }
-    });
 
     return (
         <OrbitControls
