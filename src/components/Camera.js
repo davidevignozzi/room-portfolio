@@ -88,6 +88,37 @@ const Camera = () => {
     const targetPosition = targetPositionLoading;
 
     /**
+     * Set Camera is Moving
+     */
+    useEffect(() => {
+        if (isMoving) {
+            CameraControlsRef.current.enablePan = true;
+            CameraControlsRef.current.enableRotate = true;
+        } else {
+            CameraControlsRef.current.enablePan = false;
+            CameraControlsRef.current.enableRotate = false;
+        }
+    }, [isMoving]);
+
+    /**
+     * Set Limitations
+     */
+    useEffect(() => {
+        if (limitations === true) {
+            CameraControlsRef.current.minPolarAngle = minPolarAngle;
+            CameraControlsRef.current.maxPolarAngle = maxPolarAngle;
+            CameraControlsRef.current.minAzimuthAngle = minAzimuthAngle;
+            CameraControlsRef.current.maxAzimuthAngle = maxAzimuthAngle;
+            CameraControlsRef.current.maxDistance = maxDistance;
+        } else {
+            CameraControlsRef.current.minPolarAngle = 0;
+            CameraControlsRef.current.maxPolarAngle = Math.PI;
+            CameraControlsRef.current.minAzimuthAngle = Infinity;
+            CameraControlsRef.current.maxAzimuthAngle = Infinity;
+        }
+    }, [limitations]);
+
+    /**
      * Function to Animate Camera
      * When the phase change call this function
      * ---
@@ -184,6 +215,12 @@ const Camera = () => {
      * Zoom out to return to explore
      * ---
      */
+
+    useFrame(() => {
+        onwheel = (e) => {
+            console.log(e);
+        };
+    });
 
     // End Function ---------------------
 
@@ -447,37 +484,6 @@ const Camera = () => {
     }, [state.phase]);
 
     /**
-     * Set Camera is Moving
-     */
-    useEffect(() => {
-        if (isMoving) {
-            CameraControlsRef.current.enablePan = true;
-            CameraControlsRef.current.enableRotate = true;
-        } else {
-            CameraControlsRef.current.enablePan = false;
-            CameraControlsRef.current.enableRotate = false;
-        }
-    }, [isMoving]);
-
-    /**
-     * Set Limitations
-     */
-    useEffect(() => {
-        if (limitations === true) {
-            CameraControlsRef.current.minPolarAngle = minPolarAngle;
-            CameraControlsRef.current.maxPolarAngle = maxPolarAngle;
-            CameraControlsRef.current.minAzimuthAngle = minAzimuthAngle;
-            CameraControlsRef.current.maxAzimuthAngle = maxAzimuthAngle;
-            CameraControlsRef.current.maxDistance = maxDistance;
-        } else {
-            CameraControlsRef.current.minPolarAngle = 0;
-            CameraControlsRef.current.maxPolarAngle = Math.PI;
-            CameraControlsRef.current.minAzimuthAngle = Infinity;
-            CameraControlsRef.current.maxAzimuthAngle = Infinity;
-        }
-    }, [limitations]);
-
-    /**
      * Zoom out back home
      */
     useFrame(() => {
@@ -486,43 +492,51 @@ const Camera = () => {
              * Zoom out from projects
              */
             case 'projects':
-                if (
-                    camera.position.x.toFixed(2) < -0.11 &&
-                    camera.position.y.toFixed(2) < 0.86 &&
-                    camera.position.z.toFixed(1) < -0.4 &&
-                    camera.zoom === cameraZoomProjects
-                ) {
-                    state.back();
-                }
+                // if (
+                //     camera.position.x.toFixed(2) < -0.11 &&
+                //     camera.position.y.toFixed(2) < 0.86 &&
+                //     camera.position.z.toFixed(1) < -0.4 &&
+                //     camera.zoom === cameraZoomProjects
+                // ) {
+                //     state.back();
+                // }
                 break;
 
             /**
              * Zoom out from skills
              */
             case 'skills':
-                if (
-                    camera.position.x.toFixed(2) <= -0.04 &&
-                    camera.position.y.toFixed(2) >= 0.8 &&
-                    camera.position.z.toFixed(2) <= -0.21 &&
-                    camera.zoom === cameraZoomSkills
-                ) {
-                    state.back();
-                }
+                // if (
+                //     camera.position.x.toFixed(2) <= -0.04 &&
+                //     camera.position.y.toFixed(2) >= 0.8 &&
+                //     camera.position.z.toFixed(2) <= -0.21 &&
+                //     camera.zoom === cameraZoomSkills
+                // ) {
+                //     state.back();
+                // }
                 break;
 
             /**
              * Zoom out from education
              */
             case 'education':
-                if (
-                    camera.position.x.toFixed(2) >= -0.05 &&
-                    camera.position.y.toFixed(2) >= 1.22 &&
-                    camera.position.z.toFixed(2) < -0.2 &&
-                    camera.zoom === cameraZoomEducation
-                ) {
-                    state.back();
-                }
+                // if (
+                //     camera.position.x.toFixed(2) >= -0.05 &&
+                //     camera.position.y.toFixed(2) >= 1.22 &&
+                //     camera.position.z.toFixed(2) < -0.2 &&
+                //     camera.zoom === cameraZoomEducation
+                // ) {
+                //     state.back();
+                // }
 
+                break;
+
+            case 'experiences':
+                break;
+
+            case 'everis':
+                break;
+            case 'contacts':
                 break;
         }
     });
