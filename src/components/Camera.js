@@ -216,27 +216,24 @@ const Camera = () => {
      * ---
      */
 
-    const zoomOutAnimation = () => {
-        onwheel = (e) => {
-            if (e.wheelDeltaY > 0) {
-                // zoomIn
-                return;
-            } else {
-                if (
-                    state.phase !== 'loading' &&
-                    state.phase !== 'loaded' &&
-                    state.phase !== 'explore' &&
-                    state.phase !== 'Explore'
-                ) {
-                    state.back();
-                }
+    // Wheel
+    window.addEventListener('wheel', (e) => {
+        if (e.wheelDeltaY > 0) {
+            // zoomIn
+            return;
+        } else {
+            if (
+                state.phase !== 'loading' &&
+                state.phase !== 'loaded' &&
+                state.phase !== 'explore' &&
+                state.phase !== 'Explore'
+            ) {
+                state.back();
             }
-        };
-    };
-
-    useFrame(() => {
-        zoomOutAnimation();
+        }
     });
+
+    // Pinch Out
 
     // End Function ---------------------
 
