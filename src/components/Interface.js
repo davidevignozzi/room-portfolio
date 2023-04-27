@@ -1,3 +1,4 @@
+import gsap from 'gsap';
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import useInteractions from '../utils/stores/useInteractions';
@@ -136,7 +137,7 @@ const Interface = () => {
     };
 
     return (
-        <InterfaceSection>
+        <InterfaceSection className="gsap-interface">
             <div className="controlsWrapper">
                 <div className="controls">
                     <button className="home" onClick={home}>

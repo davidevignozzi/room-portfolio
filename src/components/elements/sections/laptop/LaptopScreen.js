@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import Typed from 'typed.js';
 import useInteractions from '../../../../utils/stores/useInteractions';
 
 const LaptopScreen = () => {
-    const text = useRef();
     const state = useInteractions((state) => state);
-    const start = useInteractions((state) => state.start);
+    const text = useRef(null);
+    const typed = useRef(null);
+    const [completed, setCompleted] = useState(false);
 
     const NoteApp = styled.div`
         width: 90%;
@@ -53,30 +54,29 @@ const LaptopScreen = () => {
     `;
 
     useEffect(() => {
-        if (state.phase === 'loaded') {
-            const typed = new Typed(text.current, {
-                strings: [
-                    `Hi I'm Davide, i'm a creative front end developer. Welcome in my <span class='accented'>Portfolio.</span>`,
-                    `Hi I'm Davide, i'm a creative front end developer. Welcome in my <span class='accented'>Studio.</span>`
-                ],
-                typeSpeed: 30,
-                backSpeed: 25,
-                backDelay: 1000,
-                smartBackspace: true,
-                loop: false,
-                onComplete() {
-                    setTimeout(() => {
-                        start();
-                    }, 500);
-                }
-            });
+        const typed = new Typed(text.current, {
+            strings: [
+                `Hi I'm Davide, i'm a creative front end developer. Welcome in my <span class='accented'>Portfolio.</span>`,
+                `Hi I'm Davide, i'm a creative front end developer. Welcome in my <span class='accented'>Studio.</span>`
+            ],
+            typeSpeed: 30,
+            backSpeed: 25,
+            backDelay: 1000,
+            smartBackspace: true,
+            loop: false,
+            onComplete() {
+                setTimeout(() => {
+                    setCompleted(true);
+                    state.start();
+                }, 500);
+            }
+        });
 
-            // Destropying
-            return () => {
-                typed.destroy();
-            };
-        }
-    }, [state.phase]);
+        // Destropying
+        return () => {
+            typed.destroy();
+        };
+    }, []);
 
     return (
         <div className="wrapper-laptop">
@@ -87,7 +87,14 @@ const LaptopScreen = () => {
                     <div className="circle green" />
                 </div>
                 <TypedText>
-                    <span className="montserrat" ref={text}></span>
+                    <span className="montserrat" ref={text}>
+                        {completed && (
+                            <span>
+                                Hi I'm Davide, i'm a creative front end developer. Welcome in my{' '}
+                                <span className="accented">Studio.</span>
+                            </span>
+                        )}
+                    </span>
                 </TypedText>
             </NoteApp>
         </div>

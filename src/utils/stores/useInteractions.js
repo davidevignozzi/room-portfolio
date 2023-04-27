@@ -4,8 +4,6 @@ import { subscribeWithSelector } from 'zustand/middleware';
 export default create(
     subscribeWithSelector((set) => {
         return {
-            // cameraPosition: [5, 4, -6],
-
             /**
              * Phases
              */

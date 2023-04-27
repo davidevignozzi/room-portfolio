@@ -9,8 +9,23 @@ import Trophies from './elements/sections/trophies/Trophies';
 import Lights from './elements/animated/Lights/Lights';
 import Smoke from './elements/animated/Smoke';
 import Badge from './elements/sections/badge/Badge';
+import { useProgress } from '@react-three/drei';
+import useInteractions from '../utils/stores/useInteractions';
+import { useEffect } from 'react';
 
 const Room = () => {
+    const { progress } = useProgress();
+    const state = useInteractions((state) => state);
+
+    /**
+     * When everything is loaded set phase loaded
+     */
+    useEffect(() => {
+        if (progress === 100) {
+            state.loaded();
+        }
+    }, [progress]);
+
     return (
         <group>
             <StaticRoom />
