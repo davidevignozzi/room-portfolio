@@ -207,7 +207,6 @@ const Camera = () => {
             onComplete
         );
     };
-
     // End Function ---------------------
 
     /**
@@ -215,8 +214,6 @@ const Camera = () => {
      * Zoom out to return to Explore Mode
      * ---
      */
-
-    // Wheel
     window.addEventListener('wheel', (e) => {
         if (e.wheelDeltaY > 0) {
             // zoomIn
@@ -232,8 +229,6 @@ const Camera = () => {
             }
         }
     });
-
-    // Pinch Out
 
     // End Function ---------------------
 
