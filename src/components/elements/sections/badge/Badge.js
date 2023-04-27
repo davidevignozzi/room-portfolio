@@ -31,7 +31,7 @@ const Badge = () => {
                 material={nodes.Badge.material}
             >
                 <Html
-                    position={[0, 0, -0.00125]}
+                    position={[-0.0025, 0, -0.00125]}
                     rotation-y={Math.PI}
                     transform
                     distanceFactor={0.02}
