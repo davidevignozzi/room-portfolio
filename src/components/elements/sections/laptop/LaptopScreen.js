@@ -54,29 +54,31 @@ const LaptopScreen = () => {
     `;
 
     useEffect(() => {
-        const typed = new Typed(text.current, {
-            strings: [
-                `Hi I'm Davide, i'm a creative front end developer. Welcome in my <span class='accented'>Portfolio.</span>`,
-                `Hi I'm Davide, i'm a creative front end developer. Welcome in my <span class='accented'>Studio.</span>`
-            ],
-            typeSpeed: 30,
-            backSpeed: 25,
-            backDelay: 1000,
-            smartBackspace: true,
-            loop: false,
-            onComplete() {
-                setTimeout(() => {
-                    setCompleted(true);
-                    state.start();
-                }, 500);
-            }
-        });
+        if (state.phase === 'loaded') {
+            const typed = new Typed(text.current, {
+                strings: [
+                    `Hi I'm Davide, i'm a creative front end developer. Welcome in my <span class='accented'>Portfolio.</span>`,
+                    `Hi I'm Davide, i'm a creative front end developer. Welcome in my <span class='accented'>Studio.</span>`
+                ],
+                typeSpeed: 30,
+                backSpeed: 25,
+                backDelay: 1000,
+                smartBackspace: true,
+                loop: false,
+                onComplete() {
+                    setTimeout(() => {
+                        setCompleted(true);
+                        state.start();
+                    }, 500);
+                }
+            });
 
-        // Destropying
-        return () => {
-            typed.destroy();
-        };
-    }, []);
+            // Destropying
+            return () => {
+                typed.destroy();
+            };
+        }
+    }, [state.phase]);
 
     return (
         <div className="wrapper-laptop">

@@ -10,66 +10,71 @@ const PhoneScreen = () => {
         width: 400px;
         height: 750px;
         background-color: #222222;
-        display: flex;
-        flex-direction: column;
-        justify-content: end;
         overflow: hidden;
-        /* opacity: 0; */
 
-        .notify {
+        .gsap-contacts {
             width: 100%;
-            height: 100px;
-            background-color: rgba(255, 255, 255, 0.35);
-            border-radius: 1rem;
-            margin-bottom: 1rem;
+            height: 100%;
             display: flex;
-            align-items: center;
-            color: #fefefe;
-            text-decoration: none;
-            text-align: start;
-            cursor: pointer;
+            flex-direction: column;
+            justify-content: end;
 
-            .icon {
-                width: 100px;
+            .notify {
+                width: 100%;
                 height: 100px;
+                background-color: rgba(255, 255, 255, 0.35);
+                border-radius: 1rem;
+                margin-bottom: 1rem;
                 display: flex;
-                justify-content: center;
                 align-items: center;
+                color: #fefefe;
+                text-decoration: none;
+                text-align: start;
+                cursor: pointer;
 
-                i {
+                .icon {
+                    width: 100px;
+                    height: 100px;
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    border-radius: 1rem;
-                    padding: 0.5rem;
-                    font-size: 3.5rem;
+
+                    i {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        border-radius: 1rem;
+                        padding: 0.5rem;
+                        font-size: 3.5rem;
+                    }
                 }
-            }
-            .info {
-                width: calc(100% - 100px);
-                padding-left: 0.7rem;
+                .info {
+                    width: calc(100% - 100px);
+                    padding-left: 0.7rem;
 
-                .title {
-                    font-size: large;
-                    font-weight: 600;
-                    color: #ffffff;
-                    margin-bottom: 0.33rem;
-                }
-
-                .description {
-                    font-weight: 300;
-                    font-size: 1.15rem;
-
-                    span {
+                    .title {
+                        font-size: large;
                         font-weight: 600;
+                        color: #ffffff;
+                        margin-bottom: 0.33rem;
+                    }
+
+                    .description {
+                        font-weight: 300;
+                        font-size: 1.15rem;
+
+                        span {
+                            font-weight: 600;
+                        }
                     }
                 }
             }
         }
     `;
 
+    const [opacity, setOpacity] = useState(0);
     const [messageVisible, setMessageVisible] = useState(false);
-    const phase = useInteractions((state) => state.phase);
+    const state = useInteractions((state) => state);
 
     /**
      * Show message for 4 seconds
@@ -94,85 +99,59 @@ const PhoneScreen = () => {
      *  onPhase Contacts show the screen
      */
     useEffect(() => {
-        switch (phase) {
+        switch (state.phase) {
             case 'contacts':
-                gsap.fromTo(
-                    '.gsap-contacts',
-                    { opacity: 0 },
-                    {
-                        opacity: 1,
-                        delay: 1.5
-                    }
-                );
+                setOpacity(1);
                 break;
-            case 'explore':
-            case 'Explore':
-                gsap.fromTo('.gsap-contacts', { opacity: 1 }, { opacity: 0 });
-                break;
-            case 'experiences':
-                gsap.fromTo('.gsap-contacts', { opacity: 1 }, { opacity: 0 });
-                break;
+
             default:
-                gsap.set('.gsap-contacts', { opacity: 0 });
+                setOpacity(0);
+                break;
         }
-    }, [phase]);
+    }, [state.phase]);
 
     return (
-        <Screen className="gsap-contacts montserrat">
-            <a
-                download
-                href={'./assets/downloads/CV-Davide-Vignozzi.pdf'}
-                id="notify-1"
-                className="notify"
-            >
-                <div className="icon">
-                    <i style={{ backgroundColor: '#ffffff', color: '#333333' }}>
-                        <FiDownload />
-                    </i>
-                </div>
-                <div className="info">
-                    <div className="title">Curriculum</div>
-                    <div className="description">
-                        Download my <span>Curriculum</span>
+        <Screen>
+            <div className="gsap-contacts montserrat" style={{ opacity: opacity }}>
+                <a
+                    download
+                    href={'./assets/downloads/CV-Davide-Vignozzi.pdf'}
+                    id="notify-1"
+                    className="notify"
+                >
+                    <div className="icon">
+                        <i style={{ backgroundColor: '#ffffff', color: '#333333' }}>
+                            <FiDownload />
+                        </i>
                     </div>
-                </div>
-            </a>
-
-            <a
-                href="mailto:davide.vignozzi@gmail.com"
-                target="_blank"
-                id="notify-2"
-                className="notify"
-            >
-                <div className="icon">
-                    <i style={{ backgroundColor: '#56b3ee' }}>
-                        <FiMail />
-                    </i>
-                </div>
-                <div className="info">
-                    <div className="title">Mail</div>
-                    <div className="description">
-                        Send Me an email at <span>davide.vignozzi@gmail.com</span>
+                    <div className="info">
+                        <div className="title">Curriculum</div>
+                        <div className="description">
+                            Download my <span>Curriculum</span>
+                        </div>
                     </div>
-                </div>
-            </a>
+                </a>
 
-            <button onClick={showMessage} id="notify-3" className="notify">
-                <div className="icon">
-                    <i style={{ backgroundColor: '#2dcb73' }}>
-                        <FiPhoneCall />
-                    </i>
-                </div>
-                <div className="info">
-                    <div className="title">Phone</div>
-                    <div className="description">
-                        Call me at <span>+39 3404596054</span>
+                <a
+                    href="mailto:davide.vignozzi@gmail.com"
+                    target="_blank"
+                    id="notify-2"
+                    className="notify"
+                >
+                    <div className="icon">
+                        <i style={{ backgroundColor: '#56b3ee' }}>
+                            <FiMail />
+                        </i>
                     </div>
-                </div>
-            </button>
+                    <div className="info">
+                        <div className="title">Mail</div>
+                        <div className="description">
+                            Send Me an email at <span>davide.vignozzi@gmail.com</span>
+                        </div>
+                    </div>
+                </a>
 
-            {messageVisible && (
-                <div className="notify message">
+                <button onClick={showMessage} id="notify-3" className="notify">
                     <div className="icon">
                         <i style={{ backgroundColor: '#2dcb73' }}>
                             <FiPhoneCall />
@@ -180,48 +159,64 @@ const PhoneScreen = () => {
                     </div>
                     <div className="info">
                         <div className="title">Phone</div>
-                        <div className="description">Number copied into the clipboard</div>
+                        <div className="description">
+                            Call me at <span>+39 3404596054</span>
+                        </div>
                     </div>
-                </div>
-            )}
+                </button>
 
-            <a
-                href="https://www.linkedin.com/in/davidevignozzi/"
-                target="_blank"
-                id="notify-4"
-                className="notify"
-            >
-                <div className="icon">
-                    <i style={{ backgroundColor: '#0077b5' }}>
-                        <FaLinkedin />
-                    </i>
-                </div>
-                <div className="info">
-                    <div className="title">LinkedIn</div>
-                    <div className="description">
-                        Message me on <span>LinkedIn</span>
+                {messageVisible && (
+                    <div className="notify message">
+                        <div className="icon">
+                            <i style={{ backgroundColor: '#2dcb73' }}>
+                                <FiPhoneCall />
+                            </i>
+                        </div>
+                        <div className="info">
+                            <div className="title">Phone</div>
+                            <div className="description">Number copied into the clipboard</div>
+                        </div>
                     </div>
-                </div>
-            </a>
+                )}
 
-            <a
-                href="https://github.com/davidevignozzi"
-                target="_blank"
-                id="notify-5"
-                className="notify"
-            >
-                <div className="icon">
-                    <i style={{ backgroundColor: '#ffffff', color: '#333333' }}>
-                        <FiGithub />
-                    </i>
-                </div>
-                <div className="info">
-                    <div className="title">GitHub</div>
-                    <div className="description">
-                        Message me on <span>GitHub</span>
+                <a
+                    href="https://www.linkedin.com/in/davidevignozzi/"
+                    target="_blank"
+                    id="notify-4"
+                    className="notify"
+                >
+                    <div className="icon">
+                        <i style={{ backgroundColor: '#0077b5' }}>
+                            <FaLinkedin />
+                        </i>
                     </div>
-                </div>
-            </a>
+                    <div className="info">
+                        <div className="title">LinkedIn</div>
+                        <div className="description">
+                            Message me on <span>LinkedIn</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a
+                    href="https://github.com/davidevignozzi"
+                    target="_blank"
+                    id="notify-5"
+                    className="notify"
+                >
+                    <div className="icon">
+                        <i style={{ backgroundColor: '#ffffff', color: '#333333' }}>
+                            <FiGithub />
+                        </i>
+                    </div>
+                    <div className="info">
+                        <div className="title">GitHub</div>
+                        <div className="description">
+                            Message me on <span>GitHub</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
         </Screen>
     );
 };
