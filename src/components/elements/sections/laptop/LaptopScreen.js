@@ -82,23 +82,31 @@ const LaptopScreen = () => {
 
     return (
         <div className="wrapper-laptop">
-            <NoteApp>
-                <div className="topbar">
-                    <div className="circle red" />
-                    <div className="circle yellow" />
-                    <div className="circle green" />
-                </div>
-                <TypedText>
-                    <span className="montserrat" ref={text}>
-                        {completed && (
-                            <span>
-                                Hi I'm Davide, i'm a creative front end developer. Welcome in my{' '}
-                                <span className="accented">Studio.</span>
-                            </span>
-                        )}
-                    </span>
-                </TypedText>
-            </NoteApp>
+            {state.phase !== 'loading' ? (
+                <NoteApp>
+                    <div className="topbar">
+                        <div className="circle red" />
+                        <div className="circle yellow" />
+                        <div className="circle green" />
+                    </div>
+                    <TypedText>
+                        <span className="montserrat" ref={text}>
+                            {completed && (
+                                <span>
+                                    Hi I'm Davide, i'm a creative front end developer. Welcome in my{' '}
+                                    <span className="accented">Studio.</span>
+                                </span>
+                            )}
+                        </span>
+                    </TypedText>
+                </NoteApp>
+            ) : (
+                <NoteApp>
+                    <div className="isLoading">
+                        <span className="montserrat">|</span>
+                    </div>
+                </NoteApp>
+            )}
         </div>
     );
 };
