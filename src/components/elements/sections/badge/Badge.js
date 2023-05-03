@@ -1,10 +1,13 @@
 import { Html, useGLTF } from '@react-three/drei';
+import { useControls } from 'leva';
 import React, { useEffect, useState } from 'react';
 import { handleResize } from '../../../../utils/resize';
+import useInteractions from '../../../../utils/stores/useInteractions';
 import EverisBadge from './EverisBadge';
 
 const Badge = () => {
     const { nodes } = useGLTF('./assets/models/badge.glb');
+    const state = useInteractions((state) => state);
 
     /**
      * Get ScreenSize
@@ -18,8 +21,33 @@ const Badge = () => {
         return () => window.removeEventListener('resize', () => handleResize(setScreenSize));
     }, []);
 
+    /**
+     * onCLick => Experiences
+     */
+    const handleClick = () => {
+        if (state.phase !== 'experiences') {
+            state.experiences();
+        }
+    };
+
+    const { visible } = useControls('ExperiencesTrigger', {
+        visible: false
+    });
+
     return (
         <group>
+            {(state.phase !== 'experiences') & (state.phase !== 'everis') && (
+                <mesh
+                    scale={[0.67, 0.5, 0.1]}
+                    position={[-1.93, 1.56, 2.3]}
+                    visible={visible}
+                    onClick={handleClick}
+                >
+                    <boxGeometry />
+                    <meshBasicMaterial wireframe />
+                </mesh>
+            )}
+
             <mesh
                 geometry={nodes.Badge.geometry}
                 position={[
@@ -35,7 +63,6 @@ const Badge = () => {
                     rotation-y={Math.PI}
                     transform
                     distanceFactor={0.02}
-                    occlude
                     zIndexRange={2}
                 >
                     <EverisBadge />
