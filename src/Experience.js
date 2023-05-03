@@ -17,9 +17,11 @@ const Experience = () => {
             <Camera />
 
             {/* Objects */}
-            <Center position-y={0.5}>
+            {/* <Center position-y={0.5}>
                 <Room />
-            </Center>
+            </Center> */}
+
+            <Room />
         </>
     );
 };

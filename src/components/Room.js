@@ -29,23 +29,23 @@ const Room = () => {
     return (
         <group>
             <StaticRoom />
-
-            {/* Animated */}
-            <Plant />
-            <Chair />
-            <Lights />
-            <Smoke />
-
-            {/* Sections */}
-            <Laptop />
-            <Tablet />
-            <Monitor />
-            <Phone />
-
-            <Trophies />
-            <Badge />
         </group>
     );
 };
 
 export default Room;
+
+// {/* Animated */}
+// <Plant />
+// <Chair />
+// <Lights />
+// <Smoke />
+
+// {/* Sections */}
+// <Laptop />
+// <Tablet />
+// <Monitor />
+// <Phone />
+
+// <Trophies />
+// <Badge />
