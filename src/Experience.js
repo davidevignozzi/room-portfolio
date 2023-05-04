@@ -16,9 +16,7 @@ const Experience = () => {
             {/* Camera */}
             <Camera />
 
-            <Center>
-                <StaticRoom />
-            </Center>
+            <StaticRoom />
         </>
     );
 };

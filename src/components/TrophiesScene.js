@@ -15,7 +15,7 @@ const TrophiesScene = (props) => {
                         <meshBasicMaterial map={bakedTexture} />
                     </mesh>
                 </Float>
-                <mesh geometry={nodes.BooleanLogo.geometry} position={nodes.BooleanLogo.position}>
+                <mesh geometry={nodes.BooleanBase.geometry} position={nodes.BooleanBase.position}>
                     <meshBasicMaterial map={bakedTexture} />
                 </mesh>
             </group>
@@ -31,8 +31,8 @@ const TrophiesScene = (props) => {
                     </mesh>
                 </Float>
                 <mesh
-                    geometry={nodes.ThreejsJourneyLogo.geometry}
-                    position={nodes.ThreejsJourneyLogo.position}
+                    geometry={nodes.ThreejsJourneyBase.geometry}
+                    position={nodes.ThreejsJourneyBase.position}
                 >
                     <meshBasicMaterial map={bakedTexture} />
                 </mesh>
@@ -45,7 +45,7 @@ const TrophiesScene = (props) => {
                         <meshBasicMaterial map={bakedTexture} />
                     </mesh>
                 </Float>
-                <mesh geometry={nodes.MetaLogo.geometry} position={nodes.MetaLogo.position}>
+                <mesh geometry={nodes.MetaBase.geometry} position={nodes.MetaBase.position}>
                     <meshBasicMaterial map={bakedTexture} />
                 </mesh>
             </group>
@@ -57,7 +57,7 @@ const TrophiesScene = (props) => {
                         <meshBasicMaterial map={bakedTexture} />
                     </mesh>
                 </Float>
-                <mesh geometry={nodes.Plane002.geometry} position={nodes.Plane002.position}>
+                <mesh geometry={nodes.UdemyBase.geometry} position={nodes.UdemyBase.position}>
                     <meshBasicMaterial map={bakedTexture} />
                 </mesh>
             </group>

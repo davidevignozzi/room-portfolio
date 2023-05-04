@@ -15,12 +15,12 @@ const StaticRoom = () => {
      * Nodes
      */
     const { nodes } = useGLTF('./assets/RoomDefinitive.glb');
-    console.log('🚀 ~ StaticRoom ~ nodes:', nodes);
+    // console.log('🚀 ~ StaticRoom ~ nodes:', nodes);
 
     /**
      * Materials
      */
-    const bakedTexture = useTexture('./assets/Textures/bakedSun.jpg');
+    const bakedTexture = useTexture('./assets/Textures/baked.jpg');
     bakedTexture.flipY = false;
 
     /**
@@ -48,8 +48,7 @@ const StaticRoom = () => {
                 position={nodes.Room.position}
                 rotation={nodes.Room.rotation}
             >
-                {/* <meshBasicMaterial map={bakedTexture} /> */}
-                <meshStandardMaterial color={'red'} />
+                <meshBasicMaterial map={bakedTexture} />
             </mesh>
 
             {/* Chair */}
@@ -58,14 +57,12 @@ const StaticRoom = () => {
                 geometry={nodes.Office_chair.geometry}
                 position={nodes.Office_chair.position}
             >
-                {/* <meshBasicMaterial map={bakedTexture} /> */}
-                <meshStandardMaterial color={'red'} />
+                <meshBasicMaterial map={bakedTexture} />
             </mesh>
 
             {/* Plant */}
             <mesh ref={plantRef} geometry={nodes.Plant.geometry} position={nodes.Plant.position}>
-                {/* <meshBasicMaterial map={bakedTexture} /> */}
-                <meshStandardMaterial color={'red'} />
+                <meshBasicMaterial map={bakedTexture} />
             </mesh>
 
             {/* Smoke */}
