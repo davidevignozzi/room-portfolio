@@ -10,7 +10,7 @@ const Lights = () => {
                 <Bloom mipmapBlur />
             </EffectComposer>
 
-            <StaticLights />
+            {/* <StaticLights /> */}
 
             {/* Animated */}
             <LoupedeckLights />

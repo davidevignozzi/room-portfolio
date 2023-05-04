@@ -15,7 +15,7 @@ const StaticRoom = () => {
      * Nodes
      */
     const { nodes } = useGLTF('./assets/RoomDefinitive.glb');
-    // console.log('🚀 ~ StaticRoom ~ nodes:', nodes);
+    console.log('🚀 ~ StaticRoom ~ nodes:', nodes);
 
     /**
      * Materials
@@ -41,6 +41,7 @@ const StaticRoom = () => {
         // Plant rotation
         plantRef.current.rotation.y += 0.01;
     });
+
     return (
         <group>
             <mesh
