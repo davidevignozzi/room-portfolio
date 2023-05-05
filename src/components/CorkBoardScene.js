@@ -30,7 +30,7 @@ const CorkBoardScene = (props) => {
                         }
                     }}
                 >
-                    <meshBasicMaterial map={bakedTexture} />
+                    <meshBasicMaterial color="#dddddd" />
                 </mesh>
                 <mesh
                     geometry={nodes.Pin.geometry}
@@ -41,7 +41,7 @@ const CorkBoardScene = (props) => {
                         }
                     }}
                 >
-                    <meshBasicMaterial map={bakedTexture} />
+                    <meshBasicMaterial color="#8b0000" />
                 </mesh>
             </group>
         </group>
