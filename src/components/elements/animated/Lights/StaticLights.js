@@ -3,7 +3,7 @@ const StaticLights = () => {
     const { nodes, materials } = useGLTF('./assets/lights/staticLights.glb');
     return (
         <group>
-            {/* Lamp */}
+            {/* Monitor Lamp */}
             <mesh
                 geometry={nodes.LampLight.geometry}
                 position={nodes.LampLight.position}
@@ -60,21 +60,6 @@ const StaticLights = () => {
                     color={materials.TVBackLight.color}
                     emissive={materials.TVBackLight.emissive}
                     emissiveIntensity={2}
-                    toneMapped={false}
-                />
-            </mesh>
-
-            {/* Ps5 */}
-            <mesh
-                geometry={nodes.Ps5Lights.geometry}
-                position={nodes.Ps5Lights.position}
-                rotation={nodes.Ps5Lights.rotation}
-                scale={nodes.Ps5Lights.scale}
-            >
-                <meshStandardMaterial
-                    color={materials.Ps5Lights.color}
-                    emissive={materials.Ps5Lights.emissive}
-                    emissiveIntensity={2.5}
                     toneMapped={false}
                 />
             </mesh>
