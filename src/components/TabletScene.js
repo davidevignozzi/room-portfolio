@@ -5,15 +5,28 @@ const TabletScene = (props) => {
     const bakedTexture = props.material;
     const state = useInteractions((state) => state);
     return (
-        <mesh
-            geometry={nodes.WacomCintiq.geometry}
-            position={nodes.WacomCintiq.position}
-            onClick={() => {
-                state.skills();
-            }}
-        >
-            <meshBasicMaterial map={bakedTexture} />
-        </mesh>
+        <group>
+            <mesh
+                geometry={nodes.WacomCintiq.geometry}
+                position={nodes.WacomCintiq.position}
+                onClick={() => {
+                    state.skills();
+                }}
+            >
+                <meshBasicMaterial map={bakedTexture} />
+            </mesh>
+
+            {/* TabletScreen */}
+            <mesh
+                geometry={nodes.WacomCintiqScreen.geometry}
+                position={nodes.WacomCintiqScreen.position}
+                onClick={() => {
+                    state.skills();
+                }}
+            >
+                <meshBasicMaterial map={bakedTexture} />
+            </mesh>
+        </group>
     );
 };
 

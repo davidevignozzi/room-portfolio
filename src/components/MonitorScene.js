@@ -6,15 +6,28 @@ const MonitorScene = (props) => {
     const state = useInteractions((state) => state);
 
     return (
-        <mesh
-            geometry={nodes.Monitor.geometry}
-            position={nodes.Monitor.position}
-            onClick={() => {
-                state.projects();
-            }}
-        >
-            <meshBasicMaterial map={bakedTexture} />
-        </mesh>
+        <group>
+            <mesh
+                geometry={nodes.Monitor.geometry}
+                position={nodes.Monitor.position}
+                onClick={() => {
+                    state.projects();
+                }}
+            >
+                <meshBasicMaterial map={bakedTexture} />
+            </mesh>
+
+            {/* MonitorScreen */}
+            <mesh
+                geometry={nodes.MonitorScreen.geometry}
+                position={nodes.MonitorScreen.position}
+                onClick={() => {
+                    state.projects();
+                }}
+            >
+                <meshBasicMaterial map={bakedTexture} />
+            </mesh>
+        </group>
     );
 };
 

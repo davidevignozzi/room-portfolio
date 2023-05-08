@@ -6,10 +6,15 @@ const LaptopScene = (props) => {
 
     return (
         <group>
+            <mesh geometry={nodes.LaptopBase.geometry} position={nodes.LaptopBase.position}>
+                <meshBasicMaterial map={bakedTexture} />
+            </mesh>
             <mesh geometry={nodes.Laptop.geometry} position={nodes.Laptop.position}>
                 <meshBasicMaterial map={bakedTexture} />
             </mesh>
-            <mesh geometry={nodes.LaptopBase.geometry} position={nodes.LaptopBase.position}>
+
+            {/* LaptopScreen */}
+            <mesh geometry={nodes.LaptopScreen.geometry} position={nodes.LaptopScreen.position}>
                 <meshBasicMaterial map={bakedTexture} />
             </mesh>
         </group>

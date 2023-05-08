@@ -6,15 +6,28 @@ const PhoneScene = (props) => {
     const state = useInteractions((state) => state);
 
     return (
-        <mesh
-            geometry={nodes.iPhone.geometry}
-            position={nodes.iPhone.position}
-            onClick={() => {
-                state.contacts();
-            }}
-        >
-            <meshBasicMaterial map={bakedTexture} />
-        </mesh>
+        <group>
+            <mesh
+                geometry={nodes.iPhone.geometry}
+                position={nodes.iPhone.position}
+                onClick={() => {
+                    state.contacts();
+                }}
+            >
+                <meshBasicMaterial map={bakedTexture} />
+            </mesh>
+
+            {/* PhoneScreen */}
+            <mesh
+                geometry={nodes.iPhoneScreen.geometry}
+                position={nodes.iPhoneScreen.position}
+                onClick={() => {
+                    state.contacts();
+                }}
+            >
+                <meshBasicMaterial map={bakedTexture} />
+            </mesh>
+        </group>
     );
 };
 
