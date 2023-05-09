@@ -14,7 +14,7 @@ const StaticRoom = () => {
     /**
      * Nodes
      */
-    const { nodes } = useGLTF('./assets/RoomDefinitive.glb');
+    const { nodes } = useGLTF('./assets/Room.glb');
     console.log('🚀 ~ StaticRoom ~ nodes:', nodes);
 
     /**
