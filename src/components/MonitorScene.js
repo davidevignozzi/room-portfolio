@@ -3,6 +3,7 @@ import useInteractions from '../utils/stores/useInteractions';
 const MonitorScene = (props) => {
     const nodes = props.nodes;
     const bakedMaterial = props.material;
+    const screenMaterial = props.screenMaterial;
     const state = useInteractions((state) => state);
 
     return (
@@ -24,7 +25,7 @@ const MonitorScene = (props) => {
                 position={nodes.MonitorScreen.position}
                 rotation={nodes.MonitorScreen.rotation}
                 scale={nodes.MonitorScreen.scale}
-                material={bakedMaterial}
+                material={screenMaterial}
                 onClick={() => {
                     state.projects();
                 }}

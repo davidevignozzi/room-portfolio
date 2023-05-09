@@ -1,6 +1,7 @@
 const LaptopScene = (props) => {
     const nodes = props.nodes;
     const bakedMaterial = props.material;
+    const screenMaterial = props.screenMaterial;
 
     return (
         <group>
@@ -26,7 +27,7 @@ const LaptopScene = (props) => {
                 position={nodes.LaptopScreen.position}
                 rotation={nodes.LaptopScreen.rotation}
                 scale={nodes.LaptopScreen.scale}
-                material={bakedMaterial}
+                material={screenMaterial}
             />
         </group>
     );

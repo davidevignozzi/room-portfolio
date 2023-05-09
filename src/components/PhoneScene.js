@@ -3,6 +3,7 @@ import useInteractions from '../utils/stores/useInteractions';
 const PhoneScene = (props) => {
     const nodes = props.nodes;
     const bakedMaterial = props.material;
+    const screenMaterial = props.screenMaterial;
     const state = useInteractions((state) => state);
 
     return (
@@ -24,7 +25,7 @@ const PhoneScene = (props) => {
                 position={nodes.iPhoneScreen.position}
                 rotation={nodes.iPhoneScreen.rotation}
                 scale={nodes.iPhoneScreen.scale}
-                material={bakedMaterial}
+                material={screenMaterial}
                 onClick={() => {
                     state.contacts();
                 }}

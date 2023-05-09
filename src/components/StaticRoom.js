@@ -21,11 +21,16 @@ const StaticRoom = () => {
     /**
      * Materials
      */
+    // Baked Texture
     const bakedTexture = useTexture('./assets/Textures/baked.jpg');
     bakedTexture.flipY = false;
     bakedTexture.encoding = THREE.sRGBEncoding;
 
+    // Baked Material
     const bakedMaterial = new THREE.MeshBasicMaterial({ map: bakedTexture });
+
+    // Screen Material
+    const screenMaterial = new THREE.MeshBasicMaterial({ color: '#D4CBB3' });
 
     /**
      * Ref
@@ -83,16 +88,16 @@ const StaticRoom = () => {
             <Lights nodes={nodes} />
 
             {/* Laptop => Loading */}
-            <LaptopScene nodes={nodes} material={bakedMaterial} />
+            <LaptopScene nodes={nodes} material={bakedMaterial} screenMaterial={screenMaterial} />
 
             {/* Monitor => Projects */}
-            <MonitorScene nodes={nodes} material={bakedMaterial} />
+            <MonitorScene nodes={nodes} material={bakedMaterial} screenMaterial={screenMaterial} />
 
             {/* Tablet => Skills */}
-            <TabletScene nodes={nodes} material={bakedMaterial} />
+            <TabletScene nodes={nodes} material={bakedMaterial} screenMaterial={screenMaterial} />
 
             {/* Phone => Contacts */}
-            <PhoneScene nodes={nodes} material={bakedMaterial} />
+            <PhoneScene nodes={nodes} material={bakedMaterial} screenMaterial={screenMaterial} />
 
             {/* Trophies => Education */}
             <TrophiesScene nodes={nodes} material={bakedMaterial} />

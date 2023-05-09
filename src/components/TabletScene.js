@@ -3,7 +3,9 @@ import useInteractions from '../utils/stores/useInteractions';
 const TabletScene = (props) => {
     const nodes = props.nodes;
     const bakedMaterial = props.material;
+    const screenMaterial = props.screenMaterial;
     const state = useInteractions((state) => state);
+
     return (
         <group>
             <mesh
@@ -23,7 +25,7 @@ const TabletScene = (props) => {
                 position={nodes.WacomCintiqScreen.position}
                 rotation={nodes.WacomCintiqScreen.rotation}
                 scale={nodes.WacomCintiqScreen.scale}
-                material={bakedMaterial}
+                material={screenMaterial}
                 onClick={() => {
                     state.skills();
                 }}
