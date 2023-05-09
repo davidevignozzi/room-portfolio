@@ -36,7 +36,7 @@ const RodeCasterLights = (props) => {
                 <meshStandardMaterial
                     color="#a0a0a0"
                     emissive="#BC0000"
-                    emissiveIntensity={3.75}
+                    emissiveIntensity={3.5}
                     toneMapped={false}
                 />
             </mesh>
