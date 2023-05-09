@@ -43,7 +43,7 @@ const StaticRoom = () => {
     });
 
     return (
-        <group>
+        <group position={[-0.25, 0.5, 0.25]}>
             <mesh
                 geometry={nodes.Room.geometry}
                 position={nodes.Room.position}
