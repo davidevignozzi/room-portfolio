@@ -2,7 +2,7 @@ import useInteractions from '../utils/stores/useInteractions';
 
 const PhoneScene = (props) => {
     const nodes = props.nodes;
-    const bakedTexture = props.material;
+    const bakedMaterial = props.material;
     const state = useInteractions((state) => state);
 
     return (
@@ -10,23 +10,25 @@ const PhoneScene = (props) => {
             <mesh
                 geometry={nodes.iPhone.geometry}
                 position={nodes.iPhone.position}
+                rotation={nodes.iPhone.rotation}
+                scale={nodes.iPhone.scale}
+                material={bakedMaterial}
                 onClick={() => {
                     state.contacts();
                 }}
-            >
-                <meshBasicMaterial map={bakedTexture} />
-            </mesh>
+            />
 
             {/* PhoneScreen */}
             <mesh
                 geometry={nodes.iPhoneScreen.geometry}
                 position={nodes.iPhoneScreen.position}
+                rotation={nodes.iPhoneScreen.rotation}
+                scale={nodes.iPhoneScreen.scale}
+                material={bakedMaterial}
                 onClick={() => {
                     state.contacts();
                 }}
-            >
-                <meshBasicMaterial map={bakedTexture} />
-            </mesh>
+            />
         </group>
     );
 };

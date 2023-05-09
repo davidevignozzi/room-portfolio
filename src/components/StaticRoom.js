@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import * as THREE from 'three';
 import { useGLTF, useTexture } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import Smoke from './Smoke';
@@ -22,6 +23,9 @@ const StaticRoom = () => {
      */
     const bakedTexture = useTexture('./assets/Textures/baked.jpg');
     bakedTexture.flipY = false;
+    bakedTexture.encoding = THREE.sRGBEncoding;
+
+    const bakedMaterial = new THREE.MeshBasicMaterial({ map: bakedTexture });
 
     /**
      * Ref
@@ -44,27 +48,33 @@ const StaticRoom = () => {
 
     return (
         <group position={[-0.25, 0.5, 0.25]}>
+            {/* Static Model */}
             <mesh
                 geometry={nodes.Room.geometry}
                 position={nodes.Room.position}
                 rotation={nodes.Room.rotation}
-            >
-                <meshBasicMaterial map={bakedTexture} />
-            </mesh>
+                scale={nodes.Room.scale}
+                material={bakedMaterial}
+            />
 
             {/* Chair */}
             <mesh
                 ref={chairRef}
                 geometry={nodes.Office_chair.geometry}
                 position={nodes.Office_chair.position}
-            >
-                <meshBasicMaterial map={bakedTexture} />
-            </mesh>
+                scale={nodes.Office_chair.scale}
+                material={bakedMaterial}
+            />
 
             {/* Plant */}
-            <mesh ref={plantRef} geometry={nodes.Plant.geometry} position={nodes.Plant.position}>
-                <meshBasicMaterial map={bakedTexture} />
-            </mesh>
+            <mesh
+                ref={plantRef}
+                geometry={nodes.Plant.geometry}
+                position={nodes.Plant.position}
+                rotation={nodes.Plant.rotation}
+                scale={nodes.Plant.scale}
+                material={bakedMaterial}
+            />
 
             {/* Smoke */}
             <Smoke />
@@ -73,22 +83,22 @@ const StaticRoom = () => {
             <Lights nodes={nodes} />
 
             {/* Laptop => Loading */}
-            <LaptopScene nodes={nodes} material={bakedTexture} />
+            <LaptopScene nodes={nodes} material={bakedMaterial} />
 
             {/* Monitor => Projects */}
-            <MonitorScene nodes={nodes} material={bakedTexture} />
+            <MonitorScene nodes={nodes} material={bakedMaterial} />
 
             {/* Tablet => Skills */}
-            <TabletScene nodes={nodes} material={bakedTexture} />
+            <TabletScene nodes={nodes} material={bakedMaterial} />
 
             {/* Phone => Contacts */}
-            <PhoneScene nodes={nodes} material={bakedTexture} />
+            <PhoneScene nodes={nodes} material={bakedMaterial} />
 
             {/* Trophies => Education */}
-            <TrophiesScene nodes={nodes} material={bakedTexture} />
+            <TrophiesScene nodes={nodes} material={bakedMaterial} />
 
             {/* CorkBoard => Experiences */}
-            <CorkBoardScene nodes={nodes} material={bakedTexture} />
+            <CorkBoardScene nodes={nodes} material={bakedMaterial} />
         </group>
     );
 };

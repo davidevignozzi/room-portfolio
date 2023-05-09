@@ -2,7 +2,7 @@ import useInteractions from '../utils/stores/useInteractions';
 
 const CorkBoardScene = (props) => {
     const nodes = props.nodes;
-    const bakedTexture = props.material;
+    const bakedMaterial = props.material;
     const state = useInteractions((state) => state);
 
     return (
@@ -10,20 +10,23 @@ const CorkBoardScene = (props) => {
             <mesh
                 geometry={nodes.CorkBoard.geometry}
                 position={nodes.CorkBoard.position}
+                rotation={nodes.CorkBoard.rotation}
+                scale={nodes.CorkBoard.scale}
+                material={bakedMaterial}
                 onClick={() => {
                     if (state.phase !== 'experiences') {
                         state.experiences();
                     }
                 }}
-            >
-                <meshBasicMaterial map={bakedTexture} />
-            </mesh>
+            />
 
             {/* Everis Badge */}
             <group>
                 <mesh
                     geometry={nodes.Badge.geometry}
                     position={nodes.Badge.position}
+                    rotation={nodes.Badge.rotation}
+                    scale={nodes.Badge.scale}
                     onClick={() => {
                         if (state.phase === 'experiences') {
                             state.everis();
@@ -35,6 +38,8 @@ const CorkBoardScene = (props) => {
                 <mesh
                     geometry={nodes.Pin.geometry}
                     position={nodes.Pin.position}
+                    rotation={nodes.Pin.rotation}
+                    scale={nodes.Pin.scale}
                     onClick={() => {
                         if (state.phase === 'experiences') {
                             state.everis();
