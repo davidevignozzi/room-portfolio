@@ -1,10 +1,10 @@
 import { useRef } from 'react';
 import { useGLTF, useTexture } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
-import Smoke from './elements/animated/Smoke';
+import Smoke from './Smoke';
 import LaptopScene from './LaptopScene';
 import MonitorScene from './MonitorScene';
-import Lights from './elements/animated/Lights/Lights';
+import Lights from './Lights/Lights';
 import TabletScene from './TabletScene';
 import TrophiesScene from './TrophiesScene';
 import PhoneScene from './PhoneScene';
@@ -70,7 +70,7 @@ const StaticRoom = () => {
             <Smoke />
 
             {/* Lights Effects */}
-            <Lights />
+            <Lights nodes={nodes} />
 
             {/* Laptop => Loading */}
             <LaptopScene nodes={nodes} material={bakedTexture} />
