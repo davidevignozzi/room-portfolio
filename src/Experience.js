@@ -1,7 +1,8 @@
-import { Center, Environment } from '@react-three/drei';
+import { Environment } from '@react-three/drei';
 import { Perf } from 'r3f-perf';
 import React from 'react';
 import Camera from './components/Camera';
+import CameraScene from './components/CameraScene';
 import StaticRoom from './components/StaticRoom';
 
 const Experience = () => {
@@ -14,7 +15,10 @@ const Experience = () => {
             <Environment resolution={32} preset="city" />
 
             {/* Camera */}
-            <Camera />
+            {/* <Camera /> */}
+            <CameraScene />
+
+            {/* Models */}
 
             <StaticRoom />
         </>

@@ -15,10 +15,10 @@ root.render(
         {/* Canva */}
         <Canvas
             camera={{
-                fov: 45,
+                fov: 40,
                 near: 0.1,
-                far: 200,
-                zoom: 11
+                far: 10,
+                position: [4, 3.5, -5]
             }}
         >
             <Experience />
