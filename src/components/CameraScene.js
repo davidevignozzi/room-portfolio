@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from '@react-three/drei';
 import { useThree } from '@react-three/fiber';
@@ -17,9 +17,6 @@ const CameraScene = () => {
     /**
      * Camera Limitations
      */
-    const [isMoving, setIsMoving] = useState(true);
-    const [limitations, setLimitations] = useState(false);
-
     const minPolarAngle = 0;
     const maxPolarAngle = Math.PI / 2 - 0.15;
     const minAzimuthAngle = Math.PI / 2;
@@ -35,38 +32,38 @@ const CameraScene = () => {
     };
     // * Loading
     const loadingSettings = {
-        position: new THREE.Vector3(0.35, 0.67, 1),
-        target: new THREE.Vector3(0.454, 0.525, 1.2)
+        position: new THREE.Vector3(0.54, 0.45, 1.2),
+        target: new THREE.Vector3(0.575, 0.4, 1.27)
     };
     // * Projects
     const projectsSettings = {
-        position: new THREE.Vector3(-0.225, 0.725, 0.7),
-        target: new THREE.Vector3(-0.225, 0.725, 1.75)
+        position: new THREE.Vector3(-0.076, 0.6, 0.7),
+        target: new THREE.Vector3(-0.076, 0.6, 1.75)
     };
     // * Skills
     const skillsSettings = {
-        position: new THREE.Vector3(-0.235, 0.7, 0.75),
-        target: new THREE.Vector3(-0.235, 0.505, 1)
+        position: new THREE.Vector3(-0.076, 0.7, 0.8),
+        target: new THREE.Vector3(-0.076, 0.505, 1)
     };
     // * Education
     const educationSettings = {
-        position: new THREE.Vector3(-0.22, 1.25, 0.7),
-        target: new THREE.Vector3(-0.22, 1.2, 1.375)
+        position: new THREE.Vector3(-0.076, 1.1, 0.6),
+        target: new THREE.Vector3(-0.076, 1.1, 1.375)
     };
     // * Experiences
     const experiencesSettings = {
-        position: new THREE.Vector3(-1.2, 1.2, 0.675),
-        target: new THREE.Vector3(-1.2, 1.2, 1.5)
+        position: new THREE.Vector3(-1.05, 1.0675, 0.675),
+        target: new THREE.Vector3(-1.05, 1.0675, 1.5)
     };
     // * Everis
     const everisSettings = {
-        position: new THREE.Vector3(-1.012, 1.0675, 1.25),
-        target: new THREE.Vector3(-1.012, 1.065, 1.45)
+        position: new THREE.Vector3(-0.8535, 0.945, 1.44),
+        target: new THREE.Vector3(-0.8535, 0.945, 1.45)
     };
     // * Contacts
     const contactsSettings = {
-        position: new THREE.Vector3(-0.5575, 0.65, 0.95),
-        target: new THREE.Vector3(-0.575, 0.4, 1)
+        position: new THREE.Vector3(-0.38, 0.475, 1.025),
+        target: new THREE.Vector3(-0.42, 0.275, 1.15)
     };
 
     /**
@@ -344,6 +341,7 @@ const CameraScene = () => {
                 );
                 cameraControlsRef.current.target = loadingSettings.target;
 
+                // Start
                 setTimeout(() => {
                     animateStart();
                 }, 1000);
