@@ -19,6 +19,11 @@ const CameraScene = () => {
         position: new THREE.Vector3(4, 3.5, -5),
         target: new THREE.Vector3(0, 0, 0)
     };
+    // * Loading
+    const loadingSettings = {
+        position: new THREE.Vector3(0.35, 0.67, 1),
+        target: new THREE.Vector3(0.454, 0.525, 1.2)
+    };
     // * Projects
     const projectsSettings = {
         position: new THREE.Vector3(-0.225, 0.725, 0.7),
@@ -42,7 +47,7 @@ const CameraScene = () => {
     // * Everis
     const everisSettings = {
         position: new THREE.Vector3(-1.012, 1.0675, 1.25),
-        target: new THREE.Vector3(-1.012, 1.0675, 1.45)
+        target: new THREE.Vector3(-1.012, 1.0675, 1.05)
     };
     // * Contacts
     const contactsSettings = {
@@ -153,6 +158,15 @@ const CameraScene = () => {
 
     useEffect(() => {
         switch (phase) {
+            case 'loading':
+                camera.position.set(
+                    loadingSettings.position.x,
+                    loadingSettings.position.y,
+                    loadingSettings.position.z
+                );
+                cameraControlsRef.current.target = loadingSettings.target;
+                break;
+
             case 'projects':
                 animateToProjects();
                 break;
@@ -183,7 +197,16 @@ const CameraScene = () => {
         }
     }, [phase]);
 
-    return <OrbitControls makeDefault ref={cameraControlsRef} args={[camera, gl]} />;
+    return (
+        <OrbitControls
+            makeDefault
+            ref={cameraControlsRef}
+            args={[camera, gl]}
+            rotateSpeed={0.2}
+            zoomSpeed={2}
+            enablePan={false}
+        />
+    );
 };
 
 export default CameraScene;
