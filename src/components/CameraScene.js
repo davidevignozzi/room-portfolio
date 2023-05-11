@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from '@react-three/drei';
 import { useThree } from '@react-three/fiber';
@@ -6,10 +6,24 @@ import useInteractions from '../utils/stores/useInteractions';
 import gsap from 'gsap';
 
 const CameraScene = () => {
+    // Camera
     const { camera, gl } = useThree();
     const cameraControlsRef = useRef();
 
+    // Phases
     const phase = useInteractions((state) => state.phase);
+
+    /**
+     * Camera Limitations
+     */
+    const [isMoving, setIsMoving] = useState(true);
+    const [limitations, setLimitations] = useState(false);
+
+    // const minPolarAngle = 0;
+    // const maxPolarAngle = Math.PI / 2 - 0.15;
+    // const minAzimuthAngle = Math.PI / 2;
+    // const maxAzimuthAngle = Math.PI;
+    // const maxDistance = 7.3;
 
     /**
      * Camera setting for each phase
@@ -47,7 +61,7 @@ const CameraScene = () => {
     // * Everis
     const everisSettings = {
         position: new THREE.Vector3(-1.012, 1.0675, 1.25),
-        target: new THREE.Vector3(-1.012, 1.0675, 1.05)
+        target: new THREE.Vector3(-1.012, 1.065, 1.45)
     };
     // * Contacts
     const contactsSettings = {
@@ -58,102 +72,194 @@ const CameraScene = () => {
     /**
      * Animate camera when phase change
      */
-    //* Projects Animation
-    const animateToExplore = () => {
+    const tl = gsap.timeline();
+    tl.add('toExplore');
+    tl.add('toProjects');
+    tl.add('toSkills');
+    tl.add('toEducation');
+    tl.add('toExperiences');
+    tl.add('toEveris');
+    tl.add('toContacts');
+
+    // * Start Animation
+    const animateStart = () => {
+        gsap.to(camera.position, {
+            x: loadingSettings.position.x - 0.225,
+            y: loadingSettings.position.y + 0.25,
+            z: loadingSettings.position.z - 0.5,
+            duration: 2.5,
+            ease: 'slowmo'
+        });
         gsap.to(camera.position, {
             x: exploreSettings.position.x,
             y: exploreSettings.position.y,
-            z: exploreSettings.position.z
+            z: exploreSettings.position.z,
+            delay: 2,
+            ease: 'power2.in',
+            duration: 1.5
         });
         gsap.to(cameraControlsRef.current.target, {
             x: exploreSettings.target.x,
             y: exploreSettings.target.y,
-            z: exploreSettings.target.z
+            z: exploreSettings.target.z,
+            delay: 2.25,
+            ease: 'power2.in',
+            duration: 1.25
         });
+    };
+
+    //* Explore Animation
+    const animateToExplore = () => {
+        tl.to(
+            camera.position,
+            {
+                x: exploreSettings.position.x,
+                y: exploreSettings.position.y,
+                z: exploreSettings.position.z
+            },
+            'toExplore'
+        );
+        tl.to(
+            cameraControlsRef.current.target,
+            {
+                x: exploreSettings.target.x,
+                y: exploreSettings.target.y,
+                z: exploreSettings.target.z
+            },
+            'toExplore'
+        );
     };
 
     //* Projects Animation
     const animateToProjects = () => {
-        gsap.to(camera.position, {
-            x: projectsSettings.position.x,
-            y: projectsSettings.position.y,
-            z: projectsSettings.position.z
-        });
-        gsap.to(cameraControlsRef.current.target, {
-            x: projectsSettings.target.x,
-            y: projectsSettings.target.y,
-            z: projectsSettings.target.z
-        });
+        tl.to(
+            camera.position,
+            {
+                x: projectsSettings.position.x,
+                y: projectsSettings.position.y,
+                z: projectsSettings.position.z
+            },
+            'toProjects'
+        );
+        tl.to(
+            cameraControlsRef.current.target,
+            {
+                x: projectsSettings.target.x,
+                y: projectsSettings.target.y,
+                z: projectsSettings.target.z
+            },
+            'toProjects'
+        );
     };
 
     //* Skills Animation
     const animateToSkills = () => {
-        gsap.to(camera.position, {
-            x: skillsSettings.position.x,
-            y: skillsSettings.position.y,
-            z: skillsSettings.position.z
-        });
-        gsap.to(cameraControlsRef.current.target, {
-            x: skillsSettings.target.x,
-            y: skillsSettings.target.y,
-            z: skillsSettings.target.z
-        });
+        tl.to(
+            camera.position,
+            {
+                x: skillsSettings.position.x,
+                y: skillsSettings.position.y,
+                z: skillsSettings.position.z
+            },
+            'toSkills'
+        );
+        tl.to(
+            cameraControlsRef.current.target,
+            {
+                x: skillsSettings.target.x,
+                y: skillsSettings.target.y,
+                z: skillsSettings.target.z
+            },
+            'toSkills'
+        );
     };
 
     //* Education Animation
     const animateToEducation = () => {
-        gsap.to(camera.position, {
-            x: educationSettings.position.x,
-            y: educationSettings.position.y,
-            z: educationSettings.position.z
-        });
-        gsap.to(cameraControlsRef.current.target, {
-            x: educationSettings.target.x,
-            y: educationSettings.target.y,
-            z: educationSettings.target.z
-        });
+        tl.to(
+            camera.position,
+            {
+                x: educationSettings.position.x,
+                y: educationSettings.position.y,
+                z: educationSettings.position.z
+            },
+            'toEducation'
+        );
+        tl.to(
+            cameraControlsRef.current.target,
+            {
+                x: educationSettings.target.x,
+                y: educationSettings.target.y,
+                z: educationSettings.target.z
+            },
+            'toEducation'
+        );
     };
 
     //* Experiences Animation
     const animateToExperiences = () => {
-        gsap.to(camera.position, {
-            x: experiencesSettings.position.x,
-            y: experiencesSettings.position.y,
-            z: experiencesSettings.position.z
-        });
-        gsap.to(cameraControlsRef.current.target, {
-            x: experiencesSettings.target.x,
-            y: experiencesSettings.target.y,
-            z: experiencesSettings.target.z
-        });
+        tl.to(
+            camera.position,
+            {
+                x: experiencesSettings.position.x,
+                y: experiencesSettings.position.y,
+                z: experiencesSettings.position.z
+            },
+            'toExperiences'
+        );
+        tl.to(
+            cameraControlsRef.current.target,
+            {
+                x: experiencesSettings.target.x,
+                y: experiencesSettings.target.y,
+                z: experiencesSettings.target.z
+            },
+            'toExperiences'
+        );
     };
 
     //* Everis Animation
     const animateToEveris = () => {
-        gsap.to(camera.position, {
-            x: everisSettings.position.x,
-            y: everisSettings.position.y,
-            z: everisSettings.position.z
-        });
-        gsap.to(cameraControlsRef.current.target, {
-            x: everisSettings.target.x,
-            y: everisSettings.target.y,
-            z: everisSettings.target.z
-        });
+        tl.to(
+            camera.position,
+            {
+                x: everisSettings.position.x,
+                y: everisSettings.position.y,
+                z: everisSettings.position.z
+            },
+            'toEveris'
+        );
+        tl.to(
+            cameraControlsRef.current.target,
+            {
+                x: everisSettings.target.x,
+                y: everisSettings.target.y,
+                z: everisSettings.target.z
+            },
+            'toEveris'
+        );
     };
 
     //* Contacts Animation
     const animateToContacts = () => {
-        gsap.to(camera.position, {
-            x: contactsSettings.position.x,
-            y: contactsSettings.position.y,
-            z: contactsSettings.position.z
-        });
-        gsap.to(cameraControlsRef.current.target, {
-            x: contactsSettings.target.x,
-            y: contactsSettings.target.y,
-            z: contactsSettings.target.z
-        });
+        tl.to(
+            camera.position,
+            {
+                x: contactsSettings.position.x,
+                y: contactsSettings.position.y,
+                z: contactsSettings.position.z
+            },
+            'toContacts'
+        );
+        tl.to(
+            cameraControlsRef.current.target,
+            {
+                x: contactsSettings.target.x,
+                y: contactsSettings.target.y,
+                z: contactsSettings.target.z
+            },
+            'toContacts'
+        );
     };
 
     useEffect(() => {
@@ -165,6 +271,14 @@ const CameraScene = () => {
                     loadingSettings.position.z
                 );
                 cameraControlsRef.current.target = loadingSettings.target;
+
+                setTimeout(() => {
+                    animateStart();
+                }, 1000);
+                break;
+
+            case 'start':
+                animateStart();
                 break;
 
             case 'projects':

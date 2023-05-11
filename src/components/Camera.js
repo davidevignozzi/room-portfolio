@@ -517,3 +517,76 @@ const Camera = () => {
 };
 
 export default Camera;
+
+// const animateToExplore = () => {
+//     gsap.to(camera.position, {
+//         x: exploreSettings.position.x,
+//         y: exploreSettings.position.y,
+//         z: exploreSettings.position.z
+//     });
+//     gsap.to(cameraControlsRef.current.target, {
+//         x: exploreSettings.target.x,
+//         y: exploreSettings.target.y,
+//         z: exploreSettings.target.z
+//     });
+// };
+// gsap.to(camera.position, {
+//     x: projectsSettings.position.x,
+//     y: projectsSettings.position.y,
+//     z: projectsSettings.position.z
+// });
+// gsap.to(cameraControlsRef.current.target, {
+//     x: projectsSettings.target.x,
+//     y: projectsSettings.target.y,
+//     z: projectsSettings.target.z
+// });
+// gsap.to(camera.position, {
+//     x: skillsSettings.position.x,
+//     y: skillsSettings.position.y,
+//     z: skillsSettings.position.z
+// });
+// gsap.to(cameraControlsRef.current.target, {
+//     x: skillsSettings.target.x,
+//     y: skillsSettings.target.y,
+//     z: skillsSettings.target.z
+// });
+// gsap.to(camera.position, {
+//     x: educationSettings.position.x,
+//     y: educationSettings.position.y,
+//     z: educationSettings.position.z
+// });
+// gsap.to(cameraControlsRef.current.target, {
+//     x: educationSettings.target.x,
+//     y: educationSettings.target.y,
+//     z: educationSettings.target.z
+// });
+// gsap.to(camera.position, {
+//     x: experiencesSettings.position.x,
+//     y: experiencesSettings.position.y,
+//     z: experiencesSettings.position.z
+// });
+// gsap.to(cameraControlsRef.current.target, {
+//     x: experiencesSettings.target.x,
+//     y: experiencesSettings.target.y,
+//     z: experiencesSettings.target.z
+// });
+// gsap.to(camera.position, {
+//     x: everisSettings.position.x,
+//     y: everisSettings.position.y,
+//     z: everisSettings.position.z
+// });
+// gsap.to(cameraControlsRef.current.target, {
+//     x: everisSettings.target.x,
+//     y: everisSettings.target.y,
+//     z: everisSettings.target.z
+// });
+// gsap.to(camera.position, {
+//     x: contactsSettings.position.x,
+//     y: contactsSettings.position.y,
+//     z: contactsSettings.position.z
+// });
+// gsap.to(cameraControlsRef.current.target, {
+//     x: contactsSettings.target.x,
+//     y: contactsSettings.target.y,
+//     z: contactsSettings.target.z
+// });

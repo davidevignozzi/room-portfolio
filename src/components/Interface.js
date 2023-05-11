@@ -79,7 +79,7 @@ const Interface = () => {
     const prevPhase = () => {
         switch (state.phase) {
             case 'projects':
-                state.back();
+                state.explore();
                 break;
             case 'skills':
                 state.projects();
@@ -133,7 +133,7 @@ const Interface = () => {
      * onClick on the home button
      */
     const home = () => {
-        state.back();
+        state.explore();
     };
 
     return (

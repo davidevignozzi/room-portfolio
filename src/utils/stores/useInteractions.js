@@ -21,10 +21,21 @@ export default create(
             },
 
             /**
-             * Explore
+             * Start
              */
             // When loading end
             start: () => {
+                set(() => {
+                    return {
+                        phase: 'start'
+                    };
+                });
+            },
+
+            /**
+             * Explore
+             */
+            explore: () => {
                 set(() => {
                     return {
                         phase: 'explore'
