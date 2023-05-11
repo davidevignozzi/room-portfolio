@@ -19,7 +19,6 @@ const Experience = () => {
             <CameraScene />
 
             {/* Models */}
-
             <StaticRoom />
         </>
     );

@@ -11,6 +11,7 @@ const CameraScene = () => {
     const cameraControlsRef = useRef();
 
     // Phases
+    const state = useInteractions((state) => state);
     const phase = useInteractions((state) => state.phase);
 
     /**
@@ -19,11 +20,10 @@ const CameraScene = () => {
     const [isMoving, setIsMoving] = useState(true);
     const [limitations, setLimitations] = useState(false);
 
-    // const minPolarAngle = 0;
-    // const maxPolarAngle = Math.PI / 2 - 0.15;
-    // const minAzimuthAngle = Math.PI / 2;
-    // const maxAzimuthAngle = Math.PI;
-    // const maxDistance = 7.3;
+    const minPolarAngle = 0;
+    const maxPolarAngle = Math.PI / 2 - 0.15;
+    const minAzimuthAngle = Math.PI / 2;
+    const maxAzimuthAngle = Math.PI;
 
     /**
      * Camera setting for each phase
@@ -104,7 +104,10 @@ const CameraScene = () => {
             z: exploreSettings.target.z,
             delay: 2.25,
             ease: 'power2.in',
-            duration: 1.25
+            duration: 1.25,
+            onComplete: () => {
+                state.explore();
+            }
         });
     };
 
@@ -115,7 +118,10 @@ const CameraScene = () => {
             {
                 x: exploreSettings.position.x,
                 y: exploreSettings.position.y,
-                z: exploreSettings.position.z
+                z: exploreSettings.position.z,
+                onStart: () => {
+                    cameraControlsRef.current.enabled = true;
+                }
             },
             'toExplore'
         );
@@ -124,7 +130,13 @@ const CameraScene = () => {
             {
                 x: exploreSettings.target.x,
                 y: exploreSettings.target.y,
-                z: exploreSettings.target.z
+                z: exploreSettings.target.z,
+                onComplete: () => {
+                    cameraControlsRef.current.minPolarAngle = minPolarAngle;
+                    cameraControlsRef.current.maxPolarAngle = maxPolarAngle;
+                    cameraControlsRef.current.minAzimuthAngle = minAzimuthAngle;
+                    cameraControlsRef.current.maxAzimuthAngle = maxAzimuthAngle;
+                }
             },
             'toExplore'
         );
@@ -137,7 +149,17 @@ const CameraScene = () => {
             {
                 x: projectsSettings.position.x,
                 y: projectsSettings.position.y,
-                z: projectsSettings.position.z
+                z: projectsSettings.position.z,
+                onStart: () => {
+                    cameraControlsRef.current.enabled = true;
+                    cameraControlsRef.current.minPolarAngle = 0;
+                    cameraControlsRef.current.maxPolarAngle = Math.PI;
+                    cameraControlsRef.current.minAzimuthAngle = Infinity;
+                    cameraControlsRef.current.maxAzimuthAngle = Infinity;
+                },
+                onComplete: () => {
+                    cameraControlsRef.current.enabled = false;
+                }
             },
             'toProjects'
         );
@@ -159,7 +181,17 @@ const CameraScene = () => {
             {
                 x: skillsSettings.position.x,
                 y: skillsSettings.position.y,
-                z: skillsSettings.position.z
+                z: skillsSettings.position.z,
+                onStart: () => {
+                    cameraControlsRef.current.enabled = true;
+                    cameraControlsRef.current.minPolarAngle = 0;
+                    cameraControlsRef.current.maxPolarAngle = Math.PI;
+                    cameraControlsRef.current.minAzimuthAngle = Infinity;
+                    cameraControlsRef.current.maxAzimuthAngle = Infinity;
+                },
+                onComplete: () => {
+                    cameraControlsRef.current.enabled = false;
+                }
             },
             'toSkills'
         );
@@ -181,7 +213,17 @@ const CameraScene = () => {
             {
                 x: educationSettings.position.x,
                 y: educationSettings.position.y,
-                z: educationSettings.position.z
+                z: educationSettings.position.z,
+                onStart: () => {
+                    cameraControlsRef.current.enabled = true;
+                    cameraControlsRef.current.minPolarAngle = 0;
+                    cameraControlsRef.current.maxPolarAngle = Math.PI;
+                    cameraControlsRef.current.minAzimuthAngle = Infinity;
+                    cameraControlsRef.current.maxAzimuthAngle = Infinity;
+                },
+                onComplete: () => {
+                    cameraControlsRef.current.enabled = false;
+                }
             },
             'toEducation'
         );
@@ -203,7 +245,17 @@ const CameraScene = () => {
             {
                 x: experiencesSettings.position.x,
                 y: experiencesSettings.position.y,
-                z: experiencesSettings.position.z
+                z: experiencesSettings.position.z,
+                onStart: () => {
+                    cameraControlsRef.current.enabled = true;
+                    cameraControlsRef.current.minPolarAngle = 0;
+                    cameraControlsRef.current.maxPolarAngle = Math.PI;
+                    cameraControlsRef.current.minAzimuthAngle = Infinity;
+                    cameraControlsRef.current.maxAzimuthAngle = Infinity;
+                },
+                onComplete: () => {
+                    cameraControlsRef.current.enabled = false;
+                }
             },
             'toExperiences'
         );
@@ -225,7 +277,17 @@ const CameraScene = () => {
             {
                 x: everisSettings.position.x,
                 y: everisSettings.position.y,
-                z: everisSettings.position.z
+                z: everisSettings.position.z,
+                onStart: () => {
+                    cameraControlsRef.current.enabled = true;
+                    cameraControlsRef.current.minPolarAngle = 0;
+                    cameraControlsRef.current.maxPolarAngle = Math.PI;
+                    cameraControlsRef.current.minAzimuthAngle = Infinity;
+                    cameraControlsRef.current.maxAzimuthAngle = Infinity;
+                },
+                onComplete: () => {
+                    cameraControlsRef.current.enabled = false;
+                }
             },
             'toEveris'
         );
@@ -247,7 +309,17 @@ const CameraScene = () => {
             {
                 x: contactsSettings.position.x,
                 y: contactsSettings.position.y,
-                z: contactsSettings.position.z
+                z: contactsSettings.position.z,
+                onStart: () => {
+                    cameraControlsRef.current.enabled = true;
+                    cameraControlsRef.current.minPolarAngle = 0;
+                    cameraControlsRef.current.maxPolarAngle = Math.PI;
+                    cameraControlsRef.current.minAzimuthAngle = Infinity;
+                    cameraControlsRef.current.maxAzimuthAngle = Infinity;
+                },
+                onComplete: () => {
+                    cameraControlsRef.current.enabled = false;
+                }
             },
             'toContacts'
         );
