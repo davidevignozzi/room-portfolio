@@ -44,7 +44,7 @@ div::-webkit-scrollbar {
 }
 
 /*
- * Laptop
+ * aptop
  */
 .wrapper-laptop {
     width: 700px;
@@ -82,4 +82,80 @@ div::-webkit-scrollbar {
 .folder-icon {
     width: 9rem;
     height: 9rem;
+}
+
+/* 
+    Interface
+*/
+#interface {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    font-family: 'Bebas Neue', cursive;
+    color: #333;
+}
+.controls-wrapper {
+    position: absolute;
+    width: 100%;
+    bottom: 2.5rem;
+    display: flex;
+    justify-content: center;
+}
+.home-button {
+    width: 3.25rem;
+    height: 3.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 1rem;
+    border: none;
+    border-radius: 99%;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.35);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(6.5px);
+    -webkit-backdrop-filter: blur(6.5px);
+    pointer-events: all;
+    font-size: 1.25rem;
+}
+.interface-controls {
+    /* width: 256px; */
+    /* height: 56px; */
+    height: 3.25rem;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 30px;
+
+    /* glass effect */
+    background: rgba(255, 255, 255, 0.35);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(6.5px);
+    -webkit-backdrop-filter: blur(6.5px);
+    pointer-events: all;
+}
+.interface-controls button {
+    background-color: transparent;
+    width: 3.25rem;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 99%;
+    cursor: pointer;
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+.label {
+    width: 10rem;
+    padding: 0 2.25rem;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    border-color: #dcdcdc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

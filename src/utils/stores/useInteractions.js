@@ -43,16 +43,6 @@ export default create(
                 });
             },
 
-            // From projects to explore
-            // On scroll up
-            back: () => {
-                set(() => {
-                    return {
-                        phase: 'Explore'
-                    };
-                });
-            },
-
             /**
              * Projects
              */
