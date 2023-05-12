@@ -25,7 +25,7 @@ const Interface = () => {
         // }}
         gsap.to('.label-phase-content', {
             x: -activePhase * 158.5,
-            duration: 0.75,
+            duration: 1,
             ease: 'sine'
         });
     }, [activePhase]);
@@ -107,7 +107,7 @@ const Interface = () => {
                 state.contacts();
                 break;
             case 'contacts':
-                state.start();
+                state.explore();
                 break;
             default:
                 break;

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from '@react-three/drei';
 import { useThree } from '@react-three/fiber';
@@ -93,7 +93,10 @@ const CameraScene = () => {
             z: exploreSettings.position.z,
             delay: 2,
             ease: 'power2.in',
-            duration: 1.5
+            duration: 1.5,
+            onComplete: () => {
+                state.explore();
+            }
         });
         gsap.to(cameraControlsRef.current.target, {
             x: exploreSettings.target.x,
@@ -101,10 +104,7 @@ const CameraScene = () => {
             z: exploreSettings.target.z,
             delay: 2.25,
             ease: 'power2.in',
-            duration: 1.25,
-            onComplete: () => {
-                state.explore();
-            }
+            duration: 1.25
         });
     };
 
@@ -116,8 +116,16 @@ const CameraScene = () => {
                 x: exploreSettings.position.x,
                 y: exploreSettings.position.y,
                 z: exploreSettings.position.z,
+                duration: 1.5,
+                ease: 'slowmo',
                 onStart: () => {
                     cameraControlsRef.current.enabled = true;
+                },
+                onComplete: () => {
+                    cameraControlsRef.current.minPolarAngle = minPolarAngle;
+                    cameraControlsRef.current.maxPolarAngle = maxPolarAngle;
+                    cameraControlsRef.current.minAzimuthAngle = minAzimuthAngle;
+                    cameraControlsRef.current.maxAzimuthAngle = maxAzimuthAngle;
                 }
             },
             'toExplore'
@@ -128,12 +136,8 @@ const CameraScene = () => {
                 x: exploreSettings.target.x,
                 y: exploreSettings.target.y,
                 z: exploreSettings.target.z,
-                onComplete: () => {
-                    cameraControlsRef.current.minPolarAngle = minPolarAngle;
-                    cameraControlsRef.current.maxPolarAngle = maxPolarAngle;
-                    cameraControlsRef.current.minAzimuthAngle = minAzimuthAngle;
-                    cameraControlsRef.current.maxAzimuthAngle = maxAzimuthAngle;
-                }
+                duration: 1.5,
+                ease: 'slowmo'
             },
             'toExplore'
         );
@@ -147,6 +151,8 @@ const CameraScene = () => {
                 x: projectsSettings.position.x,
                 y: projectsSettings.position.y,
                 z: projectsSettings.position.z,
+                duration: 1,
+                ease: 'sine',
                 onStart: () => {
                     cameraControlsRef.current.enabled = true;
                     cameraControlsRef.current.minPolarAngle = 0;
@@ -165,7 +171,9 @@ const CameraScene = () => {
             {
                 x: projectsSettings.target.x,
                 y: projectsSettings.target.y,
-                z: projectsSettings.target.z
+                z: projectsSettings.target.z,
+                duration: 1,
+                ease: 'sine'
             },
             'toProjects'
         );
@@ -179,6 +187,8 @@ const CameraScene = () => {
                 x: skillsSettings.position.x,
                 y: skillsSettings.position.y,
                 z: skillsSettings.position.z,
+                duration: 1,
+                ease: 'sine',
                 onStart: () => {
                     cameraControlsRef.current.enabled = true;
                     cameraControlsRef.current.minPolarAngle = 0;
@@ -197,7 +207,9 @@ const CameraScene = () => {
             {
                 x: skillsSettings.target.x,
                 y: skillsSettings.target.y,
-                z: skillsSettings.target.z
+                z: skillsSettings.target.z,
+                duration: 1,
+                ease: 'sine'
             },
             'toSkills'
         );
@@ -211,6 +223,8 @@ const CameraScene = () => {
                 x: educationSettings.position.x,
                 y: educationSettings.position.y,
                 z: educationSettings.position.z,
+                duration: 1,
+                ease: 'sine',
                 onStart: () => {
                     cameraControlsRef.current.enabled = true;
                     cameraControlsRef.current.minPolarAngle = 0;
@@ -229,7 +243,9 @@ const CameraScene = () => {
             {
                 x: educationSettings.target.x,
                 y: educationSettings.target.y,
-                z: educationSettings.target.z
+                z: educationSettings.target.z,
+                duration: 1,
+                ease: 'sine'
             },
             'toEducation'
         );
@@ -243,6 +259,8 @@ const CameraScene = () => {
                 x: experiencesSettings.position.x,
                 y: experiencesSettings.position.y,
                 z: experiencesSettings.position.z,
+                duration: 1,
+                ease: 'sine',
                 onStart: () => {
                     cameraControlsRef.current.enabled = true;
                     cameraControlsRef.current.minPolarAngle = 0;
@@ -261,7 +279,9 @@ const CameraScene = () => {
             {
                 x: experiencesSettings.target.x,
                 y: experiencesSettings.target.y,
-                z: experiencesSettings.target.z
+                z: experiencesSettings.target.z,
+                duration: 1,
+                ease: 'sine'
             },
             'toExperiences'
         );
@@ -275,6 +295,8 @@ const CameraScene = () => {
                 x: everisSettings.position.x,
                 y: everisSettings.position.y,
                 z: everisSettings.position.z,
+                duration: 1,
+                ease: 'sine',
                 onStart: () => {
                     cameraControlsRef.current.enabled = true;
                     cameraControlsRef.current.minPolarAngle = 0;
@@ -293,7 +315,9 @@ const CameraScene = () => {
             {
                 x: everisSettings.target.x,
                 y: everisSettings.target.y,
-                z: everisSettings.target.z
+                z: everisSettings.target.z,
+                duration: 1,
+                ease: 'sine'
             },
             'toEveris'
         );
@@ -307,6 +331,8 @@ const CameraScene = () => {
                 x: contactsSettings.position.x,
                 y: contactsSettings.position.y,
                 z: contactsSettings.position.z,
+                duration: 1,
+                ease: 'sine',
                 onStart: () => {
                     cameraControlsRef.current.enabled = true;
                     cameraControlsRef.current.minPolarAngle = 0;
@@ -325,7 +351,9 @@ const CameraScene = () => {
             {
                 x: contactsSettings.target.x,
                 y: contactsSettings.target.y,
-                z: contactsSettings.target.z
+                z: contactsSettings.target.z,
+                duration: 1,
+                ease: 'sine'
             },
             'toContacts'
         );
@@ -341,10 +369,10 @@ const CameraScene = () => {
                 );
                 cameraControlsRef.current.target = loadingSettings.target;
 
-                // Start
-                setTimeout(() => {
-                    animateStart();
-                }, 1000);
+                // // Start
+                // setTimeout(() => {
+                //     animateStart();
+                // }, 1000);
                 break;
 
             case 'start':
