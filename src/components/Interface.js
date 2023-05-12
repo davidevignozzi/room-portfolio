@@ -5,11 +5,57 @@ import { MdHome, MdNavigateNext, MdNavigateBefore } from 'react-icons/md';
 
 const Interface = () => {
     const state = useInteractions((state) => state);
-    const [phase, setPhase] = useState();
 
-    // Capitalize first letter
+    const phases = [
+        'Loading',
+        'Explore',
+        'Projects',
+        'Skills',
+        'Education',
+        'Experiences',
+        'Everis',
+        'Contacts'
+    ];
+
+    const [activePhase, setActivePhase] = useState(phases[0]);
+
     useEffect(() => {
-        setPhase(`${state.phase.charAt(0).toUpperCase()}${state.phase.slice(1)}`);
+        // style={{
+        //     transform: `translateX(-${activePhase * 10}rem)`
+        // }}
+        gsap.to('.label-phase-content', {
+            x: -activePhase * 158.5,
+            duration: 0.75,
+            ease: 'sine'
+        });
+    }, [activePhase]);
+
+    useEffect(() => {
+        switch (state.phase) {
+            case 'loading':
+                break;
+            case 'projects':
+                setActivePhase(2);
+                break;
+            case 'skills':
+                setActivePhase(3);
+                break;
+            case 'education':
+                setActivePhase(4);
+                break;
+            case 'experiences':
+                setActivePhase(5);
+                break;
+            case 'everis':
+                setActivePhase(6);
+                break;
+            case 'contacts':
+                setActivePhase(7);
+                break;
+            default:
+                setActivePhase(1);
+                break;
+        }
     }, [state.phase]);
 
     /**
@@ -86,7 +132,18 @@ const Interface = () => {
                         <MdNavigateBefore />
                     </button>
                     <div className="label montserrat">
-                        <b>{phase}</b>
+                        {/* <b>{phase}</b> */}
+                        <div className="label-phase">
+                            {phases.map((phase, index) => {
+                                return (
+                                    <div key={index} className="label-phase-content">
+                                        <span className={` ${activePhase === index && 'active'}`}>
+                                            {phase}
+                                        </span>
+                                    </div>
+                                );
+                            })}
+                        </div>
                     </div>
                     <button className="next" onClick={nextPhase}>
                         <MdNavigateNext />

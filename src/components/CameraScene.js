@@ -394,3 +394,5 @@ const CameraScene = () => {
 };
 
 export default CameraScene;
+
+// TODO: tl.stop before of each interaction
