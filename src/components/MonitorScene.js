@@ -1,10 +1,14 @@
+import { Html } from '@react-three/drei';
+import { useRef } from 'react';
 import useInteractions from '../utils/stores/useInteractions';
+import ProjectsMonitor from './HTML/ProjectsMonitor';
 
 const MonitorScene = (props) => {
     const nodes = props.nodes;
     const bakedMaterial = props.material;
     const screenMaterial = props.screenMaterial;
     const state = useInteractions((state) => state);
+    const screenRef = useRef();
 
     return (
         <group>
@@ -21,6 +25,7 @@ const MonitorScene = (props) => {
 
             {/* MonitorScreen */}
             <mesh
+                ref={screenRef}
                 geometry={nodes.MonitorScreen.geometry}
                 position={nodes.MonitorScreen.position}
                 rotation={nodes.MonitorScreen.rotation}
@@ -29,7 +34,21 @@ const MonitorScene = (props) => {
                 onClick={() => {
                     state.projects();
                 }}
-            />
+            >
+                <Html
+                    fixed
+                    center
+                    transform
+                    occlude
+                    parent={screenRef.current}
+                    zIndexRange={[0, 1]}
+                    distanceFactor={0.0775}
+                    position={[0, 0.025, -0.004]}
+                    rotation-y={Math.PI}
+                >
+                    <ProjectsMonitor />
+                </Html>
+            </mesh>
         </group>
     );
 };

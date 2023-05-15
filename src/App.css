@@ -24,6 +24,9 @@
 .bg-green {
     background-color: #00ca4e;
 }
+ul {
+    list-style: none;
+}
 
 html,
 body,
@@ -218,15 +221,8 @@ div::-webkit-scrollbar {
 }
 
 /*
-* ---------- Loading Laptop
+* ---------- Window
 */
-#laptop {
-    width: 1920px;
-    height: 1080px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 .window {
     width: 100%;
     height: 100%;
@@ -255,6 +251,74 @@ div::-webkit-scrollbar {
 .window-content {
     width: 100%;
     height: 92.5%;
-    padding: 10rem;
+    /* padding: 10rem; */
     border-radius: 0 0 2.5rem 2.5rem;
+}
+
+/*
+* ---------- Loading Laptop
+*/
+#laptop {
+    width: 1920px;
+    height: 1080px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*
+*   ---------- Projects Monitor
+*/
+#monitor {
+    width: 1920px;
+    height: 1080px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* 
+.folders-container {
+    width: 15rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.folder-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+    font-size: 8rem;
+}
+.folder-name {
+    text-align: center;
+    font-size: 3rem;
+} 
+*/
+.monitor-window-container {
+    width: 100%;
+    height: 100%;
+    margin-left: 2rem;
+}
+.window-sidebar {
+    width: 22.5%;
+    height: 100%;
+    border-radius: 0 0 0 2.5rem;
+    padding: 1.5rem;
+    background-color: #dddcdc;
+}
+.window-sidebar-title {
+    font-size: 3rem;
+    color: #727272;
+}
+.window-sidebar-list-item {
+    font-size: 3.5rem;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+.window-sidebar-list-item-selected {
+    background-color: #bfbfbf;
 }

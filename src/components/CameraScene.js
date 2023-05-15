@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
-import { CameraControls, OrbitControls } from '@react-three/drei';
+import { OrbitControls } from '@react-three/drei';
 import { useThree } from '@react-three/fiber';
 import useInteractions from '../utils/stores/useInteractions';
 import gsap from 'gsap';
@@ -35,13 +35,13 @@ const CameraScene = () => {
     };
     // * Loading
     const loadingSettings = {
-        position: new THREE.Vector3(0.505, 0.5, 1.1),
+        position: new THREE.Vector3(0.515, 0.5, 1.1),
         target: new THREE.Vector3(0.6, 0.4, 1.3)
     };
     // * Projects
     const projectsSettings = {
-        position: new THREE.Vector3(-0.076, 0.6, 0.7),
-        target: new THREE.Vector3(-0.076, 0.6, 1.75)
+        position: new THREE.Vector3(-0.076, 0.61, 0.8),
+        target: new THREE.Vector3(-0.076, 0.61, 1.75)
     };
     // * Skills
     const skillsSettings = {

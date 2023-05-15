@@ -16,7 +16,12 @@ const LoadingLaptop = () => {
                             <div className="circle bg-green"></div>
                         </div>
                     </div>
-                    <div className="window-content">
+                    <div
+                        className="window-content"
+                        style={{
+                            padding: '10rem'
+                        }}
+                    >
                         <div className="loading-typing-container fonted">
                             <TypeAnimation
                                 sequence={[

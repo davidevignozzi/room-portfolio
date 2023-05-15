@@ -19,7 +19,7 @@ const Experience = () => {
     return (
         <>
             {/* Debug */}
-            <Perf position="top-left" />
+            {/* <Perf position="top-left" /> */}
 
             {/* Camera */}
             <CameraScene />
