@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
-import { OrbitControls } from '@react-three/drei';
+import { CameraControls, OrbitControls } from '@react-three/drei';
 import { useThree } from '@react-three/fiber';
 import useInteractions from '../utils/stores/useInteractions';
 import gsap from 'gsap';
@@ -88,7 +88,10 @@ const CameraScene = () => {
             y: loadingSettings.position.y + 0.25,
             z: loadingSettings.position.z - 0.5,
             duration: 2.5,
-            ease: 'slowmo'
+            ease: 'slowmo',
+            onStart: () => {
+                cameraControlsRef.current.enabled = true;
+            }
         });
         gsap.to(camera.position, {
             x: exploreSettings.position.x,
@@ -98,7 +101,7 @@ const CameraScene = () => {
             ease: 'power2.in',
             duration: 1.5,
             onComplete: () => {
-                state.explore();
+                animateToExplore(0);
             }
         });
         gsap.to(cameraControlsRef.current.target, {
@@ -112,14 +115,14 @@ const CameraScene = () => {
     };
 
     //* Explore Animation
-    const animateToExplore = () => {
+    const animateToExplore = (animationSpeed) => {
         tl.to(
             camera.position,
             {
                 x: exploreSettings.position.x,
                 y: exploreSettings.position.y,
                 z: exploreSettings.position.z,
-                duration: 1.5,
+                duration: animationSpeed,
                 ease: 'slowmo',
                 onStart: () => {
                     cameraControlsRef.current.enabled = true;
@@ -139,7 +142,7 @@ const CameraScene = () => {
                 x: exploreSettings.target.x,
                 y: exploreSettings.target.y,
                 z: exploreSettings.target.z,
-                duration: 1.5,
+                duration: animationSpeed,
                 ease: 'slowmo'
             },
             'toExplore'
@@ -402,7 +405,7 @@ const CameraScene = () => {
                 break;
 
             default:
-                animateToExplore();
+                animateToExplore(1.5);
                 break;
         }
     }, [phase]);
@@ -415,7 +418,6 @@ const CameraScene = () => {
             rotateSpeed={0.2}
             zoomSpeed={2}
             enablePan={false}
-            // target={loadingSettings.target}
         />
     );
 };
