@@ -6,6 +6,10 @@ import { MdHome, MdNavigateNext, MdNavigateBefore } from 'react-icons/md';
 const Interface = () => {
     const state = useInteractions((state) => state);
 
+    const animationsTime = useInteractions((state) => state.animationsTime);
+    /**
+     * Phases Array
+     */
     const phases = [
         'Loading',
         'Explore',
@@ -17,18 +21,8 @@ const Interface = () => {
         'Contacts'
     ];
 
+    // Index of active phase will be shown in the slider
     const [activePhase, setActivePhase] = useState(phases[0]);
-
-    useEffect(() => {
-        // style={{
-        //     transform: `translateX(-${activePhase * 10}rem)`
-        // }}
-        gsap.to('.label-phase-content', {
-            x: -activePhase * 158.5,
-            duration: 1,
-            ease: 'sine'
-        });
-    }, [activePhase]);
 
     useEffect(() => {
         switch (state.phase) {
@@ -46,9 +40,9 @@ const Interface = () => {
             case 'experiences':
                 setActivePhase(5);
                 break;
-            case 'everis':
-                // setActivePhase(6);
-                break;
+            // case 'everis':
+            //     setActivePhase(6);
+            //     break;
             case 'contacts':
                 setActivePhase(6);
                 break;
@@ -120,6 +114,17 @@ const Interface = () => {
     const home = () => {
         state.explore();
     };
+
+    /**
+     * Slider Animation
+     */
+    useEffect(() => {
+        gsap.to('.label-phase-content', {
+            x: -activePhase * 158.5,
+            duration: animationsTime,
+            ease: 'sine'
+        });
+    }, [activePhase]);
 
     return (
         <div id="interface">

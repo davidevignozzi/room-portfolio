@@ -85,7 +85,7 @@ div::-webkit-scrollbar {
 }
 
 /* 
-    Interface
+*  ----------  Interface
 */
 #interface {
     position: fixed;
@@ -171,9 +171,12 @@ div::-webkit-scrollbar {
     flex-shrink: 0;
     color: #848484;
 }
-
 .label-phase-content .active {
     font-weight: 700;
     color: #333;
     transition-duration: 0.5s;
 }
+
+/*
+* ---------- Loading Laptop
+*/

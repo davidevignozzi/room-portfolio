@@ -5,6 +5,12 @@ export default create(
     subscribeWithSelector((set) => {
         return {
             /**
+             * Settings
+             *
+             */
+            animationsTime: 1,
+
+            /**
              * Phases
              */
             phase: 'loading',

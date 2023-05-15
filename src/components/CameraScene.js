@@ -14,6 +14,9 @@ const CameraScene = () => {
     const state = useInteractions((state) => state);
     const phase = useInteractions((state) => state.phase);
 
+    // Animation Time
+    const animationsTime = useInteractions((state) => state.animationsTime);
+
     /**
      * Camera Limitations
      */
@@ -151,7 +154,7 @@ const CameraScene = () => {
                 x: projectsSettings.position.x,
                 y: projectsSettings.position.y,
                 z: projectsSettings.position.z,
-                duration: 1,
+                duration: animationsTime,
                 ease: 'sine',
                 onStart: () => {
                     cameraControlsRef.current.enabled = true;
@@ -172,7 +175,7 @@ const CameraScene = () => {
                 x: projectsSettings.target.x,
                 y: projectsSettings.target.y,
                 z: projectsSettings.target.z,
-                duration: 1,
+                duration: animationsTime,
                 ease: 'sine'
             },
             'toProjects'
@@ -187,7 +190,7 @@ const CameraScene = () => {
                 x: skillsSettings.position.x,
                 y: skillsSettings.position.y,
                 z: skillsSettings.position.z,
-                duration: 1,
+                duration: animationsTime,
                 ease: 'sine',
                 onStart: () => {
                     cameraControlsRef.current.enabled = true;
@@ -208,7 +211,7 @@ const CameraScene = () => {
                 x: skillsSettings.target.x,
                 y: skillsSettings.target.y,
                 z: skillsSettings.target.z,
-                duration: 1,
+                duration: animationsTime,
                 ease: 'sine'
             },
             'toSkills'
@@ -223,7 +226,7 @@ const CameraScene = () => {
                 x: educationSettings.position.x,
                 y: educationSettings.position.y,
                 z: educationSettings.position.z,
-                duration: 1,
+                duration: animationsTime,
                 ease: 'sine',
                 onStart: () => {
                     cameraControlsRef.current.enabled = true;
@@ -244,7 +247,7 @@ const CameraScene = () => {
                 x: educationSettings.target.x,
                 y: educationSettings.target.y,
                 z: educationSettings.target.z,
-                duration: 1,
+                duration: animationsTime,
                 ease: 'sine'
             },
             'toEducation'
@@ -259,7 +262,7 @@ const CameraScene = () => {
                 x: experiencesSettings.position.x,
                 y: experiencesSettings.position.y,
                 z: experiencesSettings.position.z,
-                duration: 1,
+                duration: animationsTime,
                 ease: 'sine',
                 onStart: () => {
                     cameraControlsRef.current.enabled = true;
@@ -280,7 +283,7 @@ const CameraScene = () => {
                 x: experiencesSettings.target.x,
                 y: experiencesSettings.target.y,
                 z: experiencesSettings.target.z,
-                duration: 1,
+                duration: animationsTime,
                 ease: 'sine'
             },
             'toExperiences'
@@ -295,7 +298,7 @@ const CameraScene = () => {
                 x: everisSettings.position.x,
                 y: everisSettings.position.y,
                 z: everisSettings.position.z,
-                duration: 1,
+                duration: animationsTime,
                 ease: 'sine',
                 onStart: () => {
                     cameraControlsRef.current.enabled = true;
@@ -316,7 +319,7 @@ const CameraScene = () => {
                 x: everisSettings.target.x,
                 y: everisSettings.target.y,
                 z: everisSettings.target.z,
-                duration: 1,
+                duration: animationsTime,
                 ease: 'sine'
             },
             'toEveris'
@@ -331,7 +334,7 @@ const CameraScene = () => {
                 x: contactsSettings.position.x,
                 y: contactsSettings.position.y,
                 z: contactsSettings.position.z,
-                duration: 1,
+                duration: animationsTime,
                 ease: 'sine',
                 onStart: () => {
                     cameraControlsRef.current.enabled = true;
@@ -352,7 +355,7 @@ const CameraScene = () => {
                 x: contactsSettings.target.x,
                 y: contactsSettings.target.y,
                 z: contactsSettings.target.z,
-                duration: 1,
+                duration: animationsTime,
                 ease: 'sine'
             },
             'toContacts'
