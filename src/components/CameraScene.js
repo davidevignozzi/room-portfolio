@@ -35,8 +35,8 @@ const CameraScene = () => {
     };
     // * Loading
     const loadingSettings = {
-        position: new THREE.Vector3(0.54, 0.45, 1.2),
-        target: new THREE.Vector3(0.575, 0.4, 1.27)
+        position: new THREE.Vector3(0.505, 0.5, 1.1),
+        target: new THREE.Vector3(0.6, 0.4, 1.3)
     };
     // * Projects
     const projectsSettings = {
@@ -420,6 +420,7 @@ const CameraScene = () => {
             rotateSpeed={0.2}
             zoomSpeed={2}
             enablePan={false}
+            // target={loadingSettings.target}
         />
     );
 };

@@ -11,6 +11,14 @@ const LoadingLaptop = () => {
                         <div className="circle bg-green"></div>
                     </div>
                 </div>
+                <div className="window-content">
+                    <div className="loading-typing-container">
+                        <h1 className="loading-typing-content fonted">
+                            Hi, I'm Davide and I'm a creative front end developer, welcome in my
+                            portfolio.
+                        </h1>
+                    </div>
+                </div>
             </div>
         </section>
     );
