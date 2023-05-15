@@ -1,6 +1,10 @@
 import React from 'react';
+import { TypeAnimation } from 'react-type-animation';
+import useInteractions from '../../utils/stores/useInteractions';
 
 const LoadingLaptop = () => {
+    const state = useInteractions((state) => state);
+
     return (
         <section id="laptop">
             <div className="window">
@@ -12,11 +16,19 @@ const LoadingLaptop = () => {
                     </div>
                 </div>
                 <div className="window-content">
-                    <div className="loading-typing-container">
-                        <h1 className="loading-typing-content fonted">
-                            Hi, I'm Davide and I'm a creative front end developer, welcome in my
-                            portfolio.
-                        </h1>
+                    <div className="loading-typing-container fonted">
+                        <TypeAnimation
+                            sequence={[
+                                `Hi, I'm Davide and I'm a creative front end developer, welcome in my portfolio.`,
+                                1000,
+                                "Hi, I'm Davide and I'm a creative front end developer, welcome in my studio.",
+                                1000,
+                                () => state.start()
+                            ]}
+                            style={{
+                                fontSize: '4rem'
+                            }}
+                        />
                     </div>
                 </div>
             </div>
