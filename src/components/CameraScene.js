@@ -369,10 +369,10 @@ const CameraScene = () => {
                 );
                 cameraControlsRef.current.target = loadingSettings.target;
 
-                // // Start
-                // setTimeout(() => {
-                //     animateStart();
-                // }, 1000);
+                // Start
+                setTimeout(() => {
+                    animateStart();
+                }, 1000);
                 break;
 
             case 'start':

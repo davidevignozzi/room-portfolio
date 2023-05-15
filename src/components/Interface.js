@@ -13,7 +13,7 @@ const Interface = () => {
         'Skills',
         'Education',
         'Experiences',
-        'Everis',
+        // 'Everis',
         'Contacts'
     ];
 
@@ -47,10 +47,10 @@ const Interface = () => {
                 setActivePhase(5);
                 break;
             case 'everis':
-                setActivePhase(6);
+                // setActivePhase(6);
                 break;
             case 'contacts':
-                setActivePhase(7);
+                setActivePhase(6);
                 break;
             default:
                 setActivePhase(1);

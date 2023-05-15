@@ -15,7 +15,7 @@ root.render(
         {/* Canva */}
         <Canvas
             camera={{
-                fov: 40,
+                fov: 35,
                 near: 0.1,
                 far: 15,
                 position: [0, 0, 0]
