@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import Experience from './Experience';
 import './App.css';
 import { Canvas } from '@react-three/fiber';
 import { Leva } from 'leva';
 import Interface from './components/Interface';
+import Pending from './components/HTML/Pending';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -13,6 +14,7 @@ root.render(
         <Leva collapsed />
 
         {/* Canva */}
+
         <Canvas
             camera={{
                 fov: 35,
@@ -21,7 +23,9 @@ root.render(
                 position: [0, 0, 0]
             }}
         >
-            <Experience />
+            <Suspense fallback={<Pending />}>
+                <Experience />
+            </Suspense>
         </Canvas>
         <Interface />
     </React.StrictMode>

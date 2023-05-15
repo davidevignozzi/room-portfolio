@@ -368,12 +368,20 @@ const CameraScene = () => {
     useEffect(() => {
         switch (phase) {
             case 'loading':
+                /**
+                 * Camera Settings for the first POV
+                 */
                 camera.position.set(
                     loadingSettings.position.x,
                     loadingSettings.position.y,
                     loadingSettings.position.z
                 );
                 cameraControlsRef.current.target = loadingSettings.target;
+                break;
+
+            case 'loaded':
+                // Disable camera movements when is loaded
+                cameraControlsRef.current.enabled = false;
                 break;
 
             case 'start':
