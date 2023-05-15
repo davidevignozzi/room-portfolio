@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from '@react-three/drei';
 import { useThree } from '@react-three/fiber';
@@ -373,9 +373,9 @@ const CameraScene = () => {
                 cameraControlsRef.current.target = loadingSettings.target;
 
                 // Start
-                setTimeout(() => {
-                    animateStart();
-                }, 1000);
+                // setTimeout(() => {
+                //     animateStart();
+                // }, 1000);
                 break;
 
             case 'start':
