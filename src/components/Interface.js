@@ -40,9 +40,6 @@ const Interface = () => {
             case 'experiences':
                 setActivePhase(5);
                 break;
-            // case 'everis':
-            //     setActivePhase(6);
-            //     break;
             case 'contacts':
                 setActivePhase(6);
                 break;
@@ -83,8 +80,8 @@ const Interface = () => {
      */
     const nextPhase = () => {
         switch (state.phase) {
+            case 'start':
             case 'explore':
-            case 'Explore':
                 state.projects();
                 break;
             case 'projects':

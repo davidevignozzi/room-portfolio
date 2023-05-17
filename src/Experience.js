@@ -1,5 +1,4 @@
 import { useProgress } from '@react-three/drei';
-import { Perf } from 'r3f-perf';
 import React, { useEffect } from 'react';
 import CameraScene from './components/CameraScene';
 import StaticRoom from './components/StaticRoom';
@@ -20,6 +19,8 @@ const Experience = () => {
         <>
             {/* Debug */}
             {/* <Perf position="top-left" /> */}
+
+            <ambientLight intensity={1.5} />
 
             {/* Camera */}
             <CameraScene />

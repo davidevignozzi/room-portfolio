@@ -99,10 +99,7 @@ const CameraScene = () => {
             z: exploreSettings.position.z,
             delay: 2,
             ease: 'power2.in',
-            duration: 1.5,
-            onComplete: () => {
-                animateToExplore(0);
-            }
+            duration: 1.5
         });
         gsap.to(cameraControlsRef.current.target, {
             x: exploreSettings.target.x,
@@ -115,14 +112,14 @@ const CameraScene = () => {
     };
 
     //* Explore Animation
-    const animateToExplore = (animationSpeed) => {
+    const animateToExplore = () => {
         tl.to(
             camera.position,
             {
                 x: exploreSettings.position.x,
                 y: exploreSettings.position.y,
                 z: exploreSettings.position.z,
-                duration: animationSpeed,
+                duration: 1.5,
                 ease: 'slowmo',
                 onStart: () => {
                     cameraControlsRef.current.enabled = true;
@@ -142,7 +139,7 @@ const CameraScene = () => {
                 x: exploreSettings.target.x,
                 y: exploreSettings.target.y,
                 z: exploreSettings.target.z,
-                duration: animationSpeed,
+                duration: 1.5,
                 ease: 'slowmo'
             },
             'toExplore'
@@ -413,7 +410,7 @@ const CameraScene = () => {
                 break;
 
             default:
-                animateToExplore(1.5);
+                animateToExplore();
                 break;
         }
     }, [phase]);
