@@ -75,12 +75,14 @@ const ProjectsMonitor = () => {
                             </div>
                             <div className="window-content-main-buttons">
                                 <button className="window-content-main-code bg-secondary">
-                                    <a href={selectedProject.code}>
+                                    <a href={selectedProject.code} target="_blank">
                                         <FaGithub /> <span>Source Code</span>
                                     </a>
                                 </button>
                                 <button className="window-content-main-ref bg-blue">
-                                    <a href={selectedProject.ref}>Open It</a>
+                                    <a href={selectedProject.ref} target="_blank">
+                                        Open It
+                                    </a>
                                 </button>
                             </div>
                         </div>
