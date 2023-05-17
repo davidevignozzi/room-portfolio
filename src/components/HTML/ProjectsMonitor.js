@@ -13,44 +13,7 @@ const projectsArray = [
         img: './assets/images/MarbleRace.png',
         description:
             'Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti recusandae ipsam sint blanditiis odit. Libero eius officia perspiciatis iste ipsam quaerat, ex veniam consequatur alias saepe, unde eligendi error iusto? Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti recusandae ipsam sint blanditiis odit. Libero eius officia perspiciatis iste ipsam quaerat, ex veniam consequatur alias saepe, unde eligendi error iusto?',
-        tec: [
-            { name: 'html', bg: '#e34c26', color: '#f0f0f0' },
-            { name: 'css', bg: '#264de4', color: '#f0f0f0' },
-            { name: 'react', bg: '#7cc5d9', color: '#f0f0f0' },
-            { name: 'three', bg: '#6c63eb', color: '#f0f0f0' },
-            { name: 'react-three-fiber', bg: '#6c63eb', color: '#f0f0f0' }
-        ]
-    },
-    {
-        id: 2,
-        name: 'Marble Race',
-        ref: 'https://r3f-marble-race.vercel.app/',
-        img: './assets/images/MarbleRace.png',
-        description:
-            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti recusandae ipsam sint blanditiis odit. Libero eius officia perspiciatis iste ipsam quaerat, ex veniam consequatur alias saepe, unde eligendi error iusto? Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti recusandae ipsam sint blanditiis odit. Libero eius officia perspiciatis iste ipsam quaerat, ex veniam consequatur alias saepe, unde eligendi error iusto?',
-        tec: [
-            { name: 'html', bg: '#e34c26', color: '#f0f0f0' },
-            { name: 'css', bg: '#264de4', color: '#f0f0f0' },
-            { name: 'react', bg: '#7cc5d9', color: '#f0f0f0' },
-            { name: 'three', bg: '#6c63eb', color: '#f0f0f0' },
-            { name: 'react-three-fiber', bg: '#6c63eb', color: '#f0f0f0' }
-        ]
-    },
-    {
-        id: 3,
-
-        name: 'Marble Race',
-        ref: 'https://r3f-marble-race.vercel.app/',
-        img: './assets/images/MarbleRace.png',
-        description:
-            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti recusandae ipsam sint blanditiis odit. Libero eius officia perspiciatis iste ipsam quaerat, ex veniam consequatur alias saepe, unde eligendi error iusto? Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti recusandae ipsam sint blanditiis odit. Libero eius officia perspiciatis iste ipsam quaerat, ex veniam consequatur alias saepe, unde eligendi error iusto?',
-        tec: [
-            { name: 'html', bg: '#e34c26', color: '#f0f0f0' },
-            { name: 'css', bg: '#264de4', color: '#f0f0f0' },
-            { name: 'react', bg: '#7cc5d9', color: '#f0f0f0' },
-            { name: 'three', bg: '#6c63eb', color: '#f0f0f0' },
-            { name: 'react-three-fiber', bg: '#6c63eb', color: '#f0f0f0' }
-        ]
+        tec: ['html', 'css', 'javascript', 'react', 'three', 'react-three-fiber']
     }
 ];
 
@@ -89,29 +52,24 @@ const ProjectsMonitor = () => {
                             </ul>
                         </div>
                         <div className="window-content-main">
-                            <div className="window-content-main-img">
-                                <img src={selectedProject.img} alt={selectedProject.name} />
-                            </div>
-                            <h1 className="window-content-main-title">{selectedProject.name}</h1>
-                            <div className="window-content-main-tags">
-                                <ul>
+                            <div className="window-content-main-img-tag-wrapper">
+                                <div className="window-content-main-img">
+                                    <img src={selectedProject.img} alt={selectedProject.name} />
+                                </div>
+                                <ul className="window-content-main-tags">
                                     {selectedProject.tec.map((tag, index) => {
                                         return (
-                                            <li
-                                                key={index}
-                                                // style={{
-                                                //     color: tag.color,
-                                                //     backgroundColor: tag.bg
-                                                // }}
-                                            >
+                                            <li key={index}>
                                                 <FaTag />
-                                                <span>{tag.name}</span>
+                                                <span>{tag}</span>
                                             </li>
                                         );
                                     })}
                                     <div className="ribbon"></div>
                                 </ul>
+                                <div></div>
                             </div>
+                            <h1 className="window-content-main-title">{selectedProject.name}</h1>
                             <div className="window-content-main-description">
                                 {selectedProject.description}
                             </div>
