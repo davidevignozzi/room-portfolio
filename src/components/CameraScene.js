@@ -35,7 +35,7 @@ const CameraScene = () => {
     };
     // * Loading
     const loadingSettings = {
-        position: new THREE.Vector3(0.515, 0.5, 1.1),
+        position: new THREE.Vector3(0.515, 0.5, 1.12),
         target: new THREE.Vector3(0.6, 0.4, 1.3)
     };
     // * Projects
@@ -107,7 +107,14 @@ const CameraScene = () => {
             z: exploreSettings.target.z,
             delay: 2.25,
             ease: 'power2.in',
-            duration: 1.25
+            duration: 1.25,
+            onComplete: () => {
+                cameraControlsRef.current.enabled = true;
+                cameraControlsRef.current.minPolarAngle = minPolarAngle;
+                cameraControlsRef.current.maxPolarAngle = maxPolarAngle;
+                cameraControlsRef.current.minAzimuthAngle = minAzimuthAngle;
+                cameraControlsRef.current.maxAzimuthAngle = maxAzimuthAngle;
+            }
         });
     };
 

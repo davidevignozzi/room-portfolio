@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { TypeAnimation } from 'react-type-animation';
 import useInteractions from '../../utils/stores/useInteractions';
 
 const LoadingLaptop = () => {
     const state = useInteractions((state) => state);
+    const [isStarted, setIsStarted] = useState(false);
+
+    useEffect(() => {
+        if (state.phase === 'loaded') {
+            setIsStarted(true);
+        }
+    }, [state.phase]);
 
     return (
-        state.phase !== 'loading' && (
+        isStarted && (
             <section id="laptop">
                 <div className="window">
                     <div className="window--tob-bar">
