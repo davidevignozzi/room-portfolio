@@ -10,7 +10,7 @@
         "@testing-library/react": "^13.4.0",
         "@testing-library/user-event": "^13.5.0",
         "@use-gesture/react": "^10.2.24",
-        "gitmoji-cli": "^8.0.0",
+        "gitmoji-cli": "^8.2.2",
         "gsap": "^3.11.4",
         "leva": "^0.9.34",
         "r3f-perf": "^6.6.3",
