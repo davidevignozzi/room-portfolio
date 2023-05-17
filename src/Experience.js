@@ -20,8 +20,6 @@ const Experience = () => {
             {/* Debug */}
             {/* <Perf position="top-left" /> */}
 
-            <ambientLight intensity={1.5} />
-
             {/* Camera */}
             <CameraScene />
 

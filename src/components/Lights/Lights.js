@@ -63,6 +63,8 @@ const Lights = (props) => {
                     />
                 </mesh>
             </group>
+
+            <ambientLight intensity={1.5} />
         </>
     );
 };
