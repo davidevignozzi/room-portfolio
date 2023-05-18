@@ -6,10 +6,66 @@ const TrophiesScene = (props) => {
     const bakedMaterial = props.material;
     const state = useInteractions((state) => state);
 
+    /**
+     * To open a url passed in a new Tab
+     */
+    const openInNewTab = (url) => {
+        window.open(url, '_blank');
+    };
+
+    /**
+     *
+     */
+    const handleTrophies = () => {
+        if (state.phase !== 'education') {
+            state.education();
+        }
+    };
+
+    /**
+     * If the user click on the boolean trophy open Boolean Certificate.
+     */
+    const handleBoolean = () => {
+        if (state.phase === 'education') {
+            openInNewTab(
+                'https://www.credential.net/2241676c-8964-4a36-b184-9fa3721b7abd#gs.fzo2ae'
+            );
+        }
+    };
+
+    /**
+     * If the user click on the ThreejsJourney trophy open ThreejsJourney Certificate.
+     */
+    const handleThreeJsJourney = () => {
+        if (state.phase === 'education') {
+            openInNewTab('https://threejs-journey.com/certificate/view/18301');
+        }
+    };
+
+    /**
+     * If the user click on the Meta trophy open Meta Certificate.
+     */
+    const handleMeta = () => {
+        if (state.phase === 'education') {
+            // openInNewTab('');
+        }
+    };
+
+    /**
+     * If the user click on the Udemy trophy open Udemy Certificate.
+     */
+    const handleUdemy = () => {
+        if (state.phase === 'education') {
+            openInNewTab(
+                'https://www.udemy.com/certificate/UC-f11ac59d-3835-43d8-865b-1cd3ef80651e/?utm_source=sendgrid.com&utm_medium=email&utm_campaign=email'
+            );
+        }
+    };
+
     return (
-        <group onClick={() => state.education()}>
+        <group onClick={handleTrophies}>
             {/* Boolean */}
-            <group>
+            <group onClick={handleBoolean}>
                 <Float floatIntensity={0.05} rotationIntensity={0} speed={7.5}>
                     <mesh
                         geometry={nodes.Boolean.geometry}
@@ -29,7 +85,7 @@ const TrophiesScene = (props) => {
             </group>
 
             {/* ThreeJs Journey */}
-            <group>
+            <group onClick={handleThreeJsJourney}>
                 <Float floatIntensity={0.05} rotationIntensity={0} speed={7.5}>
                     <mesh
                         geometry={nodes.ThreejsJourney.geometry}
@@ -49,7 +105,7 @@ const TrophiesScene = (props) => {
             </group>
 
             {/* Meta */}
-            <group>
+            <group onClick={handleMeta}>
                 <Float floatIntensity={0.05} rotationIntensity={0} speed={7.5}>
                     <mesh
                         geometry={nodes.Meta.geometry}
@@ -69,7 +125,7 @@ const TrophiesScene = (props) => {
             </group>
 
             {/* Udemy */}
-            <group>
+            <group onClick={handleUdemy}>
                 <Float floatIntensity={0.05} rotationIntensity={0} speed={7.5}>
                     <mesh
                         geometry={nodes.Udemy.geometry}
