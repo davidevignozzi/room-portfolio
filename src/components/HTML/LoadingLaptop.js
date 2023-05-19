@@ -10,7 +10,7 @@ const LoadingLaptop = () => {
         if (state.phase === 'loaded') {
             setIsStarted(true);
         }
-    }, [state.phase]);
+    }, [state.phase === 'loaded']);
 
     return (
         isStarted && (

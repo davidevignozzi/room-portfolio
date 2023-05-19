@@ -282,6 +282,7 @@ div::-webkit-scrollbar {
     display: flex;
     justify-content: center;
     align-items: center;
+    pointer-events: none;
 }
 
 /*
@@ -402,8 +403,8 @@ div::-webkit-scrollbar {
     display: flex;
     justify-content: center;
     align-items: center;
-
     font-size: 10rem;
+    pointer-events: none;
 }
 .skills-title {
     margin: 0.3rem 0;

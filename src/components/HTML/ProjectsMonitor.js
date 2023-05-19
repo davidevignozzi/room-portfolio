@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import useInteractions from '../../utils/stores/useInteractions';
 import { FaGithub, FaTag } from 'react-icons/fa';
 
 /**
@@ -19,9 +20,19 @@ const projectsArray = [
 
 const ProjectsMonitor = () => {
     const [selectedProject, setSelectedProject] = useState(projectsArray[0]);
+    const state = useInteractions((state) => state);
+
+    /**
+     * To handle Project Phase
+     */
+    const handlePhase = () => {
+        if (state.phase !== 'projects') {
+            state.projects();
+        }
+    };
 
     return (
-        <section id="monitor" className="fonted">
+        <section id="monitor" className="fonted" onClick={handlePhase}>
             <div className="monitor-window-container">
                 <div className="window">
                     <div className="window--tob-bar">
