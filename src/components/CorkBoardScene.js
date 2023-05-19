@@ -22,7 +22,7 @@ const CorkBoardScene = (props) => {
             />
 
             {/* Everis Badge */}
-            <EverisBadge position={nodes.Badge.position} pin={nodes.Pin} />
+            <EverisBadge pin={nodes.Pin} nodes={nodes.everisBadge} />
         </group>
     );
 };

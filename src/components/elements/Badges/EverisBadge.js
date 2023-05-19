@@ -4,16 +4,18 @@ import useInteractions from '../../../utils/stores/useInteractions';
 
 const EverisBadge = (props) => {
     const { nodes } = useGLTF('./assets/Experiences/everisBadge.glb');
-    const position = props.position;
-    const state = useInteractions((state) => state);
+    const everisBadge = props.nodes;
     const pin = props.pin;
+    const state = useInteractions((state) => state);
 
     return (
         <group>
-            <primitive
-                object={nodes.everisBadge}
-                position={position}
-                scale={0.00068}
+            <mesh
+                geometry={everisBadge.geometry}
+                position={everisBadge.position}
+                rotation={everisBadge.rotation}
+                scale={0.000685}
+                material={nodes.everisBadge.material}
                 onClick={() => {
                     if (state.phase === 'experiences') {
                         state.everis();

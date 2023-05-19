@@ -9,7 +9,7 @@ const Experience = () => {
     const state = useInteractions((state) => state);
 
     useEffect(() => {
-        if (total === 4 && progress === 100) {
+        if (total === 7 && progress === 100) {
             console.log('🚀 Ready');
             state.loaded();
         }
