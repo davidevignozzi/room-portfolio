@@ -1,7 +1,7 @@
 import gsap from 'gsap';
 import React, { useState, useEffect } from 'react';
 import useInteractions from '../utils/stores/useInteractions';
-import { MdHome, MdNavigateNext, MdNavigateBefore } from 'react-icons/md';
+import { MdHome, MdOutlineHome, MdNavigateNext, MdNavigateBefore } from 'react-icons/md';
 
 const Interface = () => {
     const state = useInteractions((state) => state);
@@ -37,6 +37,7 @@ const Interface = () => {
             case 'education':
                 setActivePhase(4);
                 break;
+            case 'everis':
             case 'experiences':
                 setActivePhase(5);
                 break;
@@ -127,14 +128,13 @@ const Interface = () => {
         <div id="interface">
             <div className="controls-wrapper">
                 <button className="home-button" onClick={home}>
-                    <MdHome />
+                    {state.phase === 'explore' ? <MdHome /> : <MdOutlineHome />}
                 </button>
                 <div className="interface-controls">
                     <button className="prev" onClick={prevPhase}>
                         <MdNavigateBefore />
                     </button>
                     <div className="label montserrat">
-                        {/* <b>{phase}</b> */}
                         <div className="label-phase">
                             {phases.map((phase, index) => {
                                 return (
