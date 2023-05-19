@@ -37,13 +37,15 @@ const LaptopScene = (props) => {
             >
                 <Html
                     fixed
+                    prepend
                     center
                     transform
                     occlude
                     parent={screenRef.current}
+                    portal={screenRef.current}
                     zIndexRange={[0, 1]}
                     distanceFactor={0.06}
-                    position={[0, 0, -0.0025]}
+                    position={[-0.0025, 0, -0.0025]}
                     rotation={[0.4875, Math.PI + 0.39, 0.205]}
                 >
                     <LoadingLaptop />

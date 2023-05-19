@@ -437,3 +437,4 @@ const CameraScene = () => {
 export default CameraScene;
 
 // TODO: tl.stop before of each interaction
+// TODO: Drei Resize 'https://github.com/pmndrs/drei#resize'

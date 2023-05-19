@@ -1,119 +1,59 @@
 import create from 'zustand';
-import { subscribeWithSelector } from 'zustand/middleware';
 
-export default create(
-    subscribeWithSelector((set) => {
-        return {
-            /**
-             * Settings
-             *
-             */
-            animationsTime: 1,
+export default create((set) => {
+    return {
+        /**
+         * Settings
+         */
+        animationsTime: 1,
 
-            /**
-             * Phases
-             */
-            phase: 'loading',
+        /**
+         * Phases
+         */
+        phase: 'loading',
 
-            /**
-             * Loaded => Start Animation
-             */
-            loaded: () => {
-                set(() => {
-                    return {
-                        phase: 'loaded'
-                    };
-                });
-            },
+        /**
+         * Loaded => Start Animation Typing
+         */
+        loaded: () => set({ phase: 'loaded' }),
 
-            /**
-             * Start
-             */
-            // When loading end
-            start: () => {
-                set(() => {
-                    return {
-                        phase: 'start'
-                    };
-                });
-            },
+        /**
+         * Start
+         */
+        // When loading (Animation Typing) end
+        start: () => set({ phase: 'start' }),
 
-            /**
-             * Explore
-             */
-            explore: () => {
-                set(() => {
-                    return {
-                        phase: 'explore'
-                    };
-                });
-            },
+        /**
+         * Explore
+         */
+        explore: () => set({ phase: 'explore' }),
 
-            /**
-             * Projects
-             */
-            projects: () => {
-                set(() => {
-                    return {
-                        phase: 'projects'
-                    };
-                });
-            },
+        /**
+         * Projects
+         */
+        projects: () => set({ phase: 'projects' }),
 
-            /**
-             * Skills
-             */
-            skills: () => {
-                set(() => {
-                    return {
-                        phase: 'skills'
-                    };
-                });
-            },
+        /**
+         * Skills
+         */
+        skills: () => set({ phase: 'skills' }),
 
-            /**
-             * Education
-             */
-            education: () => {
-                set(() => {
-                    return {
-                        phase: 'education'
-                    };
-                });
-            },
+        /**
+         * Education
+         */
+        education: () => set({ phase: 'education' }),
 
-            /**
-             * Experiences
-             */
-            experiences: () => {
-                set(() => {
-                    return {
-                        phase: 'experiences'
-                    };
-                });
-            },
+        /**
+         * Experiences
+         */
+        experiences: () => set({ phase: 'experiences' }),
 
-            /**
-             * Experiences
-             */
-            everis: () => {
-                set(() => {
-                    return {
-                        phase: 'everis'
-                    };
-                });
-            },
+        // Everis
+        everis: () => set({ phase: 'everis' }),
 
-            /**
-             * Contacts
-             */
-            contacts: () => {
-                set(() => {
-                    return {
-                        phase: 'contacts'
-                    };
-                });
-            }
-        };
-    })
-);
+        /**
+         * Contacts
+         */
+        contacts: () => set({ phase: 'contacts' })
+    };
+});

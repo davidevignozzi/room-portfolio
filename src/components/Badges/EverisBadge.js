@@ -1,6 +1,5 @@
 import { useGLTF } from '@react-three/drei';
-import React from 'react';
-import useInteractions from '../../../utils/stores/useInteractions';
+import useInteractions from '../../utils/stores/useInteractions';
 
 const EverisBadge = (props) => {
     const { nodes } = useGLTF('./assets/Experiences/everisBadge.glb');

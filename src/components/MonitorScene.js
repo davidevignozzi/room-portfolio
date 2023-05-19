@@ -37,13 +37,14 @@ const MonitorScene = (props) => {
             >
                 <Html
                     fixed
+                    prepend
                     center
                     transform
-                    occlude
                     parent={screenRef.current}
+                    portal={screenRef.current}
                     zIndexRange={[0, 1]}
                     distanceFactor={0.0775}
-                    position={[0, 0.025, -0.004]}
+                    position={[-0.02, 0.03, -0.004]}
                     rotation-y={Math.PI}
                 >
                     <ProjectsMonitor />

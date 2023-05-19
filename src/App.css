@@ -73,24 +73,8 @@ div::-webkit-scrollbar {
 }
 
 /*
- * aptop
- */
-.wrapper-laptop {
-    width: 700px;
-    height: 500px;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/*
  * Monitor - Projects
  */
-.monitorScreen {
-    opacity: 0;
-}
-
 .wrapper-monitor {
     width: 1920px;
     height: 1080px;

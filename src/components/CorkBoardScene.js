@@ -1,5 +1,5 @@
 import useInteractions from '../utils/stores/useInteractions';
-import EverisBadge from './elements/Badges/EverisBadge';
+import EverisBadge from './Badges/EverisBadge';
 
 const CorkBoardScene = (props) => {
     const nodes = props.nodes;

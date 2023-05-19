@@ -17,7 +17,6 @@ const Interface = () => {
         'Skills',
         'Education',
         'Experiences',
-        // 'Everis',
         'Contacts'
     ];
 

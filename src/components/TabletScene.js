@@ -37,10 +37,12 @@ const TabletScene = (props) => {
             >
                 <Html
                     fixed
+                    prepend
                     center
                     transform
                     // occlude
                     parent={screenRef.current}
+                    portal={screenRef.current}
                     zIndexRange={[0, 1]}
                     distanceFactor={0.045}
                     position={[-0.005, -0.0025, -0.005]}
