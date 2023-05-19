@@ -19,13 +19,16 @@ const StaticRoom = () => {
     // console.log('🚀 ~ StaticRoom ~ nodes:', nodes);
 
     /**
-     * Materials
+     * Textures
      */
     // Baked Texture
     const bakedTexture = useTexture('./assets/Textures/baked.jpg');
     bakedTexture.flipY = false;
     bakedTexture.encoding = THREE.sRGBEncoding;
 
+    /**
+     * Materials
+     */
     // Baked Material
     const bakedMaterial = new THREE.MeshBasicMaterial({ map: bakedTexture });
 
