@@ -151,6 +151,8 @@ const ContactsPhone = () => {
                     </p>
                 </div>
             </a>
+
+            <div id="phone-bar"></div>
         </section>
     );
 };

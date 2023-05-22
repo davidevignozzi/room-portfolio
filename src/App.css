@@ -395,7 +395,6 @@ div::-webkit-scrollbar {
     justify-content: center;
     align-items: center;
     font-size: 10rem;
-    pointer-events: none;
     user-select: none;
 }
 .skills-title {
@@ -423,7 +422,7 @@ div::-webkit-scrollbar {
 .skill-icon {
     width: 100%;
     height: 100%;
-    border-radius: 1.5rem;
+    border-radius: 3rem;
     padding: 2rem;
     background-color: white;
 }
@@ -447,12 +446,11 @@ div::-webkit-scrollbar {
     user-select: none;
 }
 .phone-notification {
-    width: 100%;
+    width: 99%;
     height: 12rem;
-    margin: 0 1rem;
+    margin: 0 1rem 1.5rem 1rem;
     background-color: rgba(0, 0, 0, 0.35);
-    border-radius: 1rem;
-    margin-bottom: 1rem;
+    border-radius: 2rem;
     display: flex;
     align-items: center;
     color: #fefefe;
@@ -462,7 +460,7 @@ div::-webkit-scrollbar {
 .phone-notification-icon {
     width: 9rem;
     height: 9rem;
-    margin: 2rem 1rem;
+    margin: 2rem 1.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -473,13 +471,13 @@ div::-webkit-scrollbar {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 1rem;
+    border-radius: 2rem;
     padding: 0.5rem;
     font-size: 6rem;
 }
 .phone-notification-info {
     width: calc(100% - 100px);
-    padding-left: 0.7rem;
+    margin-left: 0.25rem;
 }
 .phone-notification-title {
     font-size: larger;
@@ -489,9 +487,17 @@ div::-webkit-scrollbar {
     font-size: 3rem;
 }
 .phone-notification-description {
-    font-weight: 300;
+    font-weight: 400;
     font-size: 2.5rem;
 }
 .phone-notification-description span {
     font-weight: 600;
+}
+
+#phone-bar {
+    width: 50%;
+    height: 1.25rem;
+    margin-top: 4rem;
+    border-radius: 10rem;
+    background-color: rgba(0, 0, 0, 0.5);
 }

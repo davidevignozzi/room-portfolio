@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from '@react-three/drei';
-import { useFrame, useThree } from '@react-three/fiber';
+import { useThree } from '@react-three/fiber';
 import useInteractions from '../utils/stores/useInteractions';
 import gsap from 'gsap';
 
@@ -421,10 +421,6 @@ const CameraScene = () => {
                 break;
         }
     }, [phase]);
-
-    useFrame(() => {
-        console.log(camera.position.z);
-    });
 
     return (
         <OrbitControls

@@ -1,3 +1,4 @@
+import useInteractions from '../../utils/stores/useInteractions';
 import {
     FaHtml5,
     FaCss3Alt,
@@ -10,6 +11,8 @@ import {
 import { SiTailwindcss, SiJavascript, SiWebgl, SiThreedotjs, SiGreensock } from 'react-icons/si';
 
 const SkillsTablet = () => {
+    const state = useInteractions((state) => state);
+
     /**
      * Array Of Skills
      */
@@ -28,10 +31,21 @@ const SkillsTablet = () => {
         { name: 'Three-Fiber', icon: <SiThreedotjs className="ico" />, color: '#333333' },
         { name: 'Git', icon: <FaGitAlt className="ico" />, color: '#f34f29' }
     ];
+
+    /**
+     * Handle Phase
+     */
+    const handlePhase = () => {
+        if (state.phase !== 'skills') {
+            state.skills();
+        }
+    };
+
     return (
-        <section id="tablet" className="fonted">
+        <section id="tablet" className="fonted" onClick={handlePhase}>
             <h1 className="skills-title"></h1>
-            <div className="skills">
+
+            <div className={`skills ${state.phase === 'skills' || 'no-user-action'}`}>
                 {skillsArray.map((skill, index) => {
                     return (
                         <div key={index} className="skill">
