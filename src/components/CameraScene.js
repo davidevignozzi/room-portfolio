@@ -429,7 +429,7 @@ const CameraScene = () => {
             args={[camera, gl]}
             rotateSpeed={0.2}
             zoomSpeed={2}
-            enablePan={false}
+            // enablePan={false}
         />
     );
 };
