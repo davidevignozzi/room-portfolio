@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from '@react-three/drei';
-import { useThree } from '@react-three/fiber';
+import { useFrame, useThree } from '@react-three/fiber';
 import useInteractions from '../utils/stores/useInteractions';
 import gsap from 'gsap';
 
@@ -422,6 +422,10 @@ const CameraScene = () => {
         }
     }, [phase]);
 
+    useFrame(() => {
+        console.log(camera.position.z);
+    });
+
     return (
         <OrbitControls
             makeDefault
@@ -429,7 +433,8 @@ const CameraScene = () => {
             args={[camera, gl]}
             rotateSpeed={0.2}
             zoomSpeed={2}
-            // enablePan={false}
+            enablePan={false}
+            maxDistance={7.3}
         />
     );
 };
