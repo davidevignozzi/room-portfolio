@@ -124,7 +124,7 @@ const Interface = () => {
     }, [activePhase]);
 
     return (
-        <div id="interface">
+        <div id="interface" className="fonted">
             <div className="controls-wrapper">
                 <button className="home-button" onClick={home}>
                     {state.phase === 'explore' ? <MdHome /> : <MdOutlineHome />}
