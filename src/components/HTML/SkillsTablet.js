@@ -42,13 +42,13 @@ const SkillsTablet = () => {
     };
 
     return (
-        <section id="tablet" className="fonted" onClick={handlePhase}>
+        <section id="tablet" className="fonted centered no-user-select" onClick={handlePhase}>
             <h1 className="skills-title"></h1>
 
-            <div className={`skills ${state.phase === 'skills' || 'no-user-action'}`}>
+            <div className={`skills centered ${state.phase === 'skills' || 'no-pointer-events'}`}>
                 {skillsArray.map((skill, index) => {
                     return (
-                        <div key={index} className="skill">
+                        <div key={index} className="skill centered">
                             <div className="skill-icon" style={{ color: skill.color }}>
                                 {skill.icon}
                             </div>

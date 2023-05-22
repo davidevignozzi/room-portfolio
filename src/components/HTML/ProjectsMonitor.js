@@ -32,7 +32,7 @@ const ProjectsMonitor = () => {
     };
 
     return (
-        <section id="monitor" className="fonted" onClick={handlePhase}>
+        <section id="monitor" className="fonted centered no-user-select" onClick={handlePhase}>
             <div className="monitor-window-container">
                 <div className="window">
                     <div className="window--tob-bar">

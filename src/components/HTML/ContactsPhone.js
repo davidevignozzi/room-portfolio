@@ -41,7 +41,9 @@ const ContactsPhone = () => {
             <a
                 download
                 href={'./assets/downloads/CV-Davide-Vignozzi.pdf'}
-                className={`phone-notification ${state.phase === 'contacts' || 'no-user-action'}`}
+                className={`phone-notification ${
+                    state.phase === 'contacts' || 'no-pointer-events'
+                }`}
             >
                 <div className="phone-notification-icon">
                     <i style={{ backgroundColor: '#ffffff', color: '#333333' }}>
@@ -60,9 +62,11 @@ const ContactsPhone = () => {
             <a
                 href="mailto:davide.vignozzi@gmail.com"
                 target="_blank"
-                className={`phone-notification ${state.phase === 'contacts' || 'no-user-action'}`}
+                className={`phone-notification ${
+                    state.phase === 'contacts' || 'no-pointer-events'
+                }`}
             >
-                <div className="phone-notification-icon">
+                <div className="phone-notification-icon centered">
                     <i style={{ backgroundColor: '#56b3ee' }}>
                         <FiMail />
                     </i>
@@ -78,7 +82,9 @@ const ContactsPhone = () => {
             {/* PHONE NUMBER */}
             <div
                 onClick={showMessage}
-                className={`phone-notification ${state.phase === 'contacts' || 'no-user-action'}`}
+                className={`phone-notification ${
+                    state.phase === 'contacts' || 'no-pointer-events'
+                }`}
             >
                 <div className="phone-notification-icon">
                     <i style={{ backgroundColor: '#2dcb73' }}>
@@ -97,7 +103,7 @@ const ContactsPhone = () => {
             {messageVisible && (
                 <div
                     className={`phone-notification ${
-                        state.phase === 'contacts' || 'no-user-action'
+                        state.phase === 'contacts' || 'no-pointer-events'
                     }`}
                 >
                     <div className="phone-notification-icon">
@@ -118,7 +124,9 @@ const ContactsPhone = () => {
             <a
                 href="https://www.linkedin.com/in/davidevignozzi/"
                 target="_blank"
-                className={`phone-notification ${state.phase === 'contacts' || 'no-user-action'}`}
+                className={`phone-notification ${
+                    state.phase === 'contacts' || 'no-pointer-events'
+                }`}
             >
                 <div className="phone-notification-icon">
                     <i style={{ backgroundColor: '#0077b5' }}>
@@ -137,7 +145,9 @@ const ContactsPhone = () => {
             <a
                 href="https://github.com/davidevignozzi"
                 target="_blank"
-                className={`phone-notification ${state.phase === 'contacts' || 'no-user-action'}`}
+                className={`phone-notification ${
+                    state.phase === 'contacts' || 'no-pointer-events'
+                }`}
             >
                 <div className="phone-notification-icon">
                     <i style={{ backgroundColor: '#ffffff', color: '#333333' }}>
