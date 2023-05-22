@@ -65,7 +65,7 @@ const CameraScene = () => {
     };
     // * Contacts
     const contactsSettings = {
-        position: new THREE.Vector3(-0.38, 0.475, 1.025),
+        position: new THREE.Vector3(-0.39, 0.5, 1.075),
         target: new THREE.Vector3(-0.42, 0.275, 1.15)
     };
 
