@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { Html } from '@react-three/drei';
+import { Html, Plane } from '@react-three/drei';
 import useInteractions from '../utils/stores/useInteractions';
 import ContactsPhone from './HTML/ContactsPhone';
 
@@ -25,7 +25,6 @@ const PhoneScene = (props) => {
 
             {/* PhoneScreen */}
             <mesh
-                ref={screenRef}
                 geometry={nodes.iPhoneScreen.geometry}
                 position={nodes.iPhoneScreen.position}
                 rotation={nodes.iPhoneScreen.rotation}
@@ -34,6 +33,18 @@ const PhoneScene = (props) => {
                 onClick={() => {
                     state.contacts();
                 }}
+            />
+
+            <Plane
+                ref={screenRef}
+                args={[0.05, 0.0975]}
+                position={[
+                    nodes.iPhoneScreen.position.x + 0.0008,
+                    nodes.iPhoneScreen.position.y + 0.0035,
+                    nodes.iPhoneScreen.position.z - 0.002
+                ]}
+                rotation={[Math.PI / 2, Math.PI, -0.331]}
+                material={screenMaterial}
             >
                 <Html
                     fixed
@@ -44,13 +55,12 @@ const PhoneScene = (props) => {
                     parent={screenRef.current}
                     portal={screenRef.current}
                     zIndexRange={[0, 1]}
-                    distanceFactor={0.02}
-                    position={[-0.0041, 0.0035, 0]}
-                    rotation={[Math.PI / 2, Math.PI, -0.331]}
+                    distanceFactor={0.019}
+                    position={[0, -0.005, 0.0025]}
                 >
                     <ContactsPhone />
                 </Html>
-            </mesh>
+            </Plane>
         </group>
     );
 };
