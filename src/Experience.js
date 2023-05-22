@@ -10,7 +10,8 @@ const Experience = () => {
 
     useEffect(() => {
         if (total === 7 && progress === 100) {
-            console.log('🚀 Ready');
+            // console.log('🚀 Ready');
+            // console.log('🚀', total, progress);
             state.loaded();
         }
     }, [total, progress]);
