@@ -38,7 +38,7 @@ const PhoneScene = (props) => {
                 <Html
                     fixed
                     prepend
-                    // occlude
+                    occlude
                     center
                     transform
                     parent={screenRef.current}
