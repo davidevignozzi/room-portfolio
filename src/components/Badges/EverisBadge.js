@@ -30,7 +30,14 @@ const EverisBadge = (props) => {
      * Mouse Leave
      */
     const handleMouseLeave = () => {
-        document.body.style.cursor = 'default';
+        switch (state.phase) {
+            case 'experiences':
+                document.body.style.cursor = 'default';
+                break;
+            case 'everis':
+                document.body.style.cursor = 'default';
+                break;
+        }
     };
 
     return (
