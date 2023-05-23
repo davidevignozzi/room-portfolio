@@ -14,7 +14,6 @@ root.render(
         <Leva collapsed />
 
         {/* Canva */}
-
         <Canvas
             camera={{
                 fov: 35,
@@ -27,6 +26,8 @@ root.render(
                 <Experience />
             </Suspense>
         </Canvas>
+
+        {/* Interface */}
         <Interface />
     </React.StrictMode>
 );
