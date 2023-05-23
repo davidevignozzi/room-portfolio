@@ -7,6 +7,22 @@ const TrophiesScene = (props) => {
     const state = useInteractions((state) => state);
 
     /**
+     * Mouse Enter
+     */
+    const handleMouseEnter = () => {
+        if (state.phase === 'explore') {
+            document.body.style.cursor = 'pointer';
+        }
+    };
+
+    /**
+     * Mouse Leave
+     */
+    const handleMouseLeave = () => {
+        document.body.style.cursor = 'default';
+    };
+
+    /**
      * To open a url passed in a new Tab
      */
     const openInNewTab = (url) => {
@@ -63,7 +79,11 @@ const TrophiesScene = (props) => {
     };
 
     return (
-        <group onClick={handleTrophies}>
+        <group
+            onClick={handleTrophies}
+            onPointerEnter={handleMouseEnter}
+            onPointerLeave={handleMouseLeave}
+        >
             {/* Boolean */}
             <group onClick={handleBoolean}>
                 <Float floatIntensity={0.05} rotationIntensity={0} speed={7.5}>

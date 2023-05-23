@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { FiMail, FiPhoneCall, FiGithub, FiDownload } from 'react-icons/fi';
 import { FaLinkedin } from 'react-icons/fa';
-import useInteractions from '../../utils/stores/useInteractions';
 
 const ContactsPhone = () => {
-    const state = useInteractions((state) => state);
     const [messageVisible, setMessageVisible] = useState(false);
 
     /**
@@ -26,24 +24,13 @@ const ContactsPhone = () => {
         }, 4000);
     };
 
-    /**
-     * Handle Phase
-     */
-    const handlePhase = () => {
-        if (state.phase !== 'contacts') {
-            state.contacts();
-        }
-    };
-
     return (
-        <section id="phone" className="fonted" onClick={handlePhase}>
+        <div className="phone-container">
             {/* CV */}
             <a
                 download
                 href={'./assets/downloads/CV-Davide-Vignozzi.pdf'}
-                className={`phone-notification ${
-                    state.phase === 'contacts' || 'no-pointer-events'
-                }`}
+                className="phone-notification"
             >
                 <div className="phone-notification-icon">
                     <i style={{ backgroundColor: '#ffffff', color: '#333333' }}>
@@ -62,9 +49,7 @@ const ContactsPhone = () => {
             <a
                 href="mailto:davide.vignozzi@gmail.com"
                 target="_blank"
-                className={`phone-notification ${
-                    state.phase === 'contacts' || 'no-pointer-events'
-                }`}
+                className="phone-notification"
             >
                 <div className="phone-notification-icon centered">
                     <i style={{ backgroundColor: '#56b3ee' }}>
@@ -80,12 +65,7 @@ const ContactsPhone = () => {
             </a>
 
             {/* PHONE NUMBER */}
-            <div
-                onClick={showMessage}
-                className={`phone-notification ${
-                    state.phase === 'contacts' || 'no-pointer-events'
-                }`}
-            >
+            <div onClick={showMessage} className="phone-notification">
                 <div className="phone-notification-icon">
                     <i style={{ backgroundColor: '#2dcb73' }}>
                         <FiPhoneCall />
@@ -101,11 +81,7 @@ const ContactsPhone = () => {
 
             {/* MESSAGE => phone number copied */}
             {messageVisible && (
-                <div
-                    className={`phone-notification ${
-                        state.phase === 'contacts' || 'no-pointer-events'
-                    }`}
-                >
+                <div className="phone-notification">
                     <div className="phone-notification-icon">
                         <i style={{ backgroundColor: '#2dcb73' }}>
                             <FiPhoneCall />
@@ -124,9 +100,7 @@ const ContactsPhone = () => {
             <a
                 href="https://www.linkedin.com/in/davidevignozzi/"
                 target="_blank"
-                className={`phone-notification ${
-                    state.phase === 'contacts' || 'no-pointer-events'
-                }`}
+                className="phone-notification"
             >
                 <div className="phone-notification-icon">
                     <i style={{ backgroundColor: '#0077b5' }}>
@@ -145,9 +119,7 @@ const ContactsPhone = () => {
             <a
                 href="https://github.com/davidevignozzi"
                 target="_blank"
-                className={`phone-notification ${
-                    state.phase === 'contacts' || 'no-pointer-events'
-                }`}
+                className="phone-notification"
             >
                 <div className="phone-notification-icon">
                     <i style={{ backgroundColor: '#ffffff', color: '#333333' }}>
@@ -163,7 +135,7 @@ const ContactsPhone = () => {
             </a>
 
             <div id="phone-bar"></div>
-        </section>
+        </div>
     );
 };
 

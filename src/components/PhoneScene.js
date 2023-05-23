@@ -10,17 +10,43 @@ const PhoneScene = (props) => {
     const state = useInteractions((state) => state);
     const screenRef = useRef();
 
+    /**
+     * Mouse Enter
+     */
+    const handleMouseEnter = () => {
+        if (state.phase === 'explore') {
+            document.body.style.cursor = 'pointer';
+        }
+    };
+
+    /**
+     * Mouse Leave
+     */
+    const handleMouseLeave = () => {
+        document.body.style.cursor = 'default';
+    };
+
+    /**
+     * Handle Phase
+     */
+    const handlePhase = () => {
+        if (state.phase !== 'contacts') {
+            state.contacts();
+        }
+    };
+
     return (
-        <group>
+        <group
+            onPointerEnter={handleMouseEnter}
+            onPointerLeave={handleMouseLeave}
+            onClick={handlePhase}
+        >
             <mesh
                 geometry={nodes.iPhone.geometry}
                 position={nodes.iPhone.position}
                 rotation={nodes.iPhone.rotation}
                 scale={nodes.iPhone.scale}
                 material={bakedMaterial}
-                onClick={() => {
-                    state.contacts();
-                }}
             />
 
             {/* PhoneScreen */}
@@ -30,9 +56,6 @@ const PhoneScene = (props) => {
                 rotation={nodes.iPhoneScreen.rotation}
                 scale={nodes.iPhoneScreen.scale}
                 material={screenMaterial}
-                onClick={() => {
-                    state.contacts();
-                }}
             />
 
             <Plane
@@ -56,9 +79,16 @@ const PhoneScene = (props) => {
                     portal={screenRef.current}
                     zIndexRange={[0, 1]}
                     distanceFactor={0.019}
-                    position={[0, -0.005, 0.0025]}
+                    position={[-0.00025, -0.005, 0.0025]}
                 >
-                    <ContactsPhone />
+                    <section
+                        id="phone"
+                        className="fonted"
+                        onMouseOver={handleMouseEnter}
+                        onClick={handlePhase}
+                    >
+                        <ContactsPhone />
+                    </section>
                 </Html>
             </Plane>
         </group>

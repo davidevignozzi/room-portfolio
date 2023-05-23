@@ -6,6 +6,22 @@ const CorkBoardScene = (props) => {
     const bakedMaterial = props.material;
     const state = useInteractions((state) => state);
 
+    /**
+     * Mouse Enter
+     */
+    const handleMouseEnter = () => {
+        if (state.phase === 'explore') {
+            document.body.style.cursor = 'pointer';
+        }
+    };
+
+    /**
+     * Mouse Leave
+     */
+    const handleMouseLeave = () => {
+        document.body.style.cursor = 'default';
+    };
+
     return (
         <group>
             <mesh
@@ -14,6 +30,8 @@ const CorkBoardScene = (props) => {
                 rotation={nodes.CorkBoard.rotation}
                 scale={nodes.CorkBoard.scale}
                 material={bakedMaterial}
+                onPointerEnter={handleMouseEnter}
+                onPointerLeave={handleMouseLeave}
                 onClick={() => {
                     if (state.phase !== 'experiences') {
                         state.experiences();

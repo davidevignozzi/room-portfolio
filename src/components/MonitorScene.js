@@ -7,20 +7,46 @@ const MonitorScene = (props) => {
     const nodes = props.nodes;
     const bakedMaterial = props.material;
     const screenMaterial = props.screenMaterial;
-    const state = useInteractions((state) => state);
     const screenRef = useRef();
+    const state = useInteractions((state) => state);
+
+    /**
+     * Mouse Enter
+     */
+    const handleMouseEnter = () => {
+        if (state.phase === 'explore') {
+            document.body.style.cursor = 'pointer';
+        }
+    };
+
+    /**
+     * Mouse Leave
+     */
+    const handleMouseLeave = () => {
+        document.body.style.cursor = 'default';
+    };
+
+    /**
+     * Handle Phase
+     */
+    const handlePhase = () => {
+        if (state.phase !== 'projects') {
+            state.projects();
+        }
+    };
 
     return (
-        <group>
+        <group
+            onPointerEnter={handleMouseEnter}
+            onPointerLeave={handleMouseLeave}
+            onClick={handlePhase}
+        >
             <mesh
                 geometry={nodes.Monitor.geometry}
                 position={nodes.Monitor.position}
                 rotation={nodes.Monitor.rotation}
                 scale={nodes.Monitor.scale}
                 material={bakedMaterial}
-                onClick={() => {
-                    state.projects();
-                }}
             />
 
             {/* MonitorScreen */}
@@ -31,9 +57,6 @@ const MonitorScene = (props) => {
                 rotation={nodes.MonitorScreen.rotation}
                 scale={nodes.MonitorScreen.scale}
                 material={screenMaterial}
-                onClick={() => {
-                    state.projects();
-                }}
             >
                 <Html
                     fixed
@@ -47,7 +70,14 @@ const MonitorScene = (props) => {
                     position={[-0.02, 0.03, -0.004]}
                     rotation-y={Math.PI}
                 >
-                    <ProjectsMonitor />
+                    <section
+                        id="monitor"
+                        className="fonted centered no-user-select"
+                        onMouseOver={handleMouseEnter}
+                        onClick={handlePhase}
+                    >
+                        <ProjectsMonitor />
+                    </section>
                 </Html>
             </mesh>
         </group>

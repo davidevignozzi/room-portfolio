@@ -393,6 +393,9 @@ div::-webkit-scrollbar {
     height: 1080px;
     font-size: 10rem;
 }
+.skills-container {
+    height: 100%;
+}
 .skills-title {
     margin: 0.3rem 0;
     text-align: center;
@@ -428,12 +431,16 @@ div::-webkit-scrollbar {
 #phone {
     width: 1050px;
     height: 1940px;
+    user-select: none;
+}
+.phone-container {
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: end;
     align-items: center;
     font-size: 10rem;
-    user-select: none;
 }
 .phone-notification {
     width: 99%;

@@ -7,19 +7,48 @@ const EverisBadge = (props) => {
     const pin = props.pin;
     const state = useInteractions((state) => state);
 
+    /**
+     * Mouse Enter
+     */
+    const handleMouseEnter = () => {
+        switch (state.phase) {
+            case 'explore':
+                document.body.style.cursor = 'pointer';
+                break;
+            case 'experiences':
+                document.body.style.cursor = 'zoom-in';
+                break;
+            case 'everis':
+                document.body.style.cursor = 'zoom-out';
+                break;
+            default:
+                break;
+        }
+    };
+
+    /**
+     * Mouse Leave
+     */
+    const handleMouseLeave = () => {
+        document.body.style.cursor = 'default';
+    };
+
     return (
-        <group>
+        <group
+            onPointerEnter={handleMouseEnter}
+            onPointerLeave={handleMouseLeave}
+            onClick={() => {
+                if (state.phase === 'experiences') {
+                    state.everis();
+                }
+            }}
+        >
             <mesh
                 geometry={everisBadge.geometry}
                 position={everisBadge.position}
                 rotation={everisBadge.rotation}
                 scale={0.000685}
                 material={nodes.everisBadge.material}
-                onClick={() => {
-                    if (state.phase === 'experiences') {
-                        state.everis();
-                    }
-                }}
             />
 
             <mesh
@@ -27,11 +56,6 @@ const EverisBadge = (props) => {
                 position={pin.position}
                 rotation={pin.rotation}
                 scale={pin.scale}
-                onClick={() => {
-                    if (state.phase === 'experiences') {
-                        state.everis();
-                    }
-                }}
             >
                 <meshBasicMaterial color="#8f0000" />
             </mesh>
