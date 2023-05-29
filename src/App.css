@@ -61,6 +61,9 @@ a {
 .pointer {
     cursor: pointer;
 }
+.zoomIn {
+    cursor: zoom-in;
+}
 
 html,
 body,
@@ -76,73 +79,6 @@ body,
 
 div::-webkit-scrollbar {
     display: none;
-}
-
-.zoomIn {
-    cursor: zoom-in;
-}
-
-/* Sections */
-.section {
-    z-index: 1;
-    width: 100vw;
-    height: 100vh;
-}
-
-/*
- * Monitor - Projects
- */
-.wrapper-monitor {
-    width: 1920px;
-    height: 1080px;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.folder-closed {
-    margin-left: 100rem;
-    margin-top: 50rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.folder-icon {
-    width: 9rem;
-    height: 9rem;
-}
-
-/*
-* ---------- Pending
-*/
-.pending {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f0f0f0;
-}
-.loader {
-    width: 48px;
-    height: 48px;
-    border: 5px solid #fff;
-    border-bottom-color: #f44a02;
-    border-radius: 50%;
-    display: inline-block;
-    box-sizing: border-box;
-    animation: rotation 1s linear infinite;
-}
-
-@keyframes rotation {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
 }
 
 /* 
@@ -206,6 +142,10 @@ div::-webkit-scrollbar {
     cursor: pointer;
     font-size: 1.75rem;
     font-weight: 700;
+    transition: 0.2s ease;
+}
+.interface-controls button:disabled {
+    transition: 0.2s ease;
 }
 .label {
     width: 10rem;
@@ -233,6 +173,69 @@ div::-webkit-scrollbar {
     font-weight: 700;
     color: #333;
     transition-duration: 0.5s;
+}
+
+/* Sections */
+.section {
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+}
+
+/*
+ * Monitor - Projects
+ */
+.wrapper-monitor {
+    width: 1920px;
+    height: 1080px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.folder-closed {
+    margin-left: 100rem;
+    margin-top: 50rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.folder-icon {
+    width: 9rem;
+    height: 9rem;
+}
+
+/*
+* ---------- Pending
+*/
+.pending {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+}
+.loader {
+    width: 48px;
+    height: 48px;
+    border: 5px solid #fff;
+    border-bottom-color: #f44a02;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 /*
