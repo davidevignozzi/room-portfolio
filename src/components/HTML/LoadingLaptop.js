@@ -35,8 +35,8 @@ const LoadingLaptop = () => {
                                     `Hi, I'm Davide and I'm a creative front end developer, welcome in my portfolio.`,
                                     1000,
                                     "Hi, I'm Davide and I'm a creative front end developer, welcome in my studio.",
-                                    1000
-                                    // () => state.start()
+                                    1000,
+                                    () => state.start()
                                 ]}
                                 style={{
                                     fontSize: '4rem'
