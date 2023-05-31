@@ -20,25 +20,6 @@ const Interface = () => {
         'Contacts'
     ];
 
-    // If an animation is running disable the button
-    const [isAnimationRunning, setIsAnimationRunning] = useState(true);
-
-    // On first render Active buttons
-    useEffect(() => {
-        setTimeout(() => {
-            setIsAnimationRunning(false);
-        }, 12100);
-    }, []);
-
-    // On click on buttons disable buttons for 1sec
-    const handleAnimation = () => {
-        setIsAnimationRunning(true);
-
-        setTimeout(() => {
-            setIsAnimationRunning(false);
-        }, 1000);
-    };
-
     // Index of active phase will be shown in the slider
     const [activePhase, setActivePhase] = useState(phases[0]);
 
@@ -72,8 +53,6 @@ const Interface = () => {
      * onClick on the prev button
      */
     const prevPhase = () => {
-        handleAnimation();
-
         switch (state.phase) {
             case 'projects':
                 state.explore();
@@ -100,8 +79,6 @@ const Interface = () => {
      * onClick on the next button
      */
     const nextPhase = () => {
-        handleAnimation();
-
         switch (state.phase) {
             case 'start':
             case 'explore':
@@ -133,7 +110,6 @@ const Interface = () => {
      */
     const home = () => {
         if (state.phase !== 'explore') {
-            handleAnimation();
             state.explore();
         }
     };
@@ -152,11 +128,11 @@ const Interface = () => {
     return (
         <div id="interface" className="fonted">
             <div className="controls-wrapper">
-                <button className="home-button" disabled={isAnimationRunning} onClick={home}>
+                <button className="home-button" onClick={home}>
                     {state.phase === 'explore' ? <MdHome /> : <MdOutlineHome />}
                 </button>
                 <div className="interface-controls">
-                    <button className="prev" disabled={isAnimationRunning} onClick={prevPhase}>
+                    <button className="prev" onClick={prevPhase}>
                         <MdNavigateBefore />
                     </button>
                     <div className="label montserrat">
@@ -172,7 +148,7 @@ const Interface = () => {
                             })}
                         </div>
                     </div>
-                    <button className="next" disabled={isAnimationRunning} onClick={nextPhase}>
+                    <button className="next" onClick={nextPhase}>
                         <MdNavigateNext />
                     </button>
                 </div>

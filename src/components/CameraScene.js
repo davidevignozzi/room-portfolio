@@ -26,6 +26,35 @@ const CameraScene = () => {
     const maxAzimuthAngle = Math.PI;
 
     /**
+     * To permit animations of the camera
+     */
+    const cameraMovementsOn = () => {
+        cameraControlsRef.current.enabled = true;
+        cameraControlsRef.current.minPolarAngle = 0;
+        cameraControlsRef.current.maxPolarAngle = Math.PI;
+        cameraControlsRef.current.minAzimuthAngle = Infinity;
+        cameraControlsRef.current.maxAzimuthAngle = Infinity;
+    };
+
+    /**
+     * User can control the camera
+     */
+    const cameraMovementsWithLimitations = () => {
+        cameraControlsRef.current.enabled = true;
+        cameraControlsRef.current.minPolarAngle = minPolarAngle;
+        cameraControlsRef.current.maxPolarAngle = maxPolarAngle;
+        cameraControlsRef.current.minAzimuthAngle = minAzimuthAngle;
+        cameraControlsRef.current.maxAzimuthAngle = maxAzimuthAngle;
+    };
+
+    /**
+     * User can not control the camera
+     */
+    const cameraMovementsOff = () => {
+        cameraControlsRef.current.enabled = false;
+    };
+
+    /**
      * Camera setting for each phase
      */
     // * Explore
@@ -72,17 +101,92 @@ const CameraScene = () => {
     /**
      * Animate camera when phase change
      */
-    const tl = gsap.timeline();
-    tl.add('toExplore');
-    tl.add('toProjects');
-    tl.add('toSkills');
-    tl.add('toEducation');
-    tl.add('toExperiences');
-    tl.add('toEveris');
-    tl.add('toContacts');
+    const animateCamera = (positionSettings, targetSettings, duration, ease) => {
+        /**
+         * Stop the animation if is going
+         */
+        gsap.killTweensOf(camera.position);
+        gsap.killTweensOf(cameraControlsRef.current.target);
 
-    // * Start Animation
-    const animateStart = () => {
+        /**
+         * Move the camera
+         */
+        gsap.to(camera.position, {
+            x: positionSettings.x,
+            y: positionSettings.y,
+            z: positionSettings.z,
+            duration: duration,
+            ease: ease,
+            onStart: () => {
+                cameraMovementsOn();
+            },
+            onComplete: () => {
+                cameraMovementsOff();
+            }
+        });
+
+        /**
+         * Set the target of the camera
+         */
+        gsap.to(cameraControlsRef.current.target, {
+            x: targetSettings.x,
+            y: targetSettings.y,
+            z: targetSettings.z,
+            duration: duration,
+            ease: ease
+        });
+    };
+
+    /**
+     * 🏠 Home Animation
+     */
+    const animateToExplore = (
+        positionSettings,
+        targetSettings,
+        delay1,
+        delay2,
+        duration1,
+        duration2,
+        ease
+    ) => {
+        /**
+         * Move the camera
+         */
+        gsap.to(camera.position, {
+            x: positionSettings.x,
+            y: positionSettings.y,
+            z: positionSettings.z,
+            delay: delay1,
+            duration: duration1,
+            ease: ease,
+            onStart: () => {
+                cameraControlsRef.current.enabled = true;
+            },
+            onComplete: () => {
+                cameraMovementsWithLimitations();
+            }
+        });
+
+        /**
+         * Set the target of the camera
+         */
+        gsap.to(cameraControlsRef.current.target, {
+            x: targetSettings.x,
+            y: targetSettings.y,
+            z: targetSettings.z,
+            delay: delay2,
+            duration: duration2,
+            ease: ease
+        });
+    };
+
+    /**
+     * Start Animation
+     */
+    const animateToStart = () => {
+        /**
+         * Little zoom out
+         */
         gsap.to(camera.position, {
             x: loadingSettings.position.x - 0.225,
             y: loadingSettings.position.y + 0.25,
@@ -93,279 +197,16 @@ const CameraScene = () => {
                 cameraControlsRef.current.enabled = true;
             }
         });
-        gsap.to(camera.position, {
-            x: exploreSettings.position.x,
-            y: exploreSettings.position.y,
-            z: exploreSettings.position.z,
-            delay: 2,
-            ease: 'power2.in',
-            duration: 1.5
-        });
-        gsap.to(cameraControlsRef.current.target, {
-            x: exploreSettings.target.x,
-            y: exploreSettings.target.y,
-            z: exploreSettings.target.z,
-            delay: 2.25,
-            ease: 'power2.in',
-            duration: 1.25,
-            onComplete: () => {
-                cameraControlsRef.current.enabled = true;
-                cameraControlsRef.current.minPolarAngle = minPolarAngle;
-                cameraControlsRef.current.maxPolarAngle = maxPolarAngle;
-                cameraControlsRef.current.minAzimuthAngle = minAzimuthAngle;
-                cameraControlsRef.current.maxAzimuthAngle = maxAzimuthAngle;
-            }
-        });
-    };
 
-    //* Explore Animation
-    const animateToExplore = () => {
-        tl.to(
-            camera.position,
-            {
-                x: exploreSettings.position.x,
-                y: exploreSettings.position.y,
-                z: exploreSettings.position.z,
-                duration: 1.5,
-                ease: 'slowmo',
-                onStart: () => {
-                    cameraControlsRef.current.enabled = true;
-                },
-                onComplete: () => {
-                    cameraControlsRef.current.minPolarAngle = minPolarAngle;
-                    cameraControlsRef.current.maxPolarAngle = maxPolarAngle;
-                    cameraControlsRef.current.minAzimuthAngle = minAzimuthAngle;
-                    cameraControlsRef.current.maxAzimuthAngle = maxAzimuthAngle;
-                }
-            },
-            'toExplore'
-        );
-        tl.to(
-            cameraControlsRef.current.target,
-            {
-                x: exploreSettings.target.x,
-                y: exploreSettings.target.y,
-                z: exploreSettings.target.z,
-                duration: 1.5,
-                ease: 'slowmo'
-            },
-            'toExplore'
-        );
-    };
-
-    //* Projects Animation
-    const animateToProjects = () => {
-        tl.to(
-            camera.position,
-            {
-                x: projectsSettings.position.x,
-                y: projectsSettings.position.y,
-                z: projectsSettings.position.z,
-                duration: animationsTime,
-                ease: 'sine',
-                onStart: () => {
-                    cameraControlsRef.current.enabled = true;
-                    cameraControlsRef.current.minPolarAngle = 0;
-                    cameraControlsRef.current.maxPolarAngle = Math.PI;
-                    cameraControlsRef.current.minAzimuthAngle = Infinity;
-                    cameraControlsRef.current.maxAzimuthAngle = Infinity;
-                },
-                onComplete: () => {
-                    cameraControlsRef.current.enabled = false;
-                }
-            },
-            'toProjects'
-        );
-        tl.to(
-            cameraControlsRef.current.target,
-            {
-                x: projectsSettings.target.x,
-                y: projectsSettings.target.y,
-                z: projectsSettings.target.z,
-                duration: animationsTime,
-                ease: 'sine'
-            },
-            'toProjects'
-        );
-    };
-
-    //* Skills Animation
-    const animateToSkills = () => {
-        tl.to(
-            camera.position,
-            {
-                x: skillsSettings.position.x,
-                y: skillsSettings.position.y,
-                z: skillsSettings.position.z,
-                duration: animationsTime,
-                ease: 'sine',
-                onStart: () => {
-                    cameraControlsRef.current.enabled = true;
-                    cameraControlsRef.current.minPolarAngle = 0;
-                    cameraControlsRef.current.maxPolarAngle = Math.PI;
-                    cameraControlsRef.current.minAzimuthAngle = Infinity;
-                    cameraControlsRef.current.maxAzimuthAngle = Infinity;
-                },
-                onComplete: () => {
-                    cameraControlsRef.current.enabled = false;
-                }
-            },
-            'toSkills'
-        );
-        tl.to(
-            cameraControlsRef.current.target,
-            {
-                x: skillsSettings.target.x,
-                y: skillsSettings.target.y,
-                z: skillsSettings.target.z,
-                duration: animationsTime,
-                ease: 'sine'
-            },
-            'toSkills'
-        );
-    };
-
-    //* Education Animation
-    const animateToEducation = () => {
-        tl.to(
-            camera.position,
-            {
-                x: educationSettings.position.x,
-                y: educationSettings.position.y,
-                z: educationSettings.position.z,
-                duration: animationsTime,
-                ease: 'sine',
-                onStart: () => {
-                    cameraControlsRef.current.enabled = true;
-                    cameraControlsRef.current.minPolarAngle = 0;
-                    cameraControlsRef.current.maxPolarAngle = Math.PI;
-                    cameraControlsRef.current.minAzimuthAngle = Infinity;
-                    cameraControlsRef.current.maxAzimuthAngle = Infinity;
-                },
-                onComplete: () => {
-                    cameraControlsRef.current.enabled = false;
-                }
-            },
-            'toEducation'
-        );
-        tl.to(
-            cameraControlsRef.current.target,
-            {
-                x: educationSettings.target.x,
-                y: educationSettings.target.y,
-                z: educationSettings.target.z,
-                duration: animationsTime,
-                ease: 'sine'
-            },
-            'toEducation'
-        );
-    };
-
-    //* Experiences Animation
-    const animateToExperiences = () => {
-        tl.to(
-            camera.position,
-            {
-                x: experiencesSettings.position.x,
-                y: experiencesSettings.position.y,
-                z: experiencesSettings.position.z,
-                duration: animationsTime,
-                ease: 'sine',
-                onStart: () => {
-                    cameraControlsRef.current.enabled = true;
-                    cameraControlsRef.current.minPolarAngle = 0;
-                    cameraControlsRef.current.maxPolarAngle = Math.PI;
-                    cameraControlsRef.current.minAzimuthAngle = Infinity;
-                    cameraControlsRef.current.maxAzimuthAngle = Infinity;
-                },
-                onComplete: () => {
-                    cameraControlsRef.current.enabled = false;
-                }
-            },
-            'toExperiences'
-        );
-        tl.to(
-            cameraControlsRef.current.target,
-            {
-                x: experiencesSettings.target.x,
-                y: experiencesSettings.target.y,
-                z: experiencesSettings.target.z,
-                duration: animationsTime,
-                ease: 'sine'
-            },
-            'toExperiences'
-        );
-    };
-
-    //* Everis Animation
-    const animateToEveris = () => {
-        tl.to(
-            camera.position,
-            {
-                x: everisSettings.position.x,
-                y: everisSettings.position.y,
-                z: everisSettings.position.z,
-                duration: animationsTime,
-                ease: 'sine',
-                onStart: () => {
-                    cameraControlsRef.current.enabled = true;
-                    cameraControlsRef.current.minPolarAngle = 0;
-                    cameraControlsRef.current.maxPolarAngle = Math.PI;
-                    cameraControlsRef.current.minAzimuthAngle = Infinity;
-                    cameraControlsRef.current.maxAzimuthAngle = Infinity;
-                },
-                onComplete: () => {
-                    cameraControlsRef.current.enabled = false;
-                }
-            },
-            'toEveris'
-        );
-        tl.to(
-            cameraControlsRef.current.target,
-            {
-                x: everisSettings.target.x,
-                y: everisSettings.target.y,
-                z: everisSettings.target.z,
-                duration: animationsTime,
-                ease: 'sine'
-            },
-            'toEveris'
-        );
-    };
-
-    //* Contacts Animation
-    const animateToContacts = () => {
-        tl.to(
-            camera.position,
-            {
-                x: contactsSettings.position.x,
-                y: contactsSettings.position.y,
-                z: contactsSettings.position.z,
-                duration: animationsTime,
-                ease: 'sine',
-                onStart: () => {
-                    cameraControlsRef.current.enabled = true;
-                    cameraControlsRef.current.minPolarAngle = 0;
-                    cameraControlsRef.current.maxPolarAngle = Math.PI;
-                    cameraControlsRef.current.minAzimuthAngle = Infinity;
-                    cameraControlsRef.current.maxAzimuthAngle = Infinity;
-                },
-                onComplete: () => {
-                    cameraControlsRef.current.enabled = false;
-                }
-            },
-            'toContacts'
-        );
-        tl.to(
-            cameraControlsRef.current.target,
-            {
-                x: contactsSettings.target.x,
-                y: contactsSettings.target.y,
-                z: contactsSettings.target.z,
-                duration: animationsTime,
-                ease: 'sine'
-            },
-            'toContacts'
+        // Home animation
+        animateToExplore(
+            exploreSettings.position,
+            exploreSettings.target,
+            2,
+            2.25,
+            1.5,
+            1.25,
+            'power2.in'
         );
     };
 
@@ -389,35 +230,73 @@ const CameraScene = () => {
                 break;
 
             case 'start':
-                animateStart();
+                animateToStart();
                 break;
 
             case 'projects':
-                animateToProjects();
+                animateCamera(
+                    projectsSettings.position,
+                    projectsSettings.target,
+                    animationsTime,
+                    'sine'
+                );
                 break;
 
             case 'skills':
-                animateToSkills();
+                animateCamera(
+                    skillsSettings.position,
+                    skillsSettings.target,
+                    animationsTime,
+                    'sine'
+                );
                 break;
 
             case 'education':
-                animateToEducation();
+                animateCamera(
+                    educationSettings.position,
+                    educationSettings.target,
+                    animationsTime,
+                    'sine'
+                );
                 break;
 
             case 'experiences':
-                animateToExperiences();
+                animateCamera(
+                    experiencesSettings.position,
+                    experiencesSettings.target,
+                    animationsTime,
+                    'sine'
+                );
                 break;
 
             case 'everis':
-                animateToEveris();
+                animateCamera(
+                    everisSettings.position,
+                    everisSettings.target,
+                    animationsTime,
+                    'sine'
+                );
                 break;
 
             case 'contacts':
-                animateToContacts();
+                animateCamera(
+                    contactsSettings.position,
+                    contactsSettings.target,
+                    animationsTime,
+                    'sine'
+                );
                 break;
 
             default:
-                animateToExplore();
+                animateToExplore(
+                    exploreSettings.position,
+                    exploreSettings.target,
+                    0,
+                    0,
+                    1.5,
+                    1.5,
+                    'slowmo'
+                );
                 break;
         }
     }, [phase]);
