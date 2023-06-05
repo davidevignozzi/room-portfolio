@@ -1,5 +1,5 @@
-import { useFrame } from '@react-three/fiber';
 import { useRef } from 'react';
+import { useFrame } from '@react-three/fiber';
 
 const RodeCasterLights = (props) => {
     const nodes = props.nodes;

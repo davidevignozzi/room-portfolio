@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import * as THREE from 'three';
-import { Center, useGLTF, useTexture } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
+import { Center, useGLTF, useTexture } from '@react-three/drei';
 import Smoke from './Smoke';
 import LaptopScene from './LaptopScene';
 import MonitorScene from './MonitorScene';

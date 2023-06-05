@@ -1,10 +1,10 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
-import { OrbitControls } from '@react-three/drei';
 import { useThree } from '@react-three/fiber';
-import useInteractions from '../utils/stores/useInteractions';
+import { OrbitControls } from '@react-three/drei';
 import gsap from 'gsap';
-import { isBrowser, isMobile, isTablet } from 'react-device-detect';
+import useInteractions from '../utils/stores/useInteractions';
+import { isBrowser } from 'react-device-detect';
 
 const CameraScene = () => {
     // Camera

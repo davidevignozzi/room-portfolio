@@ -1,6 +1,6 @@
+import { useRef } from 'react';
 import { Html } from '@react-three/drei';
 import { isBrowser } from 'react-device-detect';
-import { useRef } from 'react';
 import useInteractions from '../utils/stores/useInteractions';
 import SkillsTablet from './HTML/SkillsTablet';
 
