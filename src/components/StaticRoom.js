@@ -34,6 +34,7 @@ const StaticRoom = () => {
 
     // Screen Material
     const screenMaterial = new THREE.MeshBasicMaterial({ color: '#D4CBB3' });
+    const screenOffMaterial = new THREE.MeshBasicMaterial({ color: '#333333' });
 
     /**
      * Ref
@@ -96,6 +97,7 @@ const StaticRoom = () => {
                     nodes={nodes}
                     material={bakedMaterial}
                     screenMaterial={screenMaterial}
+                    screenOffMaterial={screenOffMaterial}
                 />
 
                 {/* Monitor => Projects */}
@@ -103,6 +105,7 @@ const StaticRoom = () => {
                     nodes={nodes}
                     material={bakedMaterial}
                     screenMaterial={screenMaterial}
+                    screenOffMaterial={screenOffMaterial}
                 />
 
                 {/* Tablet => Skills */}
@@ -110,6 +113,7 @@ const StaticRoom = () => {
                     nodes={nodes}
                     material={bakedMaterial}
                     screenMaterial={screenMaterial}
+                    screenOffMaterial={screenOffMaterial}
                 />
 
                 {/* Phone => Contacts */}
@@ -117,6 +121,7 @@ const StaticRoom = () => {
                     nodes={nodes}
                     material={bakedMaterial}
                     screenMaterial={screenMaterial}
+                    screenOffMaterial={screenOffMaterial}
                 />
 
                 {/* Trophies => Education */}

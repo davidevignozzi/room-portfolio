@@ -1,4 +1,5 @@
 import { Html } from '@react-three/drei';
+import { isBrowser } from 'react-device-detect';
 import { useRef } from 'react';
 import useInteractions from '../utils/stores/useInteractions';
 import SkillsTablet from './HTML/SkillsTablet';
@@ -7,6 +8,7 @@ const TabletScene = (props) => {
     const nodes = props.nodes;
     const bakedMaterial = props.material;
     const screenMaterial = props.screenMaterial;
+    const screenOffMaterial = props.screenOffMaterial;
     const state = useInteractions((state) => state);
     const screenRef = useRef();
 
@@ -56,29 +58,31 @@ const TabletScene = (props) => {
                 position={nodes.WacomCintiqScreen.position}
                 rotation={nodes.WacomCintiqScreen.rotation}
                 scale={nodes.WacomCintiqScreen.scale}
-                material={screenMaterial}
+                material={isBrowser ? screenMaterial : screenOffMaterial}
             >
-                <Html
-                    fixed
-                    prepend
-                    center
-                    transform
-                    parent={screenRef.current}
-                    portal={screenRef.current}
-                    zIndexRange={[0, 1]}
-                    distanceFactor={0.045}
-                    position={[-0.005, -0.0025, -0.005]}
-                    rotation={[0.8, Math.PI, 0]}
-                >
-                    <section
-                        id="tablet"
-                        className="fonted centered no-user-select"
-                        onMouseOver={handleMouseEnter}
-                        onClick={handlePhase}
+                {isBrowser && (
+                    <Html
+                        fixed
+                        prepend
+                        center
+                        transform
+                        parent={screenRef.current}
+                        portal={screenRef.current}
+                        zIndexRange={[0, 1]}
+                        distanceFactor={0.045}
+                        position={[-0.005, -0.0025, -0.005]}
+                        rotation={[0.8, Math.PI, 0]}
                     >
-                        <SkillsTablet />
-                    </section>
-                </Html>
+                        <section
+                            id="tablet"
+                            className="fonted centered no-user-select"
+                            onMouseOver={handleMouseEnter}
+                            onClick={handlePhase}
+                        >
+                            <SkillsTablet />
+                        </section>
+                    </Html>
+                )}
             </mesh>
         </group>
     );

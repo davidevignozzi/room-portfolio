@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { Html, Plane } from '@react-three/drei';
+import { isBrowser } from 'react-device-detect';
 import useInteractions from '../utils/stores/useInteractions';
 import ContactsPhone from './HTML/ContactsPhone';
 
@@ -7,6 +8,7 @@ const PhoneScene = (props) => {
     const nodes = props.nodes;
     const bakedMaterial = props.material;
     const screenMaterial = props.screenMaterial;
+    const screenOffMaterial = props.screenOffMaterial;
     const state = useInteractions((state) => state);
     const screenRef = useRef();
 
@@ -55,42 +57,45 @@ const PhoneScene = (props) => {
                 position={nodes.iPhoneScreen.position}
                 rotation={nodes.iPhoneScreen.rotation}
                 scale={nodes.iPhoneScreen.scale}
-                material={screenMaterial}
+                material={isBrowser ? screenMaterial : screenOffMaterial}
             />
 
-            <Plane
-                ref={screenRef}
-                args={[0.05, 0.0975]}
-                position={[
-                    nodes.iPhoneScreen.position.x + 0.0008,
-                    nodes.iPhoneScreen.position.y + 0.0035,
-                    nodes.iPhoneScreen.position.z - 0.002
-                ]}
-                rotation={[Math.PI / 2, Math.PI, -0.331]}
-                material={screenMaterial}
-            >
-                <Html
-                    fixed
-                    prepend
-                    occlude
-                    center
-                    transform
-                    parent={screenRef.current}
-                    portal={screenRef.current}
-                    zIndexRange={[0, 1]}
-                    distanceFactor={0.019}
-                    position={[-0.00025, -0.005, 0.0025]}
+            {/* Visible only in Desktop mode */}
+            {isBrowser && (
+                <Plane
+                    ref={screenRef}
+                    args={[0.05, 0.0975]}
+                    position={[
+                        nodes.iPhoneScreen.position.x + 0.0008,
+                        nodes.iPhoneScreen.position.y + 0.0035,
+                        nodes.iPhoneScreen.position.z - 0.002
+                    ]}
+                    rotation={[Math.PI / 2, Math.PI, -0.331]}
+                    material={screenMaterial}
                 >
-                    <section
-                        id="phone"
-                        className="fonted"
-                        onMouseOver={handleMouseEnter}
-                        onClick={handlePhase}
+                    <Html
+                        fixed
+                        prepend
+                        occlude
+                        center
+                        transform
+                        parent={screenRef.current}
+                        portal={screenRef.current}
+                        zIndexRange={[0, 1]}
+                        distanceFactor={0.019}
+                        position={[-0.00025, -0.005, 0.0025]}
                     >
-                        <ContactsPhone />
-                    </section>
-                </Html>
-            </Plane>
+                        <section
+                            id="phone"
+                            className="fonted"
+                            onMouseOver={handleMouseEnter}
+                            onClick={handlePhase}
+                        >
+                            <ContactsPhone />
+                        </section>
+                    </Html>
+                </Plane>
+            )}
         </group>
     );
 };

@@ -2,6 +2,7 @@ import gsap from 'gsap';
 import React, { useState, useEffect } from 'react';
 import useInteractions from '../utils/stores/useInteractions';
 import { MdHome, MdOutlineHome, MdNavigateNext, MdNavigateBefore } from 'react-icons/md';
+import { BrowserView } from 'react-device-detect';
 
 const Interface = () => {
     const state = useInteractions((state) => state);
@@ -126,40 +127,44 @@ const Interface = () => {
     }, [activePhase]);
 
     return (
-        <div id="interface" className="fonted">
-            <div className="controls-wrapper">
-                <button className="home-button" onClick={home}>
-                    {state.phase === 'explore' ||
-                    state.phase === 'loaded' ||
-                    state.phase === 'start' ? (
-                        <MdHome />
-                    ) : (
-                        <MdOutlineHome />
-                    )}
-                </button>
-                <div className="interface-controls">
-                    <button className="prev" onClick={prevPhase}>
-                        <MdNavigateBefore />
+        <BrowserView>
+            <div id="interface" className="fonted">
+                <div className="controls-wrapper">
+                    <button className="home-button" onClick={home}>
+                        {state.phase === 'explore' ||
+                        state.phase === 'loaded' ||
+                        state.phase === 'start' ? (
+                            <MdHome />
+                        ) : (
+                            <MdOutlineHome />
+                        )}
                     </button>
-                    <div className="label montserrat">
-                        <div className="label-phase">
-                            {phases.map((phase, index) => {
-                                return (
-                                    <div key={index} className="label-phase-content">
-                                        <span className={` ${activePhase === index && 'active'}`}>
-                                            {phase}
-                                        </span>
-                                    </div>
-                                );
-                            })}
+                    <div className="interface-controls">
+                        <button className="prev" onClick={prevPhase}>
+                            <MdNavigateBefore />
+                        </button>
+                        <div className="label montserrat">
+                            <div className="label-phase">
+                                {phases.map((phase, index) => {
+                                    return (
+                                        <div key={index} className="label-phase-content">
+                                            <span
+                                                className={` ${activePhase === index && 'active'}`}
+                                            >
+                                                {phase}
+                                            </span>
+                                        </div>
+                                    );
+                                })}
+                            </div>
                         </div>
+                        <button className="next" onClick={nextPhase}>
+                            <MdNavigateNext />
+                        </button>
                     </div>
-                    <button className="next" onClick={nextPhase}>
-                        <MdNavigateNext />
-                    </button>
                 </div>
             </div>
-        </div>
+        </BrowserView>
     );
 };
 

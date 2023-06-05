@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { Html } from '@react-three/drei';
+import { isBrowser } from 'react-device-detect';
 import useInteractions from '../utils/stores/useInteractions';
 import ProjectsMonitor from './HTML/ProjectsMonitor';
 
@@ -7,6 +8,7 @@ const MonitorScene = (props) => {
     const nodes = props.nodes;
     const bakedMaterial = props.material;
     const screenMaterial = props.screenMaterial;
+    const screenOffMaterial = props.screenOffMaterial;
     const screenRef = useRef();
     const state = useInteractions((state) => state);
 
@@ -56,29 +58,32 @@ const MonitorScene = (props) => {
                 position={nodes.MonitorScreen.position}
                 rotation={nodes.MonitorScreen.rotation}
                 scale={nodes.MonitorScreen.scale}
-                material={screenMaterial}
+                material={isBrowser ? screenMaterial : screenOffMaterial}
             >
-                <Html
-                    fixed
-                    prepend
-                    center
-                    transform
-                    parent={screenRef.current}
-                    portal={screenRef.current}
-                    zIndexRange={[0, 1]}
-                    distanceFactor={0.0775}
-                    position={[-0.02, 0.03, -0.004]}
-                    rotation-y={Math.PI}
-                >
-                    <section
-                        id="monitor"
-                        className="fonted centered no-user-select"
-                        onMouseOver={handleMouseEnter}
-                        onClick={handlePhase}
+                {/* Visible only in Desktop mode */}
+                {isBrowser && (
+                    <Html
+                        fixed
+                        prepend
+                        center
+                        transform
+                        parent={screenRef.current}
+                        portal={screenRef.current}
+                        zIndexRange={[0, 1]}
+                        distanceFactor={0.0775}
+                        position={[-0.02, 0.03, -0.004]}
+                        rotation-y={Math.PI}
                     >
-                        <ProjectsMonitor />
-                    </section>
-                </Html>
+                        <section
+                            id="monitor"
+                            className="fonted centered no-user-select"
+                            onMouseOver={handleMouseEnter}
+                            onClick={handlePhase}
+                        >
+                            <ProjectsMonitor />
+                        </section>
+                    </Html>
+                )}
             </mesh>
         </group>
     );
