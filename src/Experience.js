@@ -1,6 +1,8 @@
-import { useProgress } from '@react-three/drei';
+import { Html, useProgress } from '@react-three/drei';
 import React, { useEffect } from 'react';
+import { isBrowser } from 'react-device-detect';
 import CameraScene from './components/CameraScene';
+import MobileModal from './components/Modal/MobileModal';
 import StaticRoom from './components/StaticRoom';
 import useInteractions from './utils/stores/useInteractions';
 
