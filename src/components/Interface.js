@@ -129,7 +129,13 @@ const Interface = () => {
         <div id="interface" className="fonted">
             <div className="controls-wrapper">
                 <button className="home-button" onClick={home}>
-                    {state.phase === 'explore' ? <MdHome /> : <MdOutlineHome />}
+                    {state.phase === 'explore' ||
+                    state.phase === 'loaded' ||
+                    state.phase === 'start' ? (
+                        <MdHome />
+                    ) : (
+                        <MdOutlineHome />
+                    )}
                 </button>
                 <div className="interface-controls">
                     <button className="prev" onClick={prevPhase}>
