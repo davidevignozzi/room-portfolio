@@ -63,6 +63,11 @@ const CameraScene = () => {
         position: new THREE.Vector3(4, 3.5, -5),
         target: new THREE.Vector3(0, 0, 0)
     };
+    // * Explore MOBILE
+    const exploreMobileSettings = {
+        position: new THREE.Vector3(10, 6, -10),
+        target: new THREE.Vector3(0, 0, 0)
+    };
     // * Loading
     const loadingSettings = {
         position: new THREE.Vector3(0.515, 0.5, 1.12),
@@ -217,24 +222,35 @@ const CameraScene = () => {
                 /**
                  * Camera Settings for the first POV
                  */
-                camera.position.set(
-                    loadingSettings.position.x,
-                    loadingSettings.position.y,
-                    loadingSettings.position.z
-                );
-                cameraControlsRef.current.target = loadingSettings.target;
+                if (isBrowser) {
+                    // BROWSER
+                    camera.position.set(
+                        loadingSettings.position.x,
+                        loadingSettings.position.y,
+                        loadingSettings.position.z
+                    );
+                    cameraControlsRef.current.target = loadingSettings.target;
+                } else {
+                    // MOBILE
+                    camera.position.set(
+                        exploreMobileSettings.position.x,
+                        exploreMobileSettings.position.y,
+                        exploreMobileSettings.position.z
+                    );
+                    cameraControlsRef.current.target = exploreMobileSettings.target;
+                }
                 break;
 
             case 'loaded':
                 // Disable camera movements when is loaded
                 if (isBrowser) {
+                    // BROWSER
                     cameraControlsRef.current.enabled = false;
+                } else {
+                    // MOBILE
+                    cameraMovementsWithLimitations();
                 }
 
-                // In mobile view Start with no Animation
-                if (isMobile || isTablet) {
-                    state.start();
-                }
                 break;
 
             case 'start':
@@ -317,7 +333,7 @@ const CameraScene = () => {
             rotateSpeed={0.2}
             zoomSpeed={2}
             enablePan={false}
-            maxDistance={7.3}
+            maxDistance={isBrowser ? 7.3 : 15}
         />
     );
 };
