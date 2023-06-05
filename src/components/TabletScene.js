@@ -32,8 +32,10 @@ const TabletScene = (props) => {
      * Handle Phase
      */
     const handlePhase = () => {
-        if (state.phase !== 'skills') {
-            state.skills();
+        if (isBrowser) {
+            if (state.phase !== 'skills') {
+                state.skills();
+            }
         }
     };
 

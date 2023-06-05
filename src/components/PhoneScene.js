@@ -32,8 +32,10 @@ const PhoneScene = (props) => {
      * Handle Phase
      */
     const handlePhase = () => {
-        if (state.phase !== 'contacts') {
-            state.contacts();
+        if (isBrowser) {
+            if (state.phase !== 'contacts') {
+                state.contacts();
+            }
         }
     };
 

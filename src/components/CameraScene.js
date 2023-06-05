@@ -4,6 +4,7 @@ import { OrbitControls } from '@react-three/drei';
 import { useThree } from '@react-three/fiber';
 import useInteractions from '../utils/stores/useInteractions';
 import gsap from 'gsap';
+import { isBrowser, isMobile, isTablet } from 'react-device-detect';
 
 const CameraScene = () => {
     // Camera
@@ -226,7 +227,14 @@ const CameraScene = () => {
 
             case 'loaded':
                 // Disable camera movements when is loaded
-                cameraControlsRef.current.enabled = false;
+                if (isBrowser) {
+                    cameraControlsRef.current.enabled = false;
+                }
+
+                // In mobile view Start with no Animation
+                if (isMobile || isTablet) {
+                    state.start();
+                }
                 break;
 
             case 'start':

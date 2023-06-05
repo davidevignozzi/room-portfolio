@@ -1,3 +1,4 @@
+import { isBrowser } from 'react-device-detect';
 import useInteractions from '../utils/stores/useInteractions';
 import EverisBadge from './Badges/EverisBadge';
 
@@ -22,6 +23,17 @@ const CorkBoardScene = (props) => {
         document.body.style.cursor = 'default';
     };
 
+    /**
+     * Handle Phase
+     */
+    const handlePhase = () => {
+        if (isBrowser) {
+            if (state.phase !== 'experiences') {
+                state.experiences();
+            }
+        }
+    };
+
     return (
         <group>
             <mesh
@@ -32,11 +44,7 @@ const CorkBoardScene = (props) => {
                 material={bakedMaterial}
                 onPointerEnter={handleMouseEnter}
                 onPointerLeave={handleMouseLeave}
-                onClick={() => {
-                    if (state.phase !== 'experiences') {
-                        state.experiences();
-                    }
-                }}
+                onClick={handlePhase}
             />
 
             {/* Everis Badge */}

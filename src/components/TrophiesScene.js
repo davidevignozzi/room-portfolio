@@ -1,4 +1,5 @@
 import { Float } from '@react-three/drei';
+import { isBrowser } from 'react-device-detect';
 import useInteractions from '../utils/stores/useInteractions';
 
 const TrophiesScene = (props) => {
@@ -23,19 +24,21 @@ const TrophiesScene = (props) => {
     };
 
     /**
+     * Handle Phase
+     */
+    const handleTrophies = () => {
+        if (isBrowser) {
+            if (state.phase !== 'education') {
+                state.education();
+            }
+        }
+    };
+
+    /**
      * To open a url passed in a new Tab
      */
     const openInNewTab = (url) => {
         window.open(url, '_blank');
-    };
-
-    /**
-     *
-     */
-    const handleTrophies = () => {
-        if (state.phase !== 'education') {
-            state.education();
-        }
     };
 
     /**

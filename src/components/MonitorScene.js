@@ -32,8 +32,10 @@ const MonitorScene = (props) => {
      * Handle Phase
      */
     const handlePhase = () => {
-        if (state.phase !== 'projects') {
-            state.projects();
+        if (isBrowser) {
+            if (state.phase !== 'projects') {
+                state.projects();
+            }
         }
     };
 
