@@ -6,8 +6,8 @@ import { Canvas } from '@react-three/fiber';
 import { Leva } from 'leva';
 import Interface from './components/Interface';
 import Pending from './components/HTML/Pending';
-import { isBrowser } from 'react-device-detect';
 import MobileModal from './components/Modal/MobileModal';
+import { Loader } from '@react-three/drei';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
