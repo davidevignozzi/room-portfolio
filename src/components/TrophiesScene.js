@@ -11,7 +11,7 @@ const TrophiesScene = (props) => {
      * Mouse Enter
      */
     const handleMouseEnter = () => {
-        if (state.phase === 'explore' || state.phase === 'education') {
+        if (state.phase === 'explore' || state.phase === 'start' || state.phase === 'education') {
             document.body.style.cursor = 'pointer';
         }
     };

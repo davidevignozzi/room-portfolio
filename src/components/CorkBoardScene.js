@@ -11,7 +11,7 @@ const CorkBoardScene = (props) => {
      * Mouse Enter
      */
     const handleMouseEnter = () => {
-        if (state.phase === 'explore') {
+        if (state.phase === 'explore' || state.phase === 'start') {
             document.body.style.cursor = 'pointer';
         }
     };
