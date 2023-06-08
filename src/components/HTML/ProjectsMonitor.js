@@ -14,6 +14,17 @@ const projectsArray = [
         description:
             'The Marble Race is an exciting mini-game where players take control of a ball and navigate through a straight path filled with moving obstacles. The objective is to guide the ball safely to the end of the course while avoiding the obstacles that are strategically placed to hinder progress.',
         tec: ['html', 'css', 'javascript', 'react', 'three', 'react-three-fiber']
+    },
+
+    {
+        id: 2,
+        name: 'Portal Scene',
+        ref: 'https://webgl-portal-scene-eight.vercel.app/',
+        code: 'https://github.com/davidevignozzi/threejs-journey/tree/main/react-three-fiber/r3f-portal-scene',
+        img: './assets/images/PortalScene.png',
+        description:
+            'The Portal Scene is an enchanting project crafted with Blender, seamlessly brought to life through the artful integration of code and delicate animations.',
+        tec: ['html', 'css', 'Blender', 'javascript', 'three']
     }
 ];
 
