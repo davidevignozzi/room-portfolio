@@ -66,7 +66,9 @@ const TrophiesScene = (props) => {
      */
     const handleMeta = () => {
         if (state.phase === 'education') {
-            // openInNewTab('');
+            openInNewTab(
+                'https://www.credly.com/badges/609374cb-bd29-4a03-b1fe-601eafb91493/public_url'
+            );
         }
     };
 
