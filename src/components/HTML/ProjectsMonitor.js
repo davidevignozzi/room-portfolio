@@ -12,7 +12,7 @@ const projectsArray = [
         code: 'https://github.com/davidevignozzi/threejs-journey/tree/main/react-three-fiber/r3f-jumping-sphere-game',
         img: './assets/images/MarbleRace.png',
         description:
-            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti recusandae ipsam sint blanditiis odit. Libero eius officia perspiciatis iste ipsam quaerat, ex veniam consequatur alias saepe, unde eligendi error iusto? Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti recusandae ipsam sint blanditiis odit. Libero eius officia perspiciatis iste ipsam quaerat, ex veniam consequatur alias saepe, unde eligendi error iusto?',
+            'The Marble Race is an exciting mini-game where players take control of a ball and navigate through a straight path filled with moving obstacles. The objective is to guide the ball safely to the end of the course while avoiding the obstacles that are strategically placed to hinder progress.',
         tec: ['html', 'css', 'javascript', 'react', 'three', 'react-three-fiber']
     }
 ];
