@@ -22,7 +22,7 @@
         "react-scripts": "5.0.1",
         "react-type-animation": "^3.0.1",
         "three": "^0.148.0",
-        "vercel": "^30.2.1",
+        "vercel": "^30.2.2",
         "web-vitals": "^2.1.4"
     },
     "scripts": {
