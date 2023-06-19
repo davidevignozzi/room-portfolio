@@ -18,6 +18,17 @@ const projectsArray = [
 
     {
         id: 2,
+        name: 'Drill Scene',
+        ref: 'https://threejs-gsap-webgi-drill.vercel.app/',
+        code: 'https://github.com/davidevignozzi/threejs-mastery/tree/main/threejs-gsap-webgi-drill',
+        img: './assets/images/DrillScene.png',
+        description:
+            'The Drill project is a study case to create immersive 3D Object experiences using Three.js, WebGI and Gsap with Scroll Trigger',
+        tec: ['html', 'css', 'javascript', 'WebGI', 'three.js']
+    },
+
+    {
+        id: 3,
         name: 'Portal Scene',
         ref: 'https://webgl-portal-scene-eight.vercel.app/',
         code: 'https://github.com/davidevignozzi/threejs-journey/tree/main/react-three-fiber/r3f-portal-scene',
